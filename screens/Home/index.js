@@ -7,23 +7,23 @@ import { NavigationActions } from 'react-navigation';
 import * as UI from './ui'
 
 class HomeScreen extends React.Component {
-  onPressAdvertisement = advertisement => {
-    this.props.navigation.navigate('Advertisement', { advertisement })
+  onPressOffer = offer => {
+    this.props.navigation.navigate('Offer', { offer })
   }
 
   componentWillMount = async () => {
-    const { Advertisement } = this.props;
-    Advertisement.find()
+    const { Offer } = this.props;
+    Offer.find()
   }
 
   render() {
-    const { advertisements } = this.props;
+    const { offers } = this.props;
 
     return (
       <UI.Screen>
         <UI.Carousel
-          advertisements={advertisements}
-          onPress={this.onPressAdvertisement}
+          offers={offers}
+          onPress={this.onPressOffer}
         />
       </UI.Screen>
     )
@@ -33,10 +33,10 @@ class HomeScreen extends React.Component {
 export default connect(
   state => ({
     users: state.users,
-    advertisements: state.advertisements,
+    offers: state.offers,
   }),
   (dispatch, props, models) => ({
     User: models.User,
-    Advertisement: models.Advertisement,
+    Offer: models.Offer,
   }),
 )(HomeScreen);

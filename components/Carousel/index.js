@@ -4,13 +4,13 @@ import { Dimensions } from 'react-native'
 import * as UI from './ui';
 
 export default class CarouselComponent extends React.Component {
-  renderAdvertisement = ({ item, index }) => (
-    <UI.SubComponent key={`advertisement${item.id}`}>
+  renderOffer = ({ item, index }) => (
+    <UI.SubComponent key={`offer${item.id}`}>
       <UI.Video source={{uri: item.video}}/>
       <UI.Shadow>
         <UI.Box>
-          <UI.Transition shared={`advertisement${item.id}`}>
-            <UI.Advertisement onPress={() => this.props.onPress(item)} {...item}/>
+          <UI.Transition shared={`offer${item.id}`}>
+            <UI.Offer onPress={() => this.props.onPress(item)} {...item}/>
           </UI.Transition>
         </UI.Box>
       </UI.Shadow>
@@ -18,12 +18,12 @@ export default class CarouselComponent extends React.Component {
   )
 
   render() {
-    const { advertisements } = this.props
+    const { offers } = this.props
     return (
       <UI.Component>
         <UI.Carousel
-          data={advertisements}
-          renderItem={this.renderAdvertisement}
+          data={offers}
+          renderItem={this.renderOffer}
           sliderWidth={Dimensions.get('window').width}
           sliderHeight={Dimensions.get('window').height}
           itemWidth={Dimensions.get('window').width - 60}

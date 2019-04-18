@@ -1,59 +1,48 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import modelsJSON from 'utils/models.json';
+import modelsMethods from '../assets/methods.json';
+import modelsRequests from './requests';
 
 import api, {
   createAction,
   createApiAction,
-  generateApiAction
-} from 'utils/api';
+  generateApiAction,
+} from '../utils/api';
 
-export const models = modelsJSON.reduce((models, model) => {
+const requests = modelsRequests(api);
+
+export const models = modelsMethods.reduce((models, model) => {
+
   models[model.name] = model.methods.reduce((methods, method) => {
 
     const action = generateApiAction(model.name + '_' + method.name);
     const effect = createApiAction(action);
 
     methods[method.name] = (...args) => {
-      const params = {
-        method: method.http.verb,
-        url: method.http.path,
-      }
 
-      method.accepts.forEach((accept, index) => {
-        if (args[index] && accept.http && accept.http.source === 'path') {
-          params.url = params.url.replace(`:${accept.arg}`, args[index])
-        }
-        else if (args[index] && method.http.verb === 'get') {
-          params.params = args[index]
-        }
-        else if (args[index]) {
-          params.data = args[index]
-        }
-      })
-      return effect(api(params))
+      return effect(requests[model.name][method.name](...args))
     }
+
     methods[method.name].DEFINE = action.DEFINE
     methods[method.name].PENDING = action.PENDING
     methods[method.name].FULFILLED = action.FULFILLED
     methods[method.name].REJECTED = action.REJECTED
+
     return methods
   }, {})
+
+
+  models[model.name].set = createAction(model.name + '_SET');
+  models[model.name].clear = createAction(model.name + '_CLEAR');
+
+  models[model.plural] = models[model.name]
+  models[model.plural.toLowerCase()] = models[model.name]
+  models[model.name.toLowerCase()] = models[model.name]
+
   return models
 }, {})
 
-export default (
-    mapStateToProps,
-    mapDispatchToProps,
-    mergeProps,
-    options,
-) => connect(
-  mapStateToProps,
-  bindedMapDispatchToProps(mapDispatchToProps, models),
-  mergeProps,
-  options,
-);
 
 const bindedMapDispatchToProps = (mapDispatchToProps, models) => {
   if (typeof mapDispatchToProps !== 'function') return mapDispatchToProps;
@@ -69,3 +58,15 @@ const bindedMapDispatchToProps = (mapDispatchToProps, models) => {
     }, {});
   };
 };
+
+export default (
+    mapStateToProps,
+    mapDispatchToProps,
+    mergeProps,
+    options,
+) => connect(
+  mapStateToProps,
+  bindedMapDispatchToProps(mapDispatchToProps, models),
+  mergeProps,
+  options,
+);

@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 
 export Screen from 'components/Screen';
-export Advertisement from 'components/Advertisement';
+export Offer from 'components/Offer';
 export Button from 'components/Button';
 export { Transition } from 'react-navigation-fluid-transitions';
 

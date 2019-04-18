@@ -9,7 +9,7 @@ export default props => (
     <UI.Transition shared="text">
       <UI.Title>Category</UI.Title>
     </UI.Transition>
-    <UI.Button onPress={() => props.navigation.navigate('Advertisement')}>
+    <UI.Button onPress={() => props.navigation.navigate('Offer')}>
       <UI.Button.Title> Go Back </UI.Button.Title>
     </UI.Button>
   </UI.Screen>

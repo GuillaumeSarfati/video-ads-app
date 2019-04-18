@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 export { Transition } from 'react-navigation-fluid-transitions';
 export Carousel from 'react-native-snap-carousel';
 
-export Advertisement from 'components/Advertisement'
+export Offer from 'components/Offer'
 export Shadow from 'components/Shadow'
 export Video from 'components/Video'
 export Box from 'components/Box';
