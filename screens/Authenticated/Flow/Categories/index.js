@@ -6,13 +6,12 @@ import * as UI from './ui'
 
 class CategoriesScreen extends React.Component {
   componentWillMount = async () => {
-    const { Category } = this.props;
-    Category.find();
+    const { Offer } = this.props;
+    Offer.find()
   }
 
   onNavigate = screen => category => {
-    const { Offer, Category, navigation } = this.props
-    Offer.find(category)
+    const { Category, navigation } = this.props
     Category.set(category)
     navigation.navigate(screen)
   }

@@ -10,6 +10,13 @@ import Verification from 'screens/Unauthenticated/Verification';
 import Welcome from 'screens/Unauthenticated/Welcome';
 import Choose from 'screens/Unauthenticated/Choose';
 
+
+// Unauthenticated Login
+import Login from 'screens/Unauthenticated/Login';
+import Reset from 'screens/Unauthenticated/Login/Password/Reset';
+import Check from 'screens/Unauthenticated/Login/Password/Check';
+import Change from 'screens/Unauthenticated/Login/Password/Change';
+
 // Authenticated
 import Profile from 'screens/Authenticated/Profile';
 import Record from 'screens/Authenticated/Record';
@@ -28,6 +35,13 @@ export const FlowNavigator = createFluidNavigator({
   Offer: { screen : Offer },
 }, { headerMode: 'none', navigationOptions: { gesturesEnabled: true }})
 
+export const LoginNavigator = createStackNavigator({
+  Login: { screen : Login },
+  Reset: { screen : Reset },
+  Check: { screen : Check },
+  Change: { screen : Change },
+}, { headerMode: 'none', navigationOptions: { gesturesEnabled: true }})
+
 export const AuthenticatedNavigator = createBottomTabNavigator({
   Flow: { screen : FlowNavigator },
   Profile: { screen : Profile },
@@ -36,6 +50,7 @@ export const AuthenticatedNavigator = createBottomTabNavigator({
 }, { mode: 'modal', headerMode: 'none', tabBarComponent: TabBar, navigationOptions: { gesturesEnabled: true }})
 
 export const UnauthenticatedNavigator = createStackNavigator({
+  Login: { screen : LoginNavigator },
   Signup: { screen : Signup },
   Verification: { screen : Verification },
   Welcome: { screen : Welcome },

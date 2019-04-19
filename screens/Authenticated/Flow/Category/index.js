@@ -9,18 +9,6 @@ class CategoryScreen extends React.Component {
     this.props.navigation.navigate('Offer', { offer })
   }
 
-  componentWillMount = async () => {
-    const { Offer } = this.props;
-    await Offer.find()
-    console.log('[ HOME SCREEN ] componentWillMount : ');
-  }
-
-  componentDidMount = async () => {
-    const { Offer } = this.props;
-    await Offer.find()
-    console.log('[ HOME SCREEN ] componentDidMount : ');
-  }
-
   onGoBack = e => {
     const { Category, navigation } = this.props
     Category.clear()
