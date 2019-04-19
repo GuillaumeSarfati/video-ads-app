@@ -4,7 +4,7 @@ import connect from 'utils/connect';
 
 import * as UI from './ui'
 
-class HomeScreen extends React.Component {
+class ChooseScreen extends React.Component {
   componentWillMount = async () => {
     const { Model } = this.props;
   }
@@ -21,9 +21,8 @@ class HomeScreen extends React.Component {
 
     return (
       <UI.Screen>
-        <UI.Text>HomeScreen</UI.Text>
-        <UI.Button onPress={onNavigate('Authenticated')}>AuthenticatedScreen</UI.Button>
-        <UI.Button onPress={onNavigate('Signup')}>SignupScreen</UI.Button>
+        <UI.Text>ChooseScreen</UI.Text>
+        <UI.Button onPress={onNavigate('Authenticated')}>Authenticated</UI.Button>
       </UI.Screen>
     )
   }
@@ -32,4 +31,4 @@ class HomeScreen extends React.Component {
 export default connect(
   state => ({}),
   (dispatch, props, models) => ({}),
-)(HomeScreen);
+)(ChooseScreen);

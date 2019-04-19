@@ -16,6 +16,6 @@ export const Component = styled.View`
 `
 
 export const SubComponent = styled.View`
-  flex: 1;
+  flex:1;
   justify-content: center;
 `
