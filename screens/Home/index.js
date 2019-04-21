@@ -21,8 +21,8 @@ class HomeScreen extends React.Component {
     const { onNavigate } = this;
 
     return (
-      <UI.Screen>
-        <UI.Text>HomeScreen</UI.Text>
+      <UI.Screen background={require('../../assets/images/background/home.png')}>
+        <UI.Logo source={require('../../assets/images/logo.png')}/>
         <UI.Button onPress={onNavigate('Authenticated')}>AuthenticatedScreen</UI.Button>
         <UI.Button onPress={onNavigate('Signup')}>Signup</UI.Button>
         <UI.Button onPress={onNavigate('Login')}>Login</UI.Button>

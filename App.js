@@ -2,8 +2,14 @@ import React from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { AppLoading, Asset, Font, Icon } from 'expo';
 import { Provider } from 'react-redux'
+import { useScreens } from 'react-native-screens';
+
 import Screens from 'screens';
 import store from 'utils/store';
+
+// AMAZING
+// https://reactnavigation.org/docs/en/react-native-screens.html
+useScreens();
 
 // Show HTTP Request in chrome debugger
 // XMLHttpRequest = GLOBAL.originalXMLHttpRequest
@@ -42,6 +48,12 @@ export default class App extends React.Component {
       Asset.loadAsync([
         require('./assets/images/tab/home.png'),
         require('./assets/images/categories/default.png'),
+
+        require('./assets/images/background/home.png'),
+        require('./assets/images/background/wave.png'),
+        require('./assets/images/header/back.png'),
+        require('./assets/images/illustration.png'),
+        require('./assets/images/logo.png'),
       ]),
       Font.loadAsync({
         // This is the font that we are using for our tab bar

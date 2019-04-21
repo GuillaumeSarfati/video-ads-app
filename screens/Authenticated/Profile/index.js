@@ -1,6 +1,7 @@
 import React from 'react';
 
 import connect from 'utils/connect';
+import background from '../../../assets/images/background/wave.png';
 
 import * as UI from './ui'
 
@@ -20,7 +21,7 @@ class ProfileScreen extends React.Component {
     const { onNavigate } = this;
 
     return (
-      <UI.Screen>
+      <UI.Screen source={background}>
         <UI.Text>ProfileScreen</UI.Text>
         <UI.Button onPress={onNavigate('Edit')}>Edit</UI.Button>
       </UI.Screen>
