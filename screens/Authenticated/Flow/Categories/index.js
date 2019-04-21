@@ -7,10 +7,10 @@ import { Transition } from 'react-navigation-fluid-transitions';
 import * as UI from './ui'
 
 class CategoriesScreen extends React.Component {
-  componentWillMount = async () => {
-    const { Category } = this.props;
-    Category.find()
-  }
+  // componentWillMount = async () => {
+  //   const { Category } = this.props;
+  //   Category.find()
+  // }
 
   onNavigate = screen => category => {
     const { Category, navigation } = this.props
@@ -30,20 +30,18 @@ class CategoriesScreen extends React.Component {
             <UI.Title>Petites Annonces</UI.Title>
           </UI.Header>
           </Transition>
-          <Transition appear="top">
-          <UI.Categories>
-            {
-              categories.map((category, index) => (
-                <UI.Category
-                  key={category.id}
-                  onPress={() => onNavigate('Category')(category)}
-                  model={category}
-                  index={index}
-                />
-              ))
-            }
-          </UI.Categories>
-          </Transition>
+            <UI.Categories>
+              {
+                categories.map((category, index) => (
+                  <UI.Category
+                    key={category.id}
+                    onPress={() => onNavigate('Category')(category)}
+                    model={category}
+                    index={index}
+                  />
+                ))
+              }
+            </UI.Categories>
 
       </UI.Screen>
     )

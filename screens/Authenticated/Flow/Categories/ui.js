@@ -14,7 +14,6 @@ export const  Title = styled.Text`
               `;
 
 export const  Categories = styled.View`
-                flex: 1;
                 flex-wrap: wrap;
                 flex-direction: row;
                 padding-left: 15px;

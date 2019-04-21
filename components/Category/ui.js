@@ -2,6 +2,8 @@ import styled from 'styled-components/native';
 import CategoryTitle from 'components/Category/Title';
 import { Dimensions } from 'react-native';
 
+export { Transition } from 'react-navigation-fluid-transitions';
+
 // height: ${Dimensions.get('window').width / 2 - 60}px;
 export const  Component = styled.View`
                 width: ${(Dimensions.get('window').width - 45) / 2}px;
