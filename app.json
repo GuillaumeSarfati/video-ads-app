@@ -2,7 +2,7 @@
   "expo": {
     "name": "popeye",
     "slug": "popeye-development",
-    "privacy": "public",
+    "privacy": "unlisted",
     "sdkVersion": "32.0.0",
     "platforms": [
       "ios",
