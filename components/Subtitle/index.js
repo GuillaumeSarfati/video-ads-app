@@ -7,6 +7,5 @@ export default styled.Text`
                 font-size: 16px;
                 font-weight: 600;
                 line-height: 28px;
-                text-align: center;
-                margin: 15px;
+                text-align: ${props => props.center ? 'center' : 'left' };
               `;

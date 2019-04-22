@@ -18,9 +18,11 @@ import Check from 'screens/Unauthenticated/Login/Password/Check';
 import Change from 'screens/Unauthenticated/Login/Password/Change';
 
 // Authenticated
-import Profile from 'screens/Authenticated/Profile';
 import Record from 'screens/Authenticated/Record';
 import Shop from 'screens/Authenticated/Shop';
+
+import Profile from 'screens/Authenticated/Profile';
+import Edit from 'screens/Authenticated/Profile/Edit';
 
 // Authenticated Flow
 import Categories from 'screens/Authenticated/Flow/Categories';
@@ -35,6 +37,12 @@ export const FlowNavigator = createFluidNavigator({
   Offer: { screen : Offer },
 }, { headerMode: 'none', navigationOptions: { gesturesEnabled: true }})
 
+export const ProfileNavigator = createStackNavigator({
+  Profile: { screen : Profile },
+  Edit: { screen : Edit },
+}, { mode: 'modal', headerMode: 'none', navigationOptions: { gesturesEnabled: true }})
+
+
 export const LoginNavigator = createStackNavigator({
   Login: { screen : Login },
   Reset: { screen : Reset },
@@ -44,9 +52,8 @@ export const LoginNavigator = createStackNavigator({
 
 export const AuthenticatedNavigator = createBottomTabNavigator({
   Flow: { screen : FlowNavigator },
-  Profile: { screen : Profile },
-  Record: { screen : Record },
   Shop: { screen : Shop },
+  Profile: { screen : ProfileNavigator },
 }, { mode: 'modal', headerMode: 'none', tabBarComponent: TabBar, navigationOptions: { gesturesEnabled: true }})
 
 export const UnauthenticatedNavigator = createStackNavigator({
@@ -58,7 +65,8 @@ export const UnauthenticatedNavigator = createStackNavigator({
 }, { headerMode: 'none' })
 
 export const AppNavigator = createStackNavigator({
-  Home: { screen : Welcome },
+  Home: { screen : Home },
+  Record: { screen : Record },
   Authenticated: { screen: AuthenticatedNavigator },
   Unauthenticated: { screen : UnauthenticatedNavigator },
 }, { mode: 'modal', headerMode: 'none' })

@@ -8,7 +8,7 @@ const Screen = props => {
   return scroll
   ? (
     <UI.Background source={background}>
-      <UI.ScrollView contentContainerStyle={{ justifyContent: 'flex-start', alignSelf: 'stretch'}}>
+      <UI.ScrollView bounces={false} contentContainerStyle={{ justifyContent: 'flex-start', alignSelf: 'stretch'}}>
           { children }
       </UI.ScrollView>
     </UI.Background>
@@ -22,7 +22,10 @@ const Screen = props => {
   )
 }
 
+Screen.Header = UI.Header;
 Screen.Content = UI.Content;
+Screen.Row = UI.Row;
+Screen.Column = UI.Column;
 Screen.Footer = UI.Footer;
 
 export default Screen;

@@ -1,8 +1,22 @@
-import styled from 'styled-components/native'
+import React from 'react';
+import * as UI from './ui';
 
-export default styled.TouchableOpacity`
-  height: 200px;
-  align-self: stretch;
-  justify-content: flex-end;
-  padding: 20px 30px;
-`
+const Header = props => props.background
+? (
+  <UI.Background source={require('assets/images/background/wave.png')}>
+    <UI.Component>
+      { props.children }
+    </UI.Component>
+  </UI.Background>
+)
+: (
+  <UI.Component>
+    { props.children }
+  </UI.Component>
+)
+
+
+Header.Title = UI.Title;
+Header.Subtitle = UI.Subtitle;
+
+export default Header;

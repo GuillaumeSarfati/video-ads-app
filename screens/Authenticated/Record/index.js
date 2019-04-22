@@ -12,7 +12,9 @@ class RecordScreen extends React.Component {
   onNavigate = screen => e => {
     const { navigation } = this.props
 
-    navigation.navigate(screen)
+    screen
+      ? navigation.navigate(screen)
+      : navigation.goBack()
   }
 
   render() {
@@ -22,7 +24,7 @@ class RecordScreen extends React.Component {
     return (
       <UI.Screen>
         <UI.Text>RecordScreen</UI.Text>
-        <UI.Button onPress={onNavigate('Offer')}>Offer</UI.Button>
+        <UI.Button onPress={onNavigate()}>Go Back</UI.Button>
       </UI.Screen>
     )
   }

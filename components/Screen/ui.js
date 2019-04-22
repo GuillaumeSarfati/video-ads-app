@@ -1,5 +1,7 @@
 import styled from 'styled-components/native';
 
+export Header from 'components/Header';
+export Shadow from 'components/Shadow';
 
 export const Background = styled.ImageBackground`
   flex: 1;
@@ -19,6 +21,24 @@ export const Content = styled.View`
   justify-content: center;
   align-items: center;
   align-self: stretch;
+`
+
+export const Row = styled.View`
+  flex-direction: row;
+  justify-content: ${props => props.justifyContent || 'flex-start'};
+  align-items: ${props => props.alignItems || 'flex-start'};
+  padding:  ${props => props.padding || '0px'};
+  margin:  ${props => props.margin || '0px'};
+  ${props => props.debug ? 'border: 1px solid red;' : ''};
+`
+
+export const Column = styled.View`
+  flex-direction: column;
+  justify-content: ${props => props.justifyContent || 'flex-start'};
+  align-items: ${props => props.alignItems || 'flex-start'};
+  padding:  ${props => props.padding || '0px'};
+  margin:  ${props => props.margin || '0px'};
+  ${props => props.debug ? 'border: 1px solid red;' : ''};
 `
 
 export const Footer = styled.View`
