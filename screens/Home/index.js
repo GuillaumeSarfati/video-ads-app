@@ -24,8 +24,8 @@ class HomeScreen extends React.Component {
       <UI.Screen background={require('assets/images/background/home.png')}>
         <UI.Content>
           <UI.Logo source={require('assets/images/logo.png')}/>
-          <UI.Title>Les petites annonces vidéos</UI.Title>
-          <UI.Subtitle>Connectez-vous pour démarrer</UI.Subtitle>
+          <UI.Title center shadow>Les petites annonces vidéos</UI.Title>
+          <UI.Subtitle center>Connectez-vous pour démarrer</UI.Subtitle>
           <UI.Login>
             <UI.Button type="facebook" large onPress={onNavigate('Authenticated')}>via Facebook</UI.Button>
             <UI.Button type="default" large onPress={onNavigate('Login')}>via Email</UI.Button>

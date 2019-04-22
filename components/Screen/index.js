@@ -9,7 +9,7 @@ const Screen = props => {
   ? (
     <UI.Background source={background}>
       <UI.ScrollView bounces={false} contentContainerStyle={{ justifyContent: 'flex-start', alignSelf: 'stretch'}}>
-          { children }
+        { children }
       </UI.ScrollView>
     </UI.Background>
   )
@@ -24,6 +24,7 @@ const Screen = props => {
 
 Screen.Header = UI.Header;
 Screen.Content = UI.Content;
+Screen.Description = UI.Description;
 Screen.Row = UI.Row;
 Screen.Column = UI.Column;
 Screen.Footer = UI.Footer;

@@ -2,6 +2,7 @@ import styled from 'styled-components/native';
 
 export Header from 'components/Header';
 export Shadow from 'components/Shadow';
+export Description from 'components/Description';
 
 export const Background = styled.ImageBackground`
   flex: 1;

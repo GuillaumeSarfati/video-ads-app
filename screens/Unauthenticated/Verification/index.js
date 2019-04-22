@@ -4,25 +4,51 @@ import connect from 'utils/connect';
 
 import * as UI from './ui'
 
-class VerificationScreen extends React.Component {
+class LoginScreen extends React.Component {
+  state = {
+    code: '',
+  }
+
   componentWillMount = async () => {
     const { Model } = this.props;
+  }
+
+  onChange = property => e => {
+    this.setState({ [property]: e.target.value })
   }
 
   onNavigate = screen => e => {
     const { navigation } = this.props
 
-    navigation.navigate(screen)
+    screen
+      ? navigation.navigate(screen)
+      : navigation.goBack()
   }
 
   render() {
+    const { code } = this.state;
     const { models } = this.props;
-    const { onNavigate } = this;
+    const { onChange, onNavigate } = this;
 
     return (
       <UI.Screen>
-        <UI.Text>VerificationScreen</UI.Text>
-        <UI.Button onPress={onNavigate('Welcome')}>Welcome</UI.Button>
+        <UI.Screen.Header>
+          <UI.Screen.Header.Bar onPress={onNavigate()}>
+            <UI.Screen.Header.Bar.Close>
+              Inscription
+            </UI.Screen.Header.Bar.Close>
+          </UI.Screen.Header.Bar>
+          <UI.Screen.Header.Title dark>Code de confirmation</UI.Screen.Header.Title>
+        </UI.Screen.Header>
+        <UI.Screen.Content style={{ justifyContent: 'flex-start', alignItems: 'flex-start'  }}>
+          <UI.Screen.Column style={{ padding: 30}}>
+            <UI.Screen.Description>At vero eos et accusamus et iust  nissimos ducimus qui blanditiis praes entium volup tatum deleniti.</UI.Screen.Description>
+            <UI.TextInput value={code} onChange={onChange('code')} placeholder="Code de confirmation"/>
+          </UI.Screen.Column>
+        </UI.Screen.Content>
+        <UI.Screen.Footer>
+          <UI.Button type="primary" large onPress={onNavigate('Welcome')}>Valider</UI.Button>
+        </UI.Screen.Footer>
       </UI.Screen>
     )
   }
@@ -31,4 +57,4 @@ class VerificationScreen extends React.Component {
 export default connect(
   state => ({}),
   (dispatch, props, models) => ({}),
-)(VerificationScreen);
+)(LoginScreen);
