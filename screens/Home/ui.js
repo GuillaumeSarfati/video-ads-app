@@ -1,7 +1,5 @@
 import styled from 'styled-components/native';
 
-export { TouchableOpacity } from 'react-native';
-
 export Screen from 'components/Screen';
 export Title from 'components/Title';
 export Subtitle from 'components/Subtitle';
@@ -26,6 +24,10 @@ export const  Signup = styled.View`
               `;
 
               Signup.Text = styled.Text`
+                color: white;
+              `;
+
+              Signup.Link = styled.TouchableOpacity`
                 color: white;
               `;
 

@@ -33,9 +33,9 @@ class HomeScreen extends React.Component {
         </UI.Content>
         <UI.Signup>
             <UI.Signup.Text>Vous n'avez pas de compte ? </UI.Signup.Text>
-            <UI.TouchableOpacity onPress={onNavigate('Signup')}>
+            <UI.Signup.Link onPress={onNavigate('Signup')}>
               <UI.Signup.Text.Underline>S'inscrire</UI.Signup.Text.Underline>
-            </UI.TouchableOpacity>
+            </UI.Signup.Link>
         </UI.Signup>
 
       </UI.Screen>

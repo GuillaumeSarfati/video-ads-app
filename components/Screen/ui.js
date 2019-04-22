@@ -33,11 +33,10 @@ export const Row = styled.View`
 `
 
 export const Column = styled.View`
+  align-self: stretch;
   flex-direction: column;
   justify-content: ${props => props.justifyContent || 'flex-start'};
   align-items: ${props => props.alignItems || 'flex-start'};
-  padding:  ${props => props.padding || '0px'};
-  margin:  ${props => props.margin || '0px'};
   ${props => props.debug ? 'border: 1px solid red;' : ''};
 `
 
