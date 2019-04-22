@@ -21,11 +21,23 @@ class HomeScreen extends React.Component {
     const { onNavigate } = this;
 
     return (
-      <UI.Screen background={require('../../assets/images/background/home.png')}>
-        <UI.Logo source={require('../../assets/images/logo.png')}/>
-        <UI.Button onPress={onNavigate('Authenticated')}>AuthenticatedScreen</UI.Button>
-        <UI.Button onPress={onNavigate('Signup')}>Signup</UI.Button>
-        <UI.Button onPress={onNavigate('Login')}>Login</UI.Button>
+      <UI.Screen background={require('assets/images/background/home.png')}>
+        <UI.Content>
+          <UI.Logo source={require('assets/images/logo.png')}/>
+          <UI.Title>Les petites annonces vidéos</UI.Title>
+          <UI.Subtitle>Connectez-vous pour démarrer</UI.Subtitle>
+          <UI.Login>
+            <UI.Button type="facebook" large onPress={onNavigate('Authenticated')}>via Facebook</UI.Button>
+            <UI.Button type="default" large onPress={onNavigate('Login')}>via Email</UI.Button>
+          </UI.Login>
+        </UI.Content>
+        <UI.Signup>
+            <UI.Signup.Text>Vous n'avez pas de compte ? </UI.Signup.Text>
+            <UI.TouchableOpacity onPress={onNavigate('Signup')}>
+              <UI.Signup.Text.Underline>S'inscrire</UI.Signup.Text.Underline>
+            </UI.TouchableOpacity>
+        </UI.Signup>
+
       </UI.Screen>
     )
   }
