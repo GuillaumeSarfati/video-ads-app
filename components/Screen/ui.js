@@ -5,7 +5,6 @@ export const Background = styled.ImageBackground`
   flex: 1;
   justify-content: center;
   align-items: center;
-  background: red;
 `
 
 export const View = styled.View`

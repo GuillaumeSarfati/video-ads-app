@@ -5,26 +5,54 @@ import connect from 'utils/connect';
 import * as UI from './ui'
 
 class TabBarComponent extends React.Component {
-  componentWillMount = async () => {
-    const { Model } = this.props;
+
+  state = {
+    tabs: [
+      'Flow',
+      'Record',
+      'Shop',
+      'Profile',
+    ],
+    current: 'Flow',
   }
 
-  onNavigate = screen => e => {
+  onNavigate = current => e => {
     const { navigation } = this.props
 
-    navigation.navigate(screen)
+    const CustomLayoutLinear = {
+      duration: 300,
+      create: {
+        type: UI.LayoutAnimation.Types.linear,
+        property: UI.LayoutAnimation.Properties.opacity,
+      },
+      update: {
+        type: UI.LayoutAnimation.Types.linear,
+      },
+    };
+
+    UI.LayoutAnimation.configureNext(CustomLayoutLinear);
+
+    this.setState({ current }, () => navigation.navigate(current))
   }
 
   render() {
+    const { tabs, current } = this.state;
     const { models } = this.props;
     const { onNavigate } = this;
 
     return (
       <UI.Component>
-        <UI.ButtonTab onPress={onNavigate('Flow')}/>
-        <UI.ButtonIcon onPress={onNavigate('Record')}>Record</UI.ButtonIcon>
-        <UI.ButtonIcon onPress={onNavigate('Shop')}>Shop</UI.ButtonIcon>
-        <UI.ButtonIcon onPress={onNavigate('Profile')}>Profile</UI.ButtonIcon>
+      {
+        tabs.map(tab => (
+          <UI.ButtonTest
+            key={tab}
+            current={current === tab}
+            onPress={onNavigate(tab)}
+          >
+            { tab }
+          </UI.ButtonTest>
+        ))
+      }
       </UI.Component>
     )
   }
