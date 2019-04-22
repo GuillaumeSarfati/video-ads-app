@@ -21,8 +21,14 @@ class WelcomeScreen extends React.Component {
 
     return (
       <UI.Screen>
-        <UI.Text>WelcomeScreen</UI.Text>
-        <UI.Button onPress={onNavigate('Choose')}>Choose</UI.Button>
+        <UI.Screen.Content>
+          <UI.Image source={require('assets/images/illustration.png')}/>
+          <UI.Title dark>Bienvenue</UI.Title>
+          <UI.Description>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</UI.Description>
+        </UI.Screen.Content>
+        <UI.Screen.Footer>
+          <UI.Button onPress={onNavigate('Choose')}>Continuer</UI.Button>
+        </UI.Screen.Footer>
       </UI.Screen>
     )
   }

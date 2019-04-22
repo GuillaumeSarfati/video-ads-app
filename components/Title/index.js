@@ -3,7 +3,7 @@ import styled from 'styled-components/native'
 export default styled.Text`
                 max-width: 300px;
                 text-align: center;
-                color: white;
+                color: ${props => props.dark ? '#384E71' : 'white' };
                 font-size: 28px;
                 font-weight: 900;
                 line-height: 38px;

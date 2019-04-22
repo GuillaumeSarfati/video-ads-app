@@ -58,7 +58,7 @@ export const UnauthenticatedNavigator = createStackNavigator({
 }, { headerMode: 'none' })
 
 export const AppNavigator = createStackNavigator({
-  Home: { screen : Home },
+  Home: { screen : Welcome },
   Authenticated: { screen: AuthenticatedNavigator },
   Unauthenticated: { screen : UnauthenticatedNavigator },
 }, { mode: 'modal', headerMode: 'none' })

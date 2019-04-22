@@ -2,7 +2,7 @@ import React from 'react';
 
 import * as UI from './ui';
 
-export default props => {
+const Screen = props => {
   const { scroll, background, children } = props
 
   return scroll
@@ -21,3 +21,8 @@ export default props => {
     </UI.View>
   )
 }
+
+Screen.Content = UI.Content;
+Screen.Footer = UI.Footer;
+
+export default Screen;
