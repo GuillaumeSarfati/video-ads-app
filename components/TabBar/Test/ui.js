@@ -34,7 +34,7 @@ export const  Button = styled.TouchableOpacity`
               Button.Image = styled.View`
                 width: 28px;
                 height: 28px;
-                background: #777;
+                background: #D7D7D7;
                 border-radius: 15px;
               `;
 

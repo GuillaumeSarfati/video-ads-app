@@ -64,15 +64,12 @@ class ProfileScreen extends React.Component {
           </UI.List>
         </UI.Screen.Content>
         <UI.Screen.Footer>
-          <UI.Button type="default" large>Deconnexion</UI.Button>
+          <UI.Button type="default" onPress={onNavigate('Home')} large>Deconnexion</UI.Button>
         </UI.Screen.Footer>
       </UI.Screen>
     )
   }
 }
-// <UI.Text>ProfileScreen</UI.Text>
-// <UI.Button onPress={onNavigate('Edit')}>Edit</UI.Button>
-// <UI.Button onPress={onNavigate('Edit')}>Edit</UI.Button>
 
 export default connect(
   state => ({}),

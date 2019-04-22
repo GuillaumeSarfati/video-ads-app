@@ -6,7 +6,7 @@ export const Component = styled.View`
   flex-direction: row;
   justify-content: space-between;
   background: white;
-  padding: 30px;
+  padding: 15px;
   box-shadow: -20px 0 80px #D6E2F5;
 `
 
