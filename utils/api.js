@@ -21,14 +21,14 @@ export const createApiAction = ({ DEFINE }) => {
 
 export const Api = config => {
   return axios.create({
-    baseURL: process.env.API_URL || `https://cfd22b28.ngrok.io/api`,
+    baseURL: process.env.API_URL || `http://development.popeye.com:3000/api`,
     withCredentials: true,
     ...config
   });
 }
 
 export const Models = axios.create({
-  baseURL: (process.env.API_URL || `https://cfd22b28.ngrok.io/api`).replace('/api', '/models'),
+  baseURL: (process.env.API_URL || `http://development.popeye.com:3000/api`).replace('/api', '/models'),
   withCredentials: true,
 });
 

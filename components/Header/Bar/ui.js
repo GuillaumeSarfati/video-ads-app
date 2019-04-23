@@ -20,7 +20,7 @@ export const  Icon = styled.Image`
               `
 
 export const  Text = styled.Text`
-                color: #384E71;
+                color: ${props => props.light ? 'white' : '#384E71' };
                 font-size: 14px;
                 font-weight: 900;
                 line-height: 19px;

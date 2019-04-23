@@ -23,10 +23,13 @@ import comment from './comment';
 import ratings from './ratings';
 import rating from './rating';
 
+import articles from './articles';
+import article from './article';
+
 export default combineReducers({
   me,
   accessToken,
-  
+
   schema,
 
   members,
@@ -46,4 +49,7 @@ export default combineReducers({
 
   ratings,
   rating,
+
+  articles,
+  article,
 });
