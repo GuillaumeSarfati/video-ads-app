@@ -14,7 +14,6 @@ export const  List = styled.View`
                 padding: 15px;
                 opacity: 0.75;
                 color: #384E71;
-                font-family: Avenir;
                 font-size: 12px;
                 font-weight: 900;
                 letter-spacing: 0.86px;

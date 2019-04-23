@@ -7,6 +7,11 @@ import { Transition } from 'react-navigation-fluid-transitions';
 import * as UI from './ui'
 
 class CategoriesScreen extends React.Component {
+  componentWillMount = async () => {
+    const { Offer } = this.props;
+    Offer.find()
+  }
+
   onNavigate = screen => category => {
     const { Category, navigation } = this.props
     Category.set(category)

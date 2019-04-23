@@ -21,13 +21,17 @@ export default class Test extends React.Component {
     const { current, children } = this.props
     const { onPress } = this.props
 
-    const colors = current
-      ? ['#8AFFCC15', '#3791EF15', '#FF72AD15']
-      : ['transparent']
+    // TODO FIX Android Crash
+    // const colors = current
+    //   ? ['#8AFFCC15', '#3791EF15', '#FF72AD15']
+    //   : ['transparent']
+    //
+    // const locations = current
+    //   ? [0,0.3,1]
+    //   : [0]
 
-    const locations = current
-      ? [0,0.3,1]
-      : [0]
+    const colors = ['#8AFFCC15', '#3791EF15', '#FF72AD15'];
+    const locations = [0,0.3,1];
 
     return (
       <UI.Component>
