@@ -15,11 +15,11 @@ class CategoriesScreen extends React.Component {
   onNavigate = screen => category => {
     const { Category, navigation } = this.props
     Category.set(category)
-    navigation.navigate(screen)
+
+    navigation.navigate(screen, { category, hideTabBar: true })
   }
 
   render() {
-    console.log('[ SCREEN CATEGORIES ] render : ', this.props);
     const { categories } = this.props;
     const { onNavigate } = this;
 
@@ -30,6 +30,7 @@ class CategoriesScreen extends React.Component {
             <UI.Title>Petites Annonces</UI.Title>
           </UI.Header>
           </Transition>
+          <Transition appear="bottom">
             <UI.Categories>
               {
                 categories.map((category, index) => (
@@ -42,7 +43,7 @@ class CategoriesScreen extends React.Component {
                 ))
               }
             </UI.Categories>
-
+          </Transition>
       </UI.Screen>
     )
   }

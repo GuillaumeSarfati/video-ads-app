@@ -10,7 +10,7 @@ export default class CarouselComponent extends React.Component {
       <UI.Shadow>
         <UI.Box>
           <UI.Transition shared={`offer${item.id}`}>
-            <UI.Offer onPress={() => this.props.onPress(item)} {...item}/>
+            <UI.Offer onPress={() => this.props.onPress(item)} model={item}/>
           </UI.Transition>
         </UI.Box>
       </UI.Shadow>

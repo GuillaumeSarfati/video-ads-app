@@ -22,6 +22,7 @@
     "react": "16.5.0",
     "react-loops": "^1.2.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
+    "react-native-3dcube-navigation": "^1.0.4",
     "react-native-shadow": "^1.2.2",
     "react-native-snap-carousel": "^3.7.5",
     "react-navigation": "^3.0.9",
@@ -33,6 +34,7 @@
     "redux-promise-middleware": "^6.1.0",
     "redux-thunk": "^2.3.0",
     "styled-components": "^4.2.0",
+    "styled-theming": "^2.2.0",
     "supports-color": "^6.1.0"
   },
   "devDependencies": {

@@ -22,6 +22,7 @@ const Screen = props => {
   )
 }
 
+Screen.Theme = UI.Theme;
 Screen.Header = UI.Header;
 Screen.Content = UI.Content;
 Screen.Description = UI.Description;

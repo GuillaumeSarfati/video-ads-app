@@ -1,7 +1,7 @@
 import React from 'react';
 
 import connect from 'utils/connect';
-
+import { Transition } from 'react-navigation-fluid-transitions';
 import * as UI from './ui'
 
 class TabBarComponent extends React.Component {
@@ -37,22 +37,22 @@ class TabBarComponent extends React.Component {
 
   render() {
     const { tabs, current } = this.state;
-    const { models } = this.props;
+    const { navigation, models } = this.props;
     const { onNavigate } = this;
 
     return (
       <UI.Component>
-      {
-        tabs.map(tab => (
-          <UI.ButtonTest
-            key={tab}
-            current={current === tab}
-            onPress={onNavigate(tab)}
-          >
-            { tab }
-          </UI.ButtonTest>
-        ))
-      }
+        {
+          tabs.map(tab => (
+            <UI.ButtonTest
+              key={tab}
+              current={current === tab}
+              onPress={onNavigate(tab)}
+            >
+              { tab }
+            </UI.ButtonTest>
+          ))
+        }
       </UI.Component>
     )
   }

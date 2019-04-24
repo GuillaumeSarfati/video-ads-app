@@ -27,15 +27,32 @@ import Edit from 'screens/Authenticated/Profile/Edit';
 // Authenticated Flow
 import Categories from 'screens/Authenticated/Flow/Categories';
 import Category from 'screens/Authenticated/Flow/Category';
+import CategoryOld from 'screens/Authenticated/Flow/Category.old';
 import Offer from 'screens/Authenticated/Flow/Offer';
 
 import TabBar from 'components/TabBar';
 
-export const FlowNavigator = createFluidNavigator({
-  Categories: { screen : Categories },
+export const CategoryNavigator = createFluidNavigator({
   Category: { screen : Category },
   Offer: { screen : Offer },
-}, { headerMode: 'none', navigationOptions: { gesturesEnabled: true }})
+}, { headerMode: 'none', navigationOptions: {gesturesEnabled: true, tabBarVisible: false } })
+
+
+export const FlowNavigator = createFluidNavigator({
+  Categories: { screen : Categories },
+  Category: { screen : CategoryNavigator },
+}, { headerMode: 'none', navigationOptions: {gesturesEnabled: true } })
+
+FlowNavigator.navigationOptions = ({ navigation }) => {
+  let { routeName } = navigation.state.routes[navigation.state.index];
+  let navigationOptions =  { gesturesEnabled: true }
+
+  if (routeName === 'Category' || routeName === 'Offer') {
+    navigationOptions.tabBarVisible = false;
+  }
+
+  return navigationOptions;
+};
 
 export const ProfileNavigator = createStackNavigator({
   Profile: { screen : Profile },
@@ -54,7 +71,7 @@ export const AuthenticatedNavigator = createBottomTabNavigator({
   Flow: { screen : FlowNavigator },
   Shop: { screen : Shop },
   Profile: { screen : ProfileNavigator },
-}, { mode: 'modal', headerMode: 'none', tabBarComponent: TabBar, navigationOptions: { gesturesEnabled: true }})
+}, { mode: 'modal', headerMode: 'none', tabBarComponent: TabBar, navigationOptions: { gesturesEnabled: false }})
 
 export const UnauthenticatedNavigator = createStackNavigator({
   Login: { screen : LoginNavigator },

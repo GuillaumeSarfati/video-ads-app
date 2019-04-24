@@ -1,10 +1,14 @@
 import styled from 'styled-components/native';
+import { Dimensions } from 'react-native';
 
 export Avatar from 'components/Avatar';
+export Rating from 'components/Rating';
+export Transition from 'components/Transition';
 
 export const  Component = styled.TouchableOpacity`
-                width: 300px;
+                align-self: stretch;
                 flex-direction:row;
+                width: ${Dimensions.get("window").width - 60}px;
               `
 
 export const  Informations = styled.View`
@@ -15,20 +19,35 @@ export const  Informations = styled.View`
               `
 
               Informations.Title = styled.Text`
-
+              	font-size: 18px;
+                font-weight: 900;
+                line-height: 25px;
+                color: white;
               `
 
               Informations.Subtitle = styled.Text`
-
+                opacity: 0.5;
+                color: #FFFFFF;
+                font-size: 14px;
+                font-weight: 700;
+                line-height: 19px;
               `
 
 export const  Price = styled.View`
-                align-items: center;
+                align-items: flex-end;
                 justify-content:center;
               `
               Price.Value = styled.Text`
-
+                font-size: 18px;
+                font-weight: 900;
+                line-height: 25px;
+                color: white;
+                text-align: right;
               `
-              Price.Time = styled.Text`
 
+              Price.Time = styled.Text`
+                font-size: 14px;
+                line-height: 25px;
+                color: white;
+                text-align: right;
               `

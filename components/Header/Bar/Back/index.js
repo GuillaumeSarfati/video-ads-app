@@ -4,7 +4,11 @@ import * as UI from '../ui';
 const Back = ({children, light}) => (
   <UI.Button>
     <UI.Icon source={require('assets/images/header/back.png')}/>
-    <UI.Text light={light}>{ children }</UI.Text>
+    {
+      typeof children === 'string'
+      ? <UI.Text light={light}>{ children }</UI.Text>
+      : children
+    }
   </UI.Button>
 )
 

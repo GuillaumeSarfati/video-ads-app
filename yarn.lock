@@ -5959,6 +5959,13 @@ react-loops@^1.2.1:
   dependencies:
     iterall "^1.2.0"
 
+react-native-3dcube-navigation@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/react-native-3dcube-navigation/-/react-native-3dcube-navigation-1.0.4.tgz#3bc94e71165da43506ce8b67f2cd99b649261c52"
+  integrity sha512-9BGdJDcouWi8a/KqajCOm+gHayXfFhodq8G/mgSMp0363QyZAlP7iPtYjL6mkaUcR8JAjzgCREh4CHAAMJmnhw==
+  dependencies:
+    react "^16.2.0"
+
 react-native-branch@2.2.5:
   version "2.2.5"
   resolved "https://registry.yarnpkg.com/react-native-branch/-/react-native-branch-2.2.5.tgz#4074dd63b4973e6397d9ce50e97b57c77a518e9d"
@@ -6200,6 +6207,16 @@ react@16.5.0:
     object-assign "^4.1.1"
     prop-types "^15.6.2"
     schedule "^0.3.0"
+
+react@^16.2.0:
+  version "16.8.6"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.8.6.tgz#ad6c3a9614fd3a4e9ef51117f54d888da01f2bbe"
+  integrity sha512-pC0uMkhLaHm11ZSJULfOBqV4tIZkx87ZLvbbQYunNixAAvjnC+snJCg0XQXn9VIsttVsbZP/H/ewzgsd5fxKXw==
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.2"
+    scheduler "^0.13.6"
 
 read-pkg-up@^1.0.1:
   version "1.0.1"
@@ -7001,6 +7018,11 @@ styled-components@^4.2.0:
     stylis "^3.5.0"
     stylis-rule-sheet "^0.0.10"
     supports-color "^5.5.0"
+
+styled-theming@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/styled-theming/-/styled-theming-2.2.0.tgz#3084e43d40eaab4bc11ebafd3de04e3622fee37e"
+  integrity sha1-MITkPUDqq0vBHrr9PeBONiL+434=
 
 stylis-rule-sheet@^0.0.10:
   version "0.0.10"

@@ -2,22 +2,29 @@ import React from 'react';
 
 import * as UI from './ui';
 
-export default props => (
+export default props => {
 
-  <UI.Component onPress={props.onPress}>
-      <UI.Avatar/>
+  console.log('[ COMPONENT OFFER ] render : ', props);
+  return (
 
-      <UI.Informations>
-        <UI.Informations.Title>{props.id}</UI.Informations.Title>
-        <UI.Informations.Subtitle>{props.title}</UI.Informations.Subtitle>
-      </UI.Informations>
+    <UI.Transition shared="offer">
+      <UI.Component onPress={props.onPress}>
+            <UI.Avatar/>
 
-      <UI.Price>
-        <UI.Price.Value>30€</UI.Price.Value>
-        <UI.Price.Time>de l'heure</UI.Price.Time>
-      </UI.Price>
+            <UI.Informations>
+              <UI.Rating model={{ stars: 3 }}/>
+              <UI.Informations.Title>Ewa {props.model.id.substr(16)}</UI.Informations.Title>
+              <UI.Informations.Subtitle>baby-sitter</UI.Informations.Subtitle>
+            </UI.Informations>
 
-      { props.children }
+            <UI.Price>
+              <UI.Price.Value>{props.model.price}{props.model.currency}</UI.Price.Value>
+              <UI.Price.Time>de l'heure</UI.Price.Time>
+            </UI.Price>
 
-  </UI.Component>
-)
+            { props.children }
+
+      </UI.Component>
+    </UI.Transition>
+  )
+}

@@ -24,7 +24,6 @@ class ShopScreen extends React.Component {
   }
 
   render() {
-    console.log('[ SCREEN SHOP ] : ', this.props);
     const { articles } = this.props;
     const { onNavigate, onBuy } = this;
 

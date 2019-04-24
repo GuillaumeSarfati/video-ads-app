@@ -3,7 +3,6 @@ import styled from 'styled-components/native';
 export Header from 'components/Header';
 export Shadow from 'components/Shadow';
 export Description from 'components/Description';
-export Theme from 'components/Theme';
 
 export const Background = styled.ImageBackground`
   flex: 1;
@@ -11,10 +10,8 @@ export const Background = styled.ImageBackground`
   align-items: center;
 `
 
-export const View = styled.View`
+export const Component = styled.View`
   flex: 1;
-  width: 100%;
-  height: 100%;
   align-self: stretch;
 `
 

@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components/native'
-import { Transition } from 'react-navigation-fluid-transitions';
+import Transition from 'components/Transition';
 
 const Text = styled.Text`
-  color: #384E71;
+  color: ${props => props.light ? 'white' : '#384E71' };
   font-size: 14px;
   font-weight: bold;
   line-height: 19px;
