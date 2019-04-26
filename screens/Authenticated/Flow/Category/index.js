@@ -11,15 +11,18 @@ class CategoryScreen extends React.Component {
   }
 
   onPressOffer = offer => e => {
-    this.props.navigation.navigate('Offer', { offer })
+    const { category } = this.props.navigation.state.params;
+    this.props.navigation.navigate('Offer', { category, offer })
   }
 
   onPressDetails = offer => e => {
-    this.props.navigation.navigate('Offer', { offer })
+    const { category } = this.props.navigation.state.params;
+    this.props.navigation.navigate('Offer', { category, offer })
   }
 
   onPressOrder = offer => e => {
-    this.props.navigation.navigate('Offer', { offer })
+    const { category } = this.props.navigation.state.params;
+    this.props.navigation.navigate('Offer', { category, offer })
   }
 
   onNavigateBack = screen => e => {

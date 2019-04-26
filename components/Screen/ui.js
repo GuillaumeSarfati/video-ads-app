@@ -3,7 +3,8 @@ import styled from 'styled-components/native';
 export Header from 'components/Header';
 export Shadow from 'components/Shadow';
 export Description from 'components/Description';
-export Theme from 'components/Theme';
+export Liner from 'components/Liner';
+export Label from 'components/Label';
 
 export const Background = styled.ImageBackground`
   flex: 1;
@@ -20,8 +21,6 @@ export const View = styled.View`
 
 export const Content = styled.View`
   flex: 1;
-  justify-content: center;
-  align-items: center;
   align-self: stretch;
 `
 

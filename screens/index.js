@@ -27,8 +27,8 @@ import Edit from 'screens/Authenticated/Profile/Edit';
 // Authenticated Flow
 import Categories from 'screens/Authenticated/Flow/Categories';
 import Category from 'screens/Authenticated/Flow/Category';
-import CategoryOld from 'screens/Authenticated/Flow/Category.old';
 import Offer from 'screens/Authenticated/Flow/Offer';
+import Search from 'screens/Authenticated/Flow/Search';
 
 import TabBar from 'components/TabBar';
 
@@ -82,7 +82,7 @@ export const UnauthenticatedNavigator = createStackNavigator({
 }, { headerMode: 'none' })
 
 export const AppNavigator = createStackNavigator({
-  Home: { screen : Home },
+  Home: { screen : Record },
   Record: { screen : Record },
   Authenticated: { screen: AuthenticatedNavigator },
   Unauthenticated: { screen : UnauthenticatedNavigator },

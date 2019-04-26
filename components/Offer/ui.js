@@ -22,12 +22,12 @@ export const  Informations = styled.View`
               	font-size: 18px;
                 font-weight: 900;
                 line-height: 25px;
-                color: white;
+                color: ${props => props.dark ? '#384E71' : 'white' };
               `
 
               Informations.Subtitle = styled.Text`
                 opacity: 0.5;
-                color: #FFFFFF;
+                color: ${props => props.dark ? '#384E71' : 'white' };
                 font-size: 14px;
                 font-weight: 700;
                 line-height: 19px;
@@ -41,13 +41,13 @@ export const  Price = styled.View`
                 font-size: 18px;
                 font-weight: 900;
                 line-height: 25px;
-                color: white;
+                color: ${props => props.dark ? '#384E71' : 'white' };
                 text-align: right;
               `
 
               Price.Time = styled.Text`
                 font-size: 14px;
                 line-height: 25px;
-                color: white;
+                color: ${props => props.dark ? '#384E71' : 'white' };
                 text-align: right;
               `

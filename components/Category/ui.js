@@ -8,7 +8,7 @@ export const  Component = styled.View`
                 width: ${(Dimensions.get('window').width - 45) / 2}px;
                 height: ${(Dimensions.get('window').width - 45) / 2}px;
                 flex-direction: row;
-                box-shadow: 0px 30px 30px #D6E2F5;
+                box-shadow: 0px 0px 30px #D6E2F5;
                 margin-right: 15px;
                 margin-bottom: 15px;
                 background: white;

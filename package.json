@@ -14,11 +14,12 @@
   },
   "dependencies": {
     "@expo/samples": "2.1.1",
+    "react-native-multi-slider": "https://github.com/GuillaumeSarfati/react-native-multi-slider.git",
     "axios": "^0.18.0",
     "babel-plugin-module-resolver": "^3.2.0",
     "expo": "^32.0.0",
-    "expo-react-native-shadow": "^1.0.3",
     "os": "^0.1.1",
+    "prop-types": "^15.7.2",
     "react": "16.5.0",
     "react-loops": "^1.2.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
@@ -34,7 +35,6 @@
     "redux-promise-middleware": "^6.1.0",
     "redux-thunk": "^2.3.0",
     "styled-components": "^4.2.0",
-    "styled-theming": "^2.2.0",
     "supports-color": "^6.1.0"
   },
   "devDependencies": {

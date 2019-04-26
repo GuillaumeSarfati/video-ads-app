@@ -25,9 +25,11 @@ const Screen = props => {
 Screen.Theme = UI.Theme;
 Screen.Header = UI.Header;
 Screen.Content = UI.Content;
-Screen.Description = UI.Description;
 Screen.Row = UI.Row;
 Screen.Column = UI.Column;
 Screen.Footer = UI.Footer;
+Screen.Liner = UI.Liner;
+Screen.Description = UI.Description;
+Screen.Label = UI.Label;
 
 export default Screen;

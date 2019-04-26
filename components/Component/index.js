@@ -10,5 +10,6 @@ Component.Description = UI.Description;
 Component.Row = UI.Row;
 Component.Column = UI.Column;
 Component.Footer = UI.Footer;
+Component.Label = UI.Label;
 
 export default Component;

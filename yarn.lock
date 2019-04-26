@@ -2932,11 +2932,6 @@ expo-react-native-adapter@~2.0.0:
     lodash.pick "^4.4.0"
     prop-types "^15.6.1"
 
-expo-react-native-shadow@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/expo-react-native-shadow/-/expo-react-native-shadow-1.0.3.tgz#70e40b06ae13313e88275bb98e0d5c4d800a7315"
-  integrity sha512-0CnsKAzfO9cMlztyijiR2tz+D2Jilxt/3Uq4ByhQoG8HckSZG8tE+IHO5axoRkDyaK/gUefwOMB1e4fVsUAt/w==
-
 expo-sensors-interface@~2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/expo-sensors-interface/-/expo-sensors-interface-2.0.0.tgz#8b94051e1996dae8ef90a9dafc8d32dc7b3c0af3"
@@ -5984,6 +5979,10 @@ react-native-maps@expo/react-native-maps#v0.22.1-exp.0:
   version "0.22.1"
   resolved "https://codeload.github.com/expo/react-native-maps/tar.gz/e6f98ff7272e5d0a7fe974a41f28593af2d77bb2"
 
+"react-native-multi-slider@https://github.com/GuillaumeSarfati/react-native-multi-slider.git":
+  version "2.0.0"
+  resolved "https://github.com/GuillaumeSarfati/react-native-multi-slider.git#b5e3b34f5e184d79225645c9a83b79e0448f5745"
+
 react-native-platform-touchable@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/react-native-platform-touchable/-/react-native-platform-touchable-1.1.1.tgz#fde4acc65eea585d28b164d0c3716a42129a68e4"
@@ -7018,11 +7017,6 @@ styled-components@^4.2.0:
     stylis "^3.5.0"
     stylis-rule-sheet "^0.0.10"
     supports-color "^5.5.0"
-
-styled-theming@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/styled-theming/-/styled-theming-2.2.0.tgz#3084e43d40eaab4bc11ebafd3de04e3622fee37e"
-  integrity sha1-MITkPUDqq0vBHrr9PeBONiL+434=
 
 stylis-rule-sheet@^0.0.10:
   version "0.0.10"
