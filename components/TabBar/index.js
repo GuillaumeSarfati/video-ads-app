@@ -1,7 +1,9 @@
 import React from 'react';
+import { LayoutAnimation } from 'react-native';
+import { Transition } from 'react-navigation-fluid-transitions';
 
 import connect from 'utils/connect';
-import { Transition } from 'react-navigation-fluid-transitions';
+
 import * as UI from './ui'
 
 class TabBarComponent extends React.Component {
@@ -19,25 +21,23 @@ class TabBarComponent extends React.Component {
   onNavigate = current => e => {
     const { navigation } = this.props
 
-    const CustomLayoutLinear = {
+    LayoutAnimation.configureNext({
       duration: 300,
       create: {
-        type: UI.LayoutAnimation.Types.linear,
-        property: UI.LayoutAnimation.Properties.opacity,
+        type: LayoutAnimation.Types.linear,
+        property: LayoutAnimation.Properties.opacity,
       },
       update: {
-        type: UI.LayoutAnimation.Types.linear,
+        type: LayoutAnimation.Types.linear,
       },
-    };
-
-    UI.LayoutAnimation.configureNext(CustomLayoutLinear);
+    });
 
     this.setState({ current }, () => navigation.navigate(current))
   }
 
   render() {
     const { tabs, current } = this.state;
-    const { navigation, models } = this.props;
+    const { me } = this.props;
     const { onNavigate } = this;
 
     return (
@@ -53,12 +53,15 @@ class TabBarComponent extends React.Component {
             </UI.ButtonTest>
           ))
         }
+        <UI.Avatar source={{ uri: me.picture }} />
       </UI.Component>
     )
   }
 }
 
 export default connect(
-  state => ({}),
+  state => ({
+    me: state.me,
+  }),
   (dispatch, props, models) => ({}),
 )(TabBarComponent);

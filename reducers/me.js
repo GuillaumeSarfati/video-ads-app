@@ -4,7 +4,8 @@ import { models } from 'utils/connect'
 export const INITIAL_STATE = null;
 
 export default handleActions({
-  [models.Administrator.set]: (state, action) => action.payload,
-  [models.Administrator.login.FULFILLED]: (state, action) => action.payload.me,
-  [models.Administrator.signup.FULFILLED]: (state, action) => action.payload.me,
+  [models.Member.set]: (state, action) => action.payload,
+  [models.Member.login.FULFILLED]: (state, action) => action.payload.data.me,
+  [models.Member.signup.FULFILLED]: (state, action) => action.payload.data.me,
+  [models.Member.facebook.FULFILLED]: (state, action) => action.payload.data.me,
 }, INITIAL_STATE);

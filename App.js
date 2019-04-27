@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform, StatusBar, StyleSheet, View } from 'react-native';
+import { Platform, StatusBar, StyleSheet, View, YellowBox } from 'react-native';
 import { AppLoading, Asset, Font, Icon } from 'expo';
 import { Provider } from 'react-redux'
 import { useScreens } from 'react-native-screens';
@@ -7,14 +7,15 @@ import { useScreens } from 'react-native-screens';
 import Screens from 'screens';
 import store from 'utils/store';
 
+YellowBox.ignoreWarnings(['Class EX*']);
 // AMAZING
 // https://reactnavigation.org/docs/en/react-native-screens.html
 useScreens();
 
 // Show HTTP Request in chrome debugger
-// XMLHttpRequest = GLOBAL.originalXMLHttpRequest
-//   ? GLOBAL.originalXMLHttpRequest
-//   : GLOBAL.XMLHttpRequest;
+XMLHttpRequest = GLOBAL.originalXMLHttpRequest
+  ? GLOBAL.originalXMLHttpRequest
+  : GLOBAL.XMLHttpRequest;
 
 export default class App extends React.Component {
   state = {

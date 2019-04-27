@@ -1,5 +1,7 @@
 import React from 'react';
 import { Facebook } from 'expo';
+import { LoginButton, LoginManager, AccessToken } from 'react-native-fbsdk';
+
 import connect from 'utils/connect';
 
 import * as UI from './ui'
@@ -8,30 +10,24 @@ class HomeScreen extends React.Component {
   componentWillMount = async () => {
     const { Category } = this.props;
     Category.find()
+    LoginManager.setLoginBehavior('native')
   }
 
-  onLoginWithFacebook = screen => async e => {
-    try {
-      const {
-        type,
-        token,
-        expires,
-        permissions,
-        declinedPermissions,
-      } = await Facebook.logInWithReadPermissionsAsync('2939442116096697', {
-        behavior: 'native',
-        permissions: ['public_profile'],
-      });
-      if (type === 'success') {
-        // Get the user's name using Facebook's Graph API
-        const response = await fetch(`https://graph.facebook.com/me?access_token=${token}`);
-        Alert.alert('Logged in!', `Hi ${(await response.json()).name}!`);
-      } else {
-        // type === 'cancel'
-      }
-    } catch ({ message }) {
-      Alert.alert(`Facebook Login Error: ${message}`);
+  onLoginWithFacebook = screen => async e =>   {
+    const { Member } = this.props;
+    const { onNavigate } = this;
+
+    let accessToken = await AccessToken.getCurrentAccessToken()
+    let permission;
+
+    if (!accessToken) {
+      permission = await LoginManager.logInWithReadPermissions(["public_profile", "email", "user_gender", "user_birthday"])
+      accessToken = await AccessToken.getCurrentAccessToken()
     }
+
+    await Member.facebook(accessToken)
+    return onNavigate(screen)(e)
+
   }
 
   onNavigate = screen => e => {
@@ -71,5 +67,6 @@ export default connect(
   state => ({}),
   (dispatch, props, models) => ({
     Category: models.Category,
+    Member: models.Member,
   }),
 )(HomeScreen);

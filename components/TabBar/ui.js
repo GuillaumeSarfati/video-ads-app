@@ -1,7 +1,5 @@
 import styled from 'styled-components/native'
 
-export { LayoutAnimation } from 'react-native';
-
 export const Component = styled.View`
   flex-direction: row;
   justify-content: space-between;
@@ -13,3 +11,4 @@ export const Component = styled.View`
 export ButtonTest from 'components/TabBar/Test';
 export ButtonIcon from 'components/TabBar/Icon';
 export ButtonTab from 'components/TabBar/Button';
+export Avatar from 'components/Avatar';
