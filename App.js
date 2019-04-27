@@ -1,11 +1,14 @@
 import React from 'react';
 import { Platform, StatusBar, StyleSheet, View, YellowBox } from 'react-native';
 import { AppLoading, Asset, Font, Icon } from 'expo';
+import { PersistGate } from 'redux-persist/integration/react'
 import { Provider } from 'react-redux'
 import { useScreens } from 'react-native-screens';
 
 import Screens from 'screens';
-import store from 'utils/store';
+import makeStore from 'utils/store';
+
+const { store, persistor } = makeStore();
 
 YellowBox.ignoreWarnings(['Class EX*']);
 // AMAZING
@@ -36,8 +39,9 @@ export default class App extends React.Component {
         <View style={styles.container}>
           {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
           <Provider store={store}>
-
-            <Screens />
+            <PersistGate loading={null} persistor={persistor}>
+              <Screens />
+            </PersistGate>
           </Provider>
         </View>
       );

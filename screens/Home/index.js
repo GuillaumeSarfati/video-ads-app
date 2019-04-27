@@ -64,7 +64,10 @@ class HomeScreen extends React.Component {
 }
 
 export default connect(
-  state => ({}),
+  state => ({
+    me: state.me,
+    accessToken: state.accessToken,
+  }),
   (dispatch, props, models) => ({
     Category: models.Category,
     Member: models.Member,
