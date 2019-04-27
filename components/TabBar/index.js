@@ -18,6 +18,10 @@ class TabBarComponent extends React.Component {
     current: 'Flow',
   }
 
+  shouldComponentUpdate(nextProps) {
+    return !!nextProps.me
+  }
+  
   onNavigate = current => e => {
     const { navigation } = this.props
 
@@ -53,7 +57,9 @@ class TabBarComponent extends React.Component {
             </UI.ButtonTest>
           ))
         }
-        <UI.Avatar source={{ uri: me.picture }} />
+        <UI.TouchableOpacity onPress={onNavigate('Profile')}>
+          <UI.Avatar source={{ uri: me.picture }} />
+        </UI.TouchableOpacity>
       </UI.Component>
     )
   }

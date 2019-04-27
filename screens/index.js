@@ -1,5 +1,5 @@
 import React from 'react';
-import { createAppContainer, createStackNavigator, createBottomTabNavigator } from 'react-navigation';
+import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 import { createFluidNavigator } from 'react-navigation-fluid-transitions';
 
 import Home from 'screens/Home';
@@ -81,11 +81,21 @@ export const UnauthenticatedNavigator = createStackNavigator({
   Choose: { screen : Choose },
 }, { headerMode: 'none' })
 
-export const AppNavigator = createStackNavigator({
+export const UnauthenticatedApp = createStackNavigator({
   Home: { screen : Home },
   Record: { screen : Record },
   Authenticated: { screen: AuthenticatedNavigator },
   Unauthenticated: { screen : UnauthenticatedNavigator },
 }, { mode: 'modal', headerMode: 'none' })
 
-export default createAppContainer(AppNavigator);
+export const AuthenticatedApp = createStackNavigator({
+  Authenticated: { screen: AuthenticatedNavigator },
+  Home: { screen : Home },
+  Record: { screen : Record },
+  Unauthenticated: { screen : UnauthenticatedNavigator },
+}, { mode: 'modal', headerMode: 'none' })
+
+export default {
+  Authenticated: AuthenticatedApp,
+  Unauthenticated: UnauthenticatedApp,
+}

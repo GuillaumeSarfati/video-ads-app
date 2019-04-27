@@ -6,27 +6,36 @@ import background from '../../../assets/images/background/wave.png';
 import * as UI from './ui'
 
 class ProfileScreen extends React.Component {
-  componentWillMount = async () => {
-    const { Model } = this.props;
-  }
-
   onNavigate = screen => e => {
     const { navigation } = this.props
 
     navigation.navigate(screen)
   }
 
-  render() {
-    const { models } = this.props;
+  onLogout = screen => e => {
+    const { Member } = this.props;
     const { onNavigate } = this;
+
+    Member.clear()
+
+    onNavigate(screen)(e)
+  }
+
+  shouldComponentUpdate(nextProps) {
+    return !!nextProps.me
+  }
+
+  render() {
+    const { me } = this.props;
+    const { onNavigate, onLogout } = this;
 
     return (
       <UI.Screen scroll>
         <UI.Screen.Header background>
           <UI.Screen.Row justifyContent="space-between">
-            <UI.Avatar size={80}/>
+            <UI.Avatar source={{uri: me.picture}} size={80}/>
             <UI.Screen.Column>
-              <UI.Screen.Header.Title>Ewa Nowak</UI.Screen.Header.Title>
+              <UI.Screen.Header.Title>{me.firstname} {me.lastname}</UI.Screen.Header.Title>
               <UI.Screen.Header.Subtitle>Connecté en tant que particulier</UI.Screen.Header.Subtitle>
             </UI.Screen.Column>
           </UI.Screen.Row>
@@ -64,7 +73,7 @@ class ProfileScreen extends React.Component {
           </UI.List>
         </UI.Screen.Content>
         <UI.Screen.Footer>
-          <UI.Button type="default" onPress={onNavigate('Home')} large>Deconnexion</UI.Button>
+          <UI.Button type="default" onPress={onLogout('Home')} large>Deconnexion</UI.Button>
         </UI.Screen.Footer>
       </UI.Screen>
     )
@@ -72,6 +81,10 @@ class ProfileScreen extends React.Component {
 }
 
 export default connect(
-  state => ({}),
-  (dispatch, props, models) => ({}),
+  state => ({
+    me: state.me,
+  }),
+  (dispatch, props, models) => ({
+    Member: models.Member,
+  }),
 )(ProfileScreen);

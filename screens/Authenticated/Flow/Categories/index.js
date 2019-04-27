@@ -8,8 +8,10 @@ import * as UI from './ui'
 
 class CategoriesScreen extends React.Component {
   componentWillMount = async () => {
-    const { Offer } = this.props;
-    Offer.find()
+    const { Category } = this.props;
+    const { categories } = this.props;
+
+    if (!categories.length) Category.find()
   }
 
   onNavigate = screen => category => {
@@ -55,6 +57,5 @@ export default connect(
   }),
   (dispatch, props, models) => ({
     Category: models.Category,
-    Offer: models.Offer,
   }),
 )(CategoriesScreen);

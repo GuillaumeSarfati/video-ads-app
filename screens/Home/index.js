@@ -8,8 +8,6 @@ import * as UI from './ui'
 
 class HomeScreen extends React.Component {
   componentWillMount = async () => {
-    const { Category } = this.props;
-    Category.find()
     LoginManager.setLoginBehavior('native')
   }
 
@@ -69,7 +67,6 @@ export default connect(
     accessToken: state.accessToken,
   }),
   (dispatch, props, models) => ({
-    Category: models.Category,
     Member: models.Member,
   }),
 )(HomeScreen);

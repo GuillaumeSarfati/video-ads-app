@@ -1,9 +1,10 @@
 import React from 'react';
-import { Platform, StatusBar, StyleSheet, View, YellowBox } from 'react-native';
+import { AsyncStorage, YellowBox } from 'react-native';
 import { AppLoading, Asset, Font, Icon } from 'expo';
 import { PersistGate } from 'redux-persist/integration/react'
 import { Provider } from 'react-redux'
 import { useScreens } from 'react-native-screens';
+import { createAppContainer } from 'react-navigation';
 
 import Screens from 'screens';
 import makeStore from 'utils/store';
@@ -11,6 +12,7 @@ import makeStore from 'utils/store';
 const { store, persistor } = makeStore();
 
 YellowBox.ignoreWarnings(['Class EX*']);
+
 // AMAZING
 // https://reactnavigation.org/docs/en/react-native-screens.html
 useScreens();
@@ -25,35 +27,17 @@ export default class App extends React.Component {
     isLoadingComplete: false,
   };
 
-  render() {
-    if (!this.state.isLoadingComplete && !this.props.skipLoadingScreen) {
-      return (
-        <AppLoading
-          startAsync={this._loadResourcesAsync}
-          onError={this._handleLoadingError}
-          onFinish={this._handleFinishLoading}
-        />
-      );
-    } else {
-      return (
-        <View style={styles.container}>
-          {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-          <Provider store={store}>
-            <PersistGate loading={null} persistor={persistor}>
-              <Screens />
-            </PersistGate>
-          </Provider>
-        </View>
-      );
-    }
-  }
-
   _loadResourcesAsync = async () => {
+    const { me, accessToken } = JSON.parse(await AsyncStorage.getItem('persist:root'))
+
+    this.Navigation = me && me !== "null" && accessToken && accessToken !== "null"
+      ? createAppContainer(Screens.Authenticated)
+      : createAppContainer(Screens.Unauthenticated)
+
     return Promise.all([
       Asset.loadAsync([
         require('./assets/images/tab/home.png'),
         require('./assets/images/categories/default.png'),
-
         require('./assets/images/background/home.png'),
         require('./assets/images/background/wave.png'),
         require('./assets/images/header/back.png'),
@@ -79,11 +63,25 @@ export default class App extends React.Component {
   _handleFinishLoading = () => {
     this.setState({ isLoadingComplete: true });
   };
-}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-});
+
+  render() {
+    const { Navigation } = this;
+
+    return !this.state.isLoadingComplete
+    ? (
+        <AppLoading
+          startAsync={this._loadResourcesAsync}
+          onError={this._handleLoadingError}
+          onFinish={this._handleFinishLoading}
+        />
+    )
+    : (
+        <Provider store={store}>
+          <PersistGate loading={null} persistor={persistor}>
+            <Navigation />
+          </PersistGate>
+        </Provider>
+    );
+  }
+}

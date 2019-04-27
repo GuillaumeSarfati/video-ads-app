@@ -16,7 +16,6 @@ const persistConfig = {
     'me',
     'accessToken',
   ],
-  stateReconciler: hardSet,
 }
 
 const persistedReducers = persistReducer(persistConfig, reducers)
