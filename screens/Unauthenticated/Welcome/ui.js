@@ -1,5 +1,3 @@
-import styled from 'styled-components/native';
-
 export Screen from 'components/Screen';
 export Image from 'components/Image';
 export Title from 'components/Title';

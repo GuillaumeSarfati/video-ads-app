@@ -6,6 +6,10 @@ import * as UI from './ui'
 
 class LoginScreen extends React.Component {
   state = {
+    firstname: '',
+    lastname: '',
+    birthday: '',
+    gender: '',
     email: '',
     password: '',
     sponsorship: '',
@@ -15,8 +19,25 @@ class LoginScreen extends React.Component {
     const { Model } = this.props;
   }
 
-  onChange = property => e => {
-    this.setState({ [property]: e.target.value })
+  onChange = property => value => {
+    this.setState({ [property]: value })
+  }
+
+  onSignup = async () => {
+    const { Member, navigation } = this.props
+    const { firstname, lastname, birthday, gender, email, password, sponsorship } = this.state
+
+    await Member.signup({
+      birthday: new Date(birthday).getTime() / 1000,
+      firstname,
+      lastname,
+      gender,
+      email,
+      password,
+      sponsorship
+    })
+
+    navigation.navigate('PhoneNumber')
   }
 
   onNavigate = screen => e => {
@@ -28,12 +49,11 @@ class LoginScreen extends React.Component {
   }
 
   render() {
-    const { email, password, sponsorship } = this.state;
-    const { models } = this.props;
-    const { onChange, onNavigate } = this;
+    const { firstname, lastname, birthday, gender, email, password, sponsorship } = this.state;
+    const { onChange, onSignup, onNavigate } = this;
 
     return (
-      <UI.Screen>
+      <UI.Screen scroll>
         <UI.Screen.Header>
           <UI.Screen.Header.Bar>
             <UI.Screen.Header.Bar.Close onPress={onNavigate()}>
@@ -44,15 +64,21 @@ class LoginScreen extends React.Component {
         </UI.Screen.Header>
         <UI.Screen.Content style={{ justifyContent: 'flex-start' }}>
           <UI.Screen.Column style={{ padding: 30}}>
-            <UI.TextInput value={email} onChange={onChange('email')} placeholder="Adresse email"/>
-            <UI.TextInput value={password} onChange={onChange('password')} placeholder="Mot de passe" secureTextEntry/>
+            <UI.TextInput value={firstname} onChangeText={onChange('firstname')} placeholder="Prénom"/>
+            <UI.TextInput value={lastname} onChangeText={onChange('lastname')} placeholder="Nom"/>
+            <UI.TextInput value={birthday} onChangeText={onChange('birthday')} placeholder="Date de naissance YYYY-MM-JJ"/>
+            <UI.CheckBox value={gender} onChange={onChange('gender')} type={'male'} placeholder="Homme"/>
+            <UI.CheckBox value={gender} onChange={onChange('gender')} type={'female'} placeholder="Femme"/>
+
+            <UI.TextInput value={email} onChangeText={onChange('email')} placeholder="Adresse email" autoCapitalize="none"/>
+            <UI.TextInput value={password} onChangeText={onChange('password')} placeholder="Mot de passe" secureTextEntry/>
           </UI.Screen.Column>
           <UI.Screen.Column style={{ padding: 30}}>
-            <UI.TextInput value={sponsorship} onChange={onChange('sponsorship')} placeholder="Code d'invitation"/>
+            <UI.TextInput value={sponsorship} onChangeText={onChange('sponsorship')} placeholder="Code d'invitation"/>
           </UI.Screen.Column>
         </UI.Screen.Content>
         <UI.Screen.Footer>
-          <UI.Button type="primary" large onPress={onNavigate('Verification')}>Valider</UI.Button>
+          <UI.Button type="primary" large onPress={onSignup}>Valider</UI.Button>
           <UI.Button type="default" large onPress={onNavigate('Login')}>Vous avez déjà un compte ?</UI.Button>
         </UI.Screen.Footer>
       </UI.Screen>
@@ -62,5 +88,7 @@ class LoginScreen extends React.Component {
 
 export default connect(
   state => ({}),
-  (dispatch, props, models) => ({}),
+  (dispatch, props, models) => ({
+    Member: models.Member,
+  }),
 )(LoginScreen);

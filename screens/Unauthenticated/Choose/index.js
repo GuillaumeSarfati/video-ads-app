@@ -9,26 +9,44 @@ class ChooseScreen extends React.Component {
     const { Model } = this.props;
   }
 
-  onNavigate = screen => e => {
-    const { navigation } = this.props
+  onChoose = mode => async e => {
+    const { Member, navigation, me } = this.props
 
-    navigation.navigate(screen)
+    await Member.update({ mode })
+
+    navigation.navigate(mode === 'consumer'
+      // TODO Authenticated Consumer
+      ? 'Authenticated'
+      // TODO Authenticated Supplier
+      : 'Authenticated'
+    )
   }
 
   render() {
-    const { models } = this.props;
-    const { onNavigate } = this;
+    const { me } = this.props;
+    const { onChoose } = this;
 
     return (
       <UI.Screen>
-        <UI.Text>ChooseScreen</UI.Text>
-        <UI.Button onPress={onNavigate('Authenticated')}>Authenticated</UI.Button>
+        <UI.Screen.Content style={{ justifyContent: 'center', alignItems: 'center' }}>
+          <UI.Image source={require('assets/images/illustration.png')}/>
+          <UI.Title dark>Bienvenue {me.firstname} </UI.Title>
+          <UI.Description center>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</UI.Description>
+        </UI.Screen.Content>
+        <UI.Screen.Footer>
+          <UI.Button onPress={onChoose('consumer')}>Consumer</UI.Button>
+          <UI.Button onPress={onChoose('supplier')}>Supplier</UI.Button>
+        </UI.Screen.Footer>
       </UI.Screen>
     )
   }
 }
 
 export default connect(
-  state => ({}),
-  (dispatch, props, models) => ({}),
+  state => ({
+    me: state.me,
+  }),
+  (dispatch, props, models) => ({
+    Member: models.Member,
+  }),
 )(ChooseScreen);

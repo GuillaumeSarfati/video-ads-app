@@ -21,7 +21,7 @@ class WelcomeScreen extends React.Component {
 
     return (
       <UI.Screen>
-        <UI.Screen.Content>
+        <UI.Screen.Content style={{ justifyContent: 'center', alignItems: 'center' }}>
           <UI.Image source={require('assets/images/illustration.png')}/>
           <UI.Title dark>Bienvenue</UI.Title>
           <UI.Description center>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</UI.Description>

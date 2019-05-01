@@ -7,6 +7,7 @@ import Home from 'screens/Home';
 
 // Unauthenticated
 import Signup from 'screens/Unauthenticated/Signup';
+import PhoneNumber from 'screens/Unauthenticated/PhoneNumber';
 import Verification from 'screens/Unauthenticated/Verification';
 import Welcome from 'screens/Unauthenticated/Welcome';
 import Choose from 'screens/Unauthenticated/Choose';
@@ -78,6 +79,7 @@ export const AuthenticatedNavigator = createBottomTabNavigator({
 export const UnauthenticatedNavigator = createStackNavigator({
   Login: { screen : LoginNavigator },
   Signup: { screen : Signup },
+  PhoneNumber: { screen : PhoneNumber },
   Verification: { screen : Verification },
   Welcome: { screen : Welcome },
   Choose: { screen : Choose },
@@ -93,6 +95,7 @@ export const App = createStackNavigator({
 }, { mode: 'modal', headerMode: 'none' })
 
 export const SplashNavigator = createFluidNavigator({
+  Welcome,
   SplashScreen: { screen : SplashScreen },
   App: { screen : App },
 }, { headerMode: 'none', navigationOptions: {gesturesEnabled: false } })

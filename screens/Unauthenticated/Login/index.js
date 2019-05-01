@@ -56,7 +56,7 @@ class LoginScreen extends React.Component {
         </UI.Screen.Header>
         <UI.Screen.Content style={{ justifyContent: 'flex-start' }}>
           <UI.Screen.Column style={{ padding: 30}}>
-            <UI.TextInput value={email} onChangeText={onChange('email')} placeholder="Adresse email" autoCapitalize='none' />
+            <UI.TextInput value={email} onChangeText={onChange('email')} placeholder="Adresse email" autoCapitalize="none" />
             <UI.TextInput value={password} onChangeText={onChange('password')} placeholder="Mot de passe" secureTextEntry />
           </UI.Screen.Column>
           <UI.ResetPassword>

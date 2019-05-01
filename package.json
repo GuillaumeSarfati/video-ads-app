@@ -24,6 +24,7 @@
     "react-loops": "^1.2.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
     "react-native-3dcube-navigation": "^1.0.4",
+    "react-native-datepicker": "^1.7.2",
     "react-native-fbsdk": "^0.8.0",
     "react-native-multi-slider": "https://github.com/GuillaumeSarfati/react-native-multi-slider.git",
     "react-native-shadow": "^1.2.2",

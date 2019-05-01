@@ -12,6 +12,7 @@ Component.Column = UI.Column;
 Component.Footer = UI.Footer;
 Component.Label = UI.Label;
 Component.Text = UI.Text;
+Component.Image = UI.Image;
 Component.ScrollView = UI.ScrollView;
 Component.TouchableWithoutFeedback = UI.TouchableWithoutFeedback;
 Component.TouchableOpacity = UI.TouchableOpacity;

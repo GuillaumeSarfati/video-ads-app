@@ -34,6 +34,7 @@ export const models = modelsMethods.reduce((models, model) => {
 
 
   models[model.name].set = createAction(model.name + '_SET');
+  models[model.name].update = createAction(model.name + '_UPDATE');
   models[model.name].clear = createAction(model.name + '_CLEAR');
 
   models[model.plural] = models[model.name]

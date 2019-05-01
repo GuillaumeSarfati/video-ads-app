@@ -4,6 +4,7 @@ export Header from 'components/Header';
 export Shadow from 'components/Shadow';
 export Description from 'components/Description';
 export Label from 'components/Label';
+export Image from 'components/Image';
 export Text from 'components/Text';
 
 export {

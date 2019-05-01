@@ -9,12 +9,8 @@ class LoginScreen extends React.Component {
     code: '',
   }
 
-  componentWillMount = async () => {
-    const { Model } = this.props;
-  }
-
-  onChange = property => e => {
-    this.setState({ [property]: e.target.value })
+  onChange = property => value => {
+    this.setState({ [property]: value })
   }
 
   onNavigate = screen => e => {
@@ -35,19 +31,19 @@ class LoginScreen extends React.Component {
         <UI.Screen.Header>
           <UI.Screen.Header.Bar>
             <UI.Screen.Header.Bar.Back onPress={onNavigate()}>
-              Inscription
+              Signup
             </UI.Screen.Header.Bar.Back>
           </UI.Screen.Header.Bar>
-          <UI.Screen.Header.Title dark>Code de confirmation</UI.Screen.Header.Title>
+          <UI.Screen.Header.Title dark>Confirmez votre compte</UI.Screen.Header.Title>
         </UI.Screen.Header>
         <UI.Screen.Content style={{ justifyContent: 'flex-start', alignItems: 'flex-start'  }}>
           <UI.Screen.Column style={{ padding: 30}}>
             <UI.Screen.Description>At vero eos et accusamus et iust  nissimos ducimus qui blanditiis praes entium volup tatum deleniti.</UI.Screen.Description>
-            <UI.TextInput value={code} onChange={onChange('code')} placeholder="Code de confirmation"/>
+            <UI.TextInput value={code} onChangeText={onChange('code')} placeholder="Numéro de téléphone"/>
           </UI.Screen.Column>
         </UI.Screen.Content>
         <UI.Screen.Footer>
-          <UI.Button type="primary" large onPress={onNavigate('Welcome')}>Valider</UI.Button>
+          <UI.Button type="primary" large onPress={onNavigate('Verification')}>Valider</UI.Button>
         </UI.Screen.Footer>
       </UI.Screen>
     )
