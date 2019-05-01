@@ -23,7 +23,7 @@ class ResetScreen extends React.Component {
 
     screen
       ? navigation.navigate(screen)
-      : navigation.goBack()
+      : navigation.pop()
   }
 
   render() {

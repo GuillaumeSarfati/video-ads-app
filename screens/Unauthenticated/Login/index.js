@@ -14,8 +14,21 @@ class LoginScreen extends React.Component {
     const { Model } = this.props;
   }
 
-  onChange = property => e => {
-    this.setState({ [property]: e.target.value })
+
+
+  onChange = property => value => {
+    this.setState({ [property]: value })
+  }
+
+  onLogin = async () => {
+    const { Member, navigation } = this.props;
+    const { email, password } = this.state;
+
+    await Member.login({
+      email,
+      password,
+    })
+    navigation.navigate('Authenticated')
   }
 
   onNavigate = screen => e => {
@@ -23,13 +36,13 @@ class LoginScreen extends React.Component {
 
     screen
       ? navigation.navigate(screen)
-      : navigation.goBack()
+      : navigation.pop()
   }
 
   render() {
     const { email, password } = this.state;
     const { models } = this.props;
-    const { onChange, onNavigate } = this;
+    const { onChange, onNavigate, onLogin } = this;
 
     return (
       <UI.Screen>
@@ -43,8 +56,8 @@ class LoginScreen extends React.Component {
         </UI.Screen.Header>
         <UI.Screen.Content style={{ justifyContent: 'flex-start' }}>
           <UI.Screen.Column style={{ padding: 30}}>
-            <UI.TextInput value={email} onChange={onChange('email')} placeholder="Adresse email"/>
-            <UI.TextInput value={password} onChange={onChange('password')} placeholder="Mot de passe" secureTextEntry/>
+            <UI.TextInput value={email} onChangeText={onChange('email')} placeholder="Adresse email" autoCapitalize='none' />
+            <UI.TextInput value={password} onChangeText={onChange('password')} placeholder="Mot de passe" secureTextEntry />
           </UI.Screen.Column>
           <UI.ResetPassword>
             <UI.ResetPassword.Text>Mot de pass oublié ? </UI.ResetPassword.Text>
@@ -54,7 +67,7 @@ class LoginScreen extends React.Component {
           </UI.ResetPassword>
         </UI.Screen.Content>
         <UI.Screen.Footer>
-          <UI.Button type="primary" large onPress={onNavigate('Authenticated')}>Valider</UI.Button>
+          <UI.Button type="primary" large onPress={onLogin}>Valider</UI.Button>
           <UI.Button type="default" large onPress={onNavigate('Signup')}>Vous n'avez pas de compte ?</UI.Button>
         </UI.Screen.Footer>
       </UI.Screen>
@@ -64,5 +77,7 @@ class LoginScreen extends React.Component {
 
 export default connect(
   state => ({}),
-  (dispatch, props, models) => ({}),
+  (dispatch, props, models) => ({
+    Member: models.member,
+  }),
 )(LoginScreen);
