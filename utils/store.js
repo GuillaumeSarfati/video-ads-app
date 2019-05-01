@@ -15,6 +15,7 @@ const persistConfig = {
   whitelist: [
     'me',
     'accessToken',
+    'categories',
   ],
 }
 

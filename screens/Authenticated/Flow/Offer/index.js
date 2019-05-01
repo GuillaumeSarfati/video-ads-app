@@ -21,8 +21,8 @@ class OfferScreen extends React.Component {
     return (
       <UI.Screen scroll>
         <UI.Screen.Header>
-          <UI.Screen.Header.Bar onPress={onNavigate()}>
-            <UI.Screen.Header.Bar.Back>
+          <UI.Screen.Header.Bar>
+            <UI.Screen.Header.Bar.Back onPress={onNavigate()}>
               <UI.Category>{category.title}</UI.Category>
             </UI.Screen.Header.Bar.Back>
 

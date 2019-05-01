@@ -1,19 +1,16 @@
 import React from 'react';
-import { Facebook } from 'expo';
-import { LoginButton, LoginManager, AccessToken } from 'react-native-fbsdk';
+import { LoginManager, AccessToken } from 'react-native-fbsdk';
 
 import connect from 'utils/connect';
 
 import * as UI from './ui'
 
 class HomeScreen extends React.Component {
-  componentWillMount = async () => {
-    LoginManager.setLoginBehavior('native')
-  }
 
   onLoginWithFacebook = screen => async e =>   {
     const { Member } = this.props;
     const { onNavigate } = this;
+
 
     let accessToken = await AccessToken.getCurrentAccessToken()
     let permission;
@@ -24,8 +21,8 @@ class HomeScreen extends React.Component {
     }
 
     await Member.facebook(accessToken)
-    return onNavigate(screen)(e)
 
+    return onNavigate(screen)(e)
   }
 
   onNavigate = screen => e => {
@@ -41,7 +38,7 @@ class HomeScreen extends React.Component {
     return (
       <UI.Screen background={require('assets/images/background/home.png')}>
         <UI.Content>
-          <UI.Logo source={require('assets/images/logo.png')}/>
+          <UI.Logo transition={true}/>
           <UI.Title center shadow>Les petites annonces vidéos</UI.Title>
           <UI.Subtitle center>Connectez-vous pour démarrer</UI.Subtitle>
           <UI.Login>

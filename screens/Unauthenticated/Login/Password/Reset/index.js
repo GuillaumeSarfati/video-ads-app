@@ -34,8 +34,8 @@ class ResetScreen extends React.Component {
     return (
       <UI.Screen>
         <UI.Screen.Header>
-          <UI.Screen.Header.Bar onPress={onNavigate()}>
-            <UI.Screen.Header.Bar.Back>
+          <UI.Screen.Header.Bar>
+            <UI.Screen.Header.Bar.Back onPress={onNavigate()}>
               Connectez vous
             </UI.Screen.Header.Bar.Back>
           </UI.Screen.Header.Bar>

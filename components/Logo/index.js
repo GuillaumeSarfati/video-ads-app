@@ -1,6 +1,22 @@
-import styled from 'styled-components/native'
+import React from 'react'
+import Image from 'components/Image';
+import Transition from 'components/Transition';
 
-export default styled.Image`
-  width: 300px;
-  height: 300px;
-`
+const Logo = () => (
+  <Image
+    source={require('assets/images/logo.png')}
+    style={{
+      width:300,
+      height:300,
+    }}
+  />
+)
+export default ({transition}) => transition
+? (
+  <Transition shared="component-logo">
+    <Logo/>
+  </Transition>
+)
+: (
+  <Logo/>
+)

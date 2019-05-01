@@ -5,9 +5,21 @@ import connect from 'utils/connect';
 import * as UI from './ui'
 
 class CategoryScreen extends React.Component {
+  state = {
+    current: 0
+  }
   componentWillMount() {
+
     const { Offer } = this.props;
-    Offer.find()
+    const { category } = this.props.navigation.state.params;
+
+    Offer.find({
+      filter: {
+        order: 'DESC',
+        include: ['member', 'category'],
+        where: { categoryId : category.id},
+      }
+    })
   }
 
   onPressOffer = offer => e => {
@@ -16,8 +28,12 @@ class CategoryScreen extends React.Component {
   }
 
   onPressDetails = offer => e => {
-    const { category } = this.props.navigation.state.params;
-    this.props.navigation.navigate('Offer', { category, offer })
+    const { Offer } = this.props;
+    Offer.deleteById(offer.id)
+
+    this.cube.scrollTo(this.state.current + 1, true)
+    // const { category } = this.props.navigation.state.params;
+    // this.props.navigation.navigate('Offer', { category, offer })
   }
 
   onPressOrder = offer => e => {
@@ -25,70 +41,117 @@ class CategoryScreen extends React.Component {
     this.props.navigation.navigate('Offer', { category, offer })
   }
 
-  onNavigateBack = screen => e => {
-    const { Category, navigation } = this.props
-    navigation.pop()
+  onNavigate = screen => e => {
+    const { navigation } = this.props
+
+    screen
+      ? navigation.navigate(screen)
+      : navigation.pop()
   }
 
-  onPressNext = index => e => {
-    this.cube.scrollTo(index + 1, false)
+  onPressNext = (index, animated = true) => e => {
+    const current = index + 1
+    if (this.props.offers[current]) {
+      this.setState({ current })
+      this.cube.scrollTo(current, animated)
+    }
   }
 
+  onSwipe = (current) => {
+    if (this.state.current !== current) {
+      this.setState({ current })
+    }
+  }
+
+  onPress = (current) => {
+      this.cube.scrollTo(current + 1, false)
+      this.setState({ current: current + 1 })
+  }
+
+  onFinish = (current) => {
+      this.cube.scrollTo(current + 1, true)
+      this.setState({ current: current + 1 })
+  }
+
+  onLoad = (index) => {
+    // TODO load data
+    console.log('ON LOAD : ', index);
+  }
+
+  renderFace = (model, index) => {
+    const { current } = this.state;
+    return (
+      <UI.Cube.Face
+        onFinish={this.onFinish}
+        onPress={this.onPress}
+        current={current}
+        index={index}
+        model={model}
+      />
+    )
+  }
+
+  renderEnd = (model, index) => {
+    return (
+      <UI.Screen.Content style={{ backgroundColor: 'purple' }} />
+    )
+  }
   render() {
-    console.log('[ CATEGORY SCREEN ] render : ', this.props);
+    const { current } = this.state;
     const { offers } = this.props;
     const { category } = this.props.navigation.state.params;
-    const { onNavigateBack, onPressNext, onPressOffer, onPressDetails, onPressOrder } = this;
+    const { renderFace, renderEnd, onSwipe, onLoad, onNavigate, onPressNext, onPressOffer, onPressDetails, onPressOrder } = this;
 
     return (
       <UI.View>
-        <UI.CubeNavigationHorizontal ref={view => { this.cube = view; }}>
-        {
-          offers.map((offer, i) => (
-            <UI.Screen key={offer.id} style={{backgroundColor: '#2E3B55'}}>
-                <UI.Screen.Content>
-                  <UI.Gradient
-                    start={{x: 0, y: 0}} end={{x: 0, y: 1}}
-                    colors={['transparent', '#2E3B55']}
-                    locations={[0,1]}
-                    style={{flex: 1, justifyContent: 'flex-end', alignSelf:'stretch', padding: 30}}
-                  >
-                    <UI.Screen.Column style={{paddingBottom: 300}}>
-                      <UI.Title>{offer.description}</UI.Title>
-                      <UI.Button type="default" onPress={onPressNext(i)}>Next</UI.Button>
-                    </UI.Screen.Column>
-                  </UI.Gradient>
-                </UI.Screen.Content>
 
-            </UI.Screen>
-          ))
-        }
-        </UI.CubeNavigationHorizontal>
+        <UI.Cube
+          ref={cube => { this.cube = cube; }}
+          data={offers}
+          renderFace={renderFace}
+          renderEnd={renderEnd}
+
+
+          onSwipe={onSwipe}
+          onLoad={onLoad}
+          // onGrant={this.onGrant}
+          // onRelease={this.onRelease}
+          // onMove={this.onMove}
+        />
 
         <UI.Screen.Header style={{position: 'absolute', top: 0, left: 0}}>
 
-          <UI.Screen.Header.Bar onPress={onNavigateBack()}>
-            <UI.Screen.Header.Bar.Back light>
+          <UI.Screen.Header.Bar>
+            <UI.Screen.Header.Bar.Back  onPress={onNavigate()} light>
               <UI.Category light>{category.title}</UI.Category>
             </UI.Screen.Header.Bar.Back>
+
+            <UI.Screen.Header.Bar.Filters onPress={onNavigate('Search')} light>
+              filters
+            </UI.Screen.Header.Bar.Filters>
 
           </UI.Screen.Header.Bar>
 
           <UI.Liner />
 
         </UI.Screen.Header>
-        <UI.Screen.Footer style={{ position: 'absolute', top: 590, left: 0, height: 300 }}>
+        {
+          offers[current] && (
+            <UI.Screen.Footer style={{ position: 'absolute', top: UI.Dimensions.get("window").height - 240, left: 0, height: 240 }}>
 
-        <UI.Liner style={{marginBottom: 30}}/>
-        <UI.Offer model={offers[0]} onPress={onPressOffer(offers[0])}/>
-        <UI.Liner style={{marginTop: 30}}/>
 
-        <UI.Screen.Row style={{ justifyContent: 'space-between', alignSelf: 'stretch' }}>
-          <UI.Button type="default" onPress={onPressDetails(offers[0])}>Détails</UI.Button>
-          <UI.Button type="primary" onPress={onPressOrder(offers[0])}>Réserver</UI.Button>
-        </UI.Screen.Row>
+            <UI.Liner style={{marginBottom: 30}}/>
+            <UI.Offer model={offers[current]} onPress={onPressOffer(offers[current])}/>
+            <UI.Liner style={{marginTop: 30}}/>
 
-        </UI.Screen.Footer>
+            <UI.Screen.Row style={{ justifyContent: 'space-between', alignSelf: 'stretch' }}>
+              <UI.Button type="default" onPress={onPressDetails(offers[current])}>Delete {current}</UI.Button>
+              <UI.Button type="primary" onPress={onPressOrder(offers[current])}>Réserver</UI.Button>
+            </UI.Screen.Row>
+
+            </UI.Screen.Footer>
+          )
+        }
       </UI.View>
     )
   }

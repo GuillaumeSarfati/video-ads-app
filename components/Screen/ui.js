@@ -22,6 +22,7 @@ export const View = styled.View`
 export const Content = styled.View`
   flex: 1;
   align-self: stretch;
+  ${props => props.debug ? `border: 3px solid ${props.debug === true ? 'red' : props.debug};` : ''};
 `
 
 export const Row = styled.View`
@@ -30,7 +31,7 @@ export const Row = styled.View`
   align-items: ${props => props.alignItems || 'flex-start'};
   padding:  ${props => props.padding || '0px'};
   margin:  ${props => props.margin || '0px'};
-  ${props => props.debug ? 'border: 1px solid red;' : ''};
+  ${props => props.debug ? `border: 3px solid ${props.debug === true ? 'red' : props.debug};` : ''};
 `
 
 export const Column = styled.View`
@@ -38,7 +39,7 @@ export const Column = styled.View`
   flex-direction: column;
   justify-content: ${props => props.justifyContent || 'flex-start'};
   align-items: ${props => props.alignItems || 'flex-start'};
-  ${props => props.debug ? 'border: 1px solid red;' : ''};
+  ${props => props.debug ? `border: 3px solid ${props.debug === true ? 'red' : props.debug};` : ''};
 `
 
 export const Footer = styled.View`

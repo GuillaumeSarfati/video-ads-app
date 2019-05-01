@@ -33,8 +33,8 @@ class LoginScreen extends React.Component {
     return (
       <UI.Screen>
         <UI.Screen.Header>
-          <UI.Screen.Header.Bar onPress={onNavigate()}>
-            <UI.Screen.Header.Bar.Close>
+          <UI.Screen.Header.Bar>
+            <UI.Screen.Header.Bar.Close onPress={onNavigate()}>
               Inscription
             </UI.Screen.Header.Bar.Close>
           </UI.Screen.Header.Bar>

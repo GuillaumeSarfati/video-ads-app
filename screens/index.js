@@ -1,7 +1,8 @@
 import React from 'react';
-import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
+import { createAppContainer, createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 import { createFluidNavigator } from 'react-navigation-fluid-transitions';
 
+import SplashScreen from 'screens/SplashScreen';
 import Home from 'screens/Home';
 
 // Unauthenticated
@@ -19,6 +20,7 @@ import Change from 'screens/Unauthenticated/Login/Password/Change';
 
 // Authenticated
 import Record from 'screens/Authenticated/Record';
+import Preview from 'screens/Authenticated/Preview';
 import Shop from 'screens/Authenticated/Shop';
 
 import Profile from 'screens/Authenticated/Profile';
@@ -81,21 +83,18 @@ export const UnauthenticatedNavigator = createStackNavigator({
   Choose: { screen : Choose },
 }, { headerMode: 'none' })
 
-export const UnauthenticatedApp = createStackNavigator({
+export const App = createStackNavigator({
   Home: { screen : Home },
-  Record: { screen : Record },
   Authenticated: { screen: AuthenticatedNavigator },
   Unauthenticated: { screen : UnauthenticatedNavigator },
-}, { mode: 'modal', headerMode: 'none' })
-
-export const AuthenticatedApp = createStackNavigator({
-  Authenticated: { screen: AuthenticatedNavigator },
-  Home: { screen : Home },
   Record: { screen : Record },
-  Unauthenticated: { screen : UnauthenticatedNavigator },
+  Preview: { screen : Preview },
+  Search: { screen : Search },
 }, { mode: 'modal', headerMode: 'none' })
 
-export default {
-  Authenticated: AuthenticatedApp,
-  Unauthenticated: UnauthenticatedApp,
-}
+export const SplashNavigator = createFluidNavigator({
+  SplashScreen: { screen : SplashScreen },
+  App: { screen : App },
+}, { headerMode: 'none', navigationOptions: {gesturesEnabled: false } })
+
+export default createAppContainer(SplashNavigator)

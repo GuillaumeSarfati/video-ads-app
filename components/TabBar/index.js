@@ -21,7 +21,7 @@ class TabBarComponent extends React.Component {
   shouldComponentUpdate(nextProps) {
     return !!nextProps.me
   }
-  
+
   onNavigate = current => e => {
     const { navigation } = this.props
 

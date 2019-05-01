@@ -7,5 +7,6 @@ const Bar = props => (
 
 Bar.Close = UI.Close;
 Bar.Back = UI.Back;
+Bar.Filters = UI.Filters;
 
 export default Bar;

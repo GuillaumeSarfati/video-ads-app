@@ -15,9 +15,9 @@ class CategoriesScreen extends React.Component {
   }
 
   onNavigate = screen => category => {
-    const { Category, navigation } = this.props
+    const { Offer, Category, navigation } = this.props
     Category.set(category)
-
+    // Offer.find({filter: { where: { categoryId: category.id }}})
     navigation.navigate(screen, { category, hideTabBar: true })
   }
 
@@ -57,5 +57,6 @@ export default connect(
   }),
   (dispatch, props, models) => ({
     Category: models.Category,
+    Offer: models.Offer,
   }),
 )(CategoriesScreen);

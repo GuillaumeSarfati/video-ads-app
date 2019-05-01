@@ -1,8 +1,8 @@
 import React from 'react';
 import * as UI from '../ui';
 
-const Back = ({children, light}) => (
-  <UI.Button>
+const Back = ({children, onPress, light}) => (
+  <UI.Button onPress={onPress}>
     <UI.Icon source={require('assets/images/header/back.png')}/>
     {
       typeof children === 'string'

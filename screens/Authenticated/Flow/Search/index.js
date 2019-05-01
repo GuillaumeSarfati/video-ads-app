@@ -27,8 +27,8 @@ class SearchScreen extends React.Component {
       <UI.Screen scroll>
 
         <UI.Screen.Header>
-          <UI.Screen.Header.Bar onPress={onNavigate()}>
-            <UI.Screen.Header.Bar.Back>
+          <UI.Screen.Header.Bar>
+            <UI.Screen.Header.Bar.Back onPress={onNavigate()}>
               Categories
             </UI.Screen.Header.Bar.Back>
 

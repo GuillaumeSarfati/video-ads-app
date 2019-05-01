@@ -9,12 +9,12 @@ export default props => {
 
     <UI.Transition shared="offer">
       <UI.Component onPress={onPress}>
-            <UI.Avatar/>
+            <UI.Avatar source={{uri: model.member.picture}}/>
 
             <UI.Informations>
               <UI.Rating model={{ stars: 3 }}/>
-              <UI.Informations.Title dark={dark}>Ewa {model.id.substr(16)}</UI.Informations.Title>
-              <UI.Informations.Subtitle dark={dark}>baby-sitter</UI.Informations.Subtitle>
+              <UI.Informations.Title dark={dark}>{model.member.firstname}</UI.Informations.Title>
+              <UI.Informations.Subtitle dark={dark}>{model.category.title}</UI.Informations.Subtitle>
             </UI.Informations>
 
             <UI.Price>

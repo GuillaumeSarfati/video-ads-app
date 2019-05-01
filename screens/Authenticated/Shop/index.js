@@ -30,8 +30,8 @@ class ShopScreen extends React.Component {
     return (
       <UI.Screen scroll>
           <UI.Screen.Header background>
-          <UI.Screen.Header.Bar onPress={onNavigate()}>
-            <UI.Screen.Header.Bar.Back light>
+          <UI.Screen.Header.Bar>
+            <UI.Screen.Header.Bar.Back onPress={onNavigate()} light>
               Back
             </UI.Screen.Header.Bar.Back>
           </UI.Screen.Header.Bar>

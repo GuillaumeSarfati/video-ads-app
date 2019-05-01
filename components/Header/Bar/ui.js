@@ -2,16 +2,19 @@ import styled from 'styled-components/native';
 
 export Back from 'components/Header/Bar/Back'
 export Close from 'components/Header/Bar/Close'
+export Filters from 'components/Header/Bar/Filters'
 
-
-export const  Component = styled.TouchableOpacity`
+export const  Component = styled.View`
                 height: 50px;
                 flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
               `
 
-export const  Button = styled.View`
+export const  Button = styled.TouchableOpacity`
                 flex-direction: row;
                 align-items: center;
+                padding: 15px;
               `
 
 export const  Icon = styled.Image`

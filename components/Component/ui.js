@@ -4,12 +4,12 @@ export Header from 'components/Header';
 export Shadow from 'components/Shadow';
 export Description from 'components/Description';
 export Label from 'components/Label';
+export Text from 'components/Text';
 
-export const Background = styled.ImageBackground`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-`
+export {
+  TouchableWithoutFeedback,
+  TouchableOpacity,
+} from 'react-native';
 
 export const Component = styled.View`
   flex: 1;
