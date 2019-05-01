@@ -73,7 +73,7 @@ export const AuthenticatedNavigator = createBottomTabNavigator({
   Flow: { screen : FlowNavigator },
   Shop: { screen : Shop },
   Profile: { screen : ProfileNavigator },
-}, { mode: 'modal', headerMode: 'none', tabBarComponent: TabBar, navigationOptions: { gesturesEnabled: false }})
+}, { mode: 'modal', headerMode: 'none', tabBarComponent: TabBar, lazy: false, navigationOptions: { gesturesEnabled: false }})
 
 export const UnauthenticatedNavigator = createStackNavigator({
   Login: { screen : LoginNavigator },
