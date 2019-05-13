@@ -4,6 +4,7 @@ import { models } from 'utils/connect'
 export const INITIAL_STATE = [];
 
 export default handleActions({
+  [models.Offer.set]: (state, action) => action.payload,
   [models.Offer.find.FULFILLED]: (state, action) => action.payload.data,
   [models.Offer.search.FULFILLED]: (state, action) => action.payload.data,
   [models.Offer.findById.FULFILLED]: (state, action) => [action.payload.data],

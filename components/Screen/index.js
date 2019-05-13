@@ -2,22 +2,34 @@ import React from 'react';
 
 import * as UI from './ui';
 
-const Screen = ({ scroll, background, children, ...props }) => {
-  return scroll
-  ? (
+const Screens = {
+  scroll: ({ scroll, background, children, ...props }) => (
     <UI.Background source={background} {...props}>
       <UI.ScrollView bounces={false} contentContainerStyle={{ justifyContent: 'flex-start', alignSelf: 'stretch'}}>
         { children }
       </UI.ScrollView>
     </UI.Background>
-  )
-  : (
+  ),
+  input: ({ scroll, background, children, ...props }) => (
+    <UI.View {...props}>
+      <UI.InputScrollView bounces={false} contentContainerStyle={{ justifyContent: 'flex-start', alignSelf: 'stretch'}}>
+        { children }
+      </UI.InputScrollView>
+    </UI.View>
+  ),
+  default: ({ scroll, background, children, ...props }) => (
     <UI.View {...props}>
       <UI.Background source={background}>
         { children }
       </UI.Background>
     </UI.View>
-  )
+  ),
+}
+
+const Screen = ({ scroll, input, ...props }) => {
+    if (scroll) return Screens.scroll(props)
+    if (input) return Screens.input(props)
+    return Screens.default(props)
 }
 
 Screen.Theme = UI.Theme;

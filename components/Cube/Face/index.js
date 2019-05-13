@@ -71,7 +71,8 @@ export default class Face extends React.Component {
   onRelease = async () => {
     this.status.isMoving = false
     console.log('onRelease', this.props.index);
-    if (this.isCurrent(this.props) && this.isPaused()) {
+    // if (this.isCurrent(this.props) && this.isPaused()) {
+    if (this.isCurrent(this.props)) {
       // console.log(`[ FACE ${this.props.index} ] onRelease`);
       await this.playAsync()
     }
@@ -87,6 +88,7 @@ export default class Face extends React.Component {
   }
 
   onPlaybackStatusUpdate = status => {
+    // console.log(`[ FACE ${this.props.index} ] : onPlaybackStatusUpdate `, status);
     this.status.rate = status.rate
     this.status.isMuted = status.isMuted
     this.status.isLoaded = status.isLoaded
@@ -110,14 +112,14 @@ export default class Face extends React.Component {
   onReadyForDisplay = async e => {
     this.status.isReadyForDisplay = true
 
-    // console.log(`[ FACE ${this.props.index} ] onReadyForDisplay :`, this.status.isReadyForDisplay, {
-      // durationMillis: e.status.durationMillis,
-      // playableDurationMillis: e.status.playableDurationMillis,
-      // percent: 100 / e.status.durationMillis * e.status.playableDurationMillis
-    // })
+    console.log(`[ FACE ${this.props.index} ] onReadyForDisplay :`, this.status.isReadyForDisplay)
 
     if (this.isCurrent(this.props)) {
+      console.log(`[ FACE ${this.props.index} ] is current`)
       await this.playAsync()
+    }
+    else {
+      console.log(`[ FACE ${this.props.index} ] is not current`)
     }
     // console.timeEnd(`loading ${this.props.index}`)
   }
@@ -126,6 +128,7 @@ export default class Face extends React.Component {
   }
 
   onLoad = status => {
+    console.log('ON LOAD');
   }
 
   onError = e => {
@@ -146,14 +149,17 @@ export default class Face extends React.Component {
   }
 
   playAsync = (position) => {
+    console.log(`[ FACE ${this.props.index} ] playAsync`)
     if (this.status.isReadyForDisplay) {
+      console.log(`[ FACE ${this.props.index} ] playAsync -> isReadyForDisplay`)
       this.status.shouldPlay = false
       // console.log(`[ FACE ${this.props.index} ] playAsync : `, ...args);
-      position
+      return position
       ? this.video.playFromPositionAsync(0)
       : this.video.playAsync()
     }
     else {
+      console.log(`[ FACE ${this.props.index} ] playAsync -> isNotReadyForDisplay`)
       this.status.shouldPlay = true
     }
   }
@@ -179,15 +185,13 @@ export default class Face extends React.Component {
 
 
     if (this.isCurrent(this.props)) {
-      // console.log(`[ FACE ${index} ] componentDidMount`);
+      console.log(`[ FACE ${index} ] componentDidMount -> loadAsync`);
       await this.loadAsync({uri: 'https://s3.eu-west-3.amazonaws.com/' + model.video})
+      await this.playAsync()
     }
-    // if (this.isCurrent(this.props)) {
-    //   console.log(`[ FACE ${index} ] componentDidMount -> playAsync : `);
-    //   this.playAsync()
-    // }
+
     if (this.isNext(this.props)) {
-      // console.log(`[ FACE ${index} ] componentDidMount`);
+      console.log(`[ FACE ${index} ] componentDidMount -> isNext -> loadAsync`);
       await this.loadAsync({uri: 'https://s3.eu-west-3.amazonaws.com/' + model.video})
     }
 
@@ -215,32 +219,35 @@ export default class Face extends React.Component {
     const { model, index, current } = this.props;
 
     return (
-      <UI.Screen.Content debug="blue" style={{backgroundColor: 'red'}}>
+      <UI.Screen>
         <UI.Component.TouchableWithoutFeedback
           onPressIn={this.onPressIn}
           onPressOut={this.onPressOut}
         >
-          <UI.Screen.Content debug="yellow" style={{ backgroundColor: '#2E3B55' }}>
+          <UI.Screen.Content style={{ backgroundColor: '#2E3B55' }}>
           <UI.Video
             ref={ref => this.video = ref}
-            source={{uri: 'https://s3.eu-west-3.amazonaws.com/' + model.video}}
             onPlaybackStatusUpdate={this.onPlaybackStatusUpdate}
             onReadyForDisplay={this.onReadyForDisplay}
             onLoadStart={this.onLoadStart}
             onLoad={this.onLoad}
             onError={this.onError}
+            resizeMode={UI.Video.RESIZE_MODE_CONTAIN}
 
-
-            style={{position: 'absolute', top: 0, left: 0, width: 414, height: 734, opacity: 0.5}}
-            // shouldPlay={current === i}
-            // onPlaybackStatusUpdate={playbackStatus => current === i && playbackStatus.didJustFinish && onPressNext(i, false)()}
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: UI.Dimensions.get("window").width,
+              height: UI.Dimensions.get("window").height - 182,
+            }}
             resizeMode="cover"
           />
           <UI.Image
             source={require('assets/images/gradient.png')}
             pointerEvents="none"
             style={{
-              top: 734 - 200,
+              top: UI.Dimensions.get("window").height - 182 - 200,
               position:'absolute',
               width: UI.Dimensions.get("window").width,
               height: 200,
@@ -248,7 +255,7 @@ export default class Face extends React.Component {
           />
           </UI.Screen.Content>
         </UI.Component.TouchableWithoutFeedback>
-      </UI.Screen.Content>
+      </UI.Screen>
     )
   }
 }

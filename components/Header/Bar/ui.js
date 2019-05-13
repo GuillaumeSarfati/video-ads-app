@@ -14,7 +14,7 @@ export const  Component = styled.View`
 export const  Button = styled.TouchableOpacity`
                 flex-direction: row;
                 align-items: center;
-                padding: 15px;
+                padding: 15px 15px 15px 0;
               `
 
 export const  Icon = styled.Image`

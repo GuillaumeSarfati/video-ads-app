@@ -36,7 +36,6 @@ class RecordScreen extends React.Component {
   onStartRecord = async () => {
     if (this.camera) {
 
-      console.log('IS DEVICE : ', Constants.isDevice);
       if (Constants.isDevice) {
 
         this.setState({ status: 'record' }, this.startCountdown)
@@ -94,7 +93,7 @@ class RecordScreen extends React.Component {
     return (
       <UI.Screen>
       <Camera
-        style={{ flex: 1, alignSelf: 'stretch', borderColor: 'red', borderWidth: 3}}
+        style={{ flex: 1, alignSelf: 'stretch' }}
         type={this.state.type}
         ref={ref => { this.camera = ref; }}
       >

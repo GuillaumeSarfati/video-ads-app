@@ -1,5 +1,6 @@
 import styled from 'styled-components/native';
 
+export InputScrollView from 'react-native-input-scroll-view';
 export Header from 'components/Header';
 export Shadow from 'components/Shadow';
 export Description from 'components/Description';
@@ -17,6 +18,7 @@ export const View = styled.View`
   width: 100%;
   height: 100%;
   align-self: stretch;
+  overflow: hidden;
 `
 
 export const Content = styled.View`

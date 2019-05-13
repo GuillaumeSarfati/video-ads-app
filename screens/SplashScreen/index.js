@@ -8,7 +8,6 @@ class SplashScreen extends React.Component {
   componentDidMount() {
     setTimeout(() => {
       const { navigation, me } = this.props
-      console.log('me : ', me);
       navigation.navigate(me
         ? 'Flow'
         : 'Home'

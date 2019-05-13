@@ -14,23 +14,23 @@ export const Record = styled.Image`
                       `
 
 export const Informations = styled.Text`
-                              opacity: 0.5;
-                              color: #FFFFFF;
-                              font-size: 13px;
-                              font-weight: 900;
-                              line-height: 18px;
-                              text-align: center;
-                            `
+                            opacity: 0.5;
+                            color: #FFFFFF;
+                            font-size: 13px;
+                            font-weight: 900;
+                            line-height: 18px;
+                            text-align: center;
+                          `
 export const StartRecord = styled.TouchableOpacity`
-                width: 80px;
-                height: 80px;
-                background: #2F89F8;
-                border-radius: 40px;
-                margin: 30px;
-              `
+                            width: 80px;
+                            height: 80px;
+                            background: #2F89F8;
+                            border-radius: 40px;
+                            margin: 30px;
+                          `
 export const StopRecord = styled.TouchableOpacity`
-                width: 80px;
-                height: 80px;
-                border-radius: 40px;
-                margin: 30px;
-              `
+                            width: 80px;
+                            height: 80px;
+                            border-radius: 40px;
+                            margin: 30px;
+                          `

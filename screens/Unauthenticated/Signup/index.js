@@ -53,7 +53,7 @@ class LoginScreen extends React.Component {
     const { onChange, onSignup, onNavigate } = this;
 
     return (
-      <UI.Screen scroll>
+      <UI.Screen input>
         <UI.Screen.Header>
           <UI.Screen.Header.Bar>
             <UI.Screen.Header.Bar.Close onPress={onNavigate()}>

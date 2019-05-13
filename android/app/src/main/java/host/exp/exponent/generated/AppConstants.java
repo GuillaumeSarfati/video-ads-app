@@ -38,10 +38,20 @@ public class AppConstants {
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         // ADD EMBEDDED RESPONSES HERE
         // START EMBEDDED RESPONSES
-        embeddedResponses.add(new Constants.EmbeddedResponse("https://exp.host/@gsarfatipopeye/popeye-development/index.exp", "assets://shell-app-manifest.json", "application/json"));
-        embeddedResponses.add(new Constants.EmbeddedResponse("https://d1wp6m56sqw74a.cloudfront.net/%40gsarfatipopeye%2Fpopeye-development%2F1.0.0%2F560e1b63fc6e0bc538c962a9110cfafc-32.0.0-android.js", "assets://shell-app.bundle", "application/javascript"));
+        embeddedResponses.add(new Constants.EmbeddedResponse("https://exp.host/@gsarfatipopeye/popeye-development", "assets://shell-app-manifest.json", "application/json"));
+        embeddedResponses.add(new Constants.EmbeddedResponse("https://d1wp6m56sqw74a.cloudfront.net/%40gsarfatipopeye%2Fpopeye-development%2F1.0.0%2F050e2e47d4c8e220f90ee698d4df638a-32.0.0-android.js", "assets://shell-app.bundle", "application/javascript"));
         // END EMBEDDED RESPONSES
     EMBEDDED_RESPONSES = embeddedResponses;
   }

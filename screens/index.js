@@ -95,7 +95,7 @@ export const App = createStackNavigator({
 }, { mode: 'modal', headerMode: 'none' })
 
 export const SplashNavigator = createFluidNavigator({
-  Welcome,
+  // Welcome,
   SplashScreen: { screen : SplashScreen },
   App: { screen : App },
 }, { headerMode: 'none', navigationOptions: {gesturesEnabled: false } })

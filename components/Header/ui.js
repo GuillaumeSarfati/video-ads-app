@@ -13,6 +13,6 @@ export const  Background = styled.ImageBackground`
 export const  Component = styled.TouchableOpacity`
                 height: 200px;
                 align-self: stretch;
-                justify-content: center;
-                padding: 20px 30px;
+                justify-content: flex-start;
+                padding: 40px 30px;
               `

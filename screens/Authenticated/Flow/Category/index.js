@@ -1,4 +1,5 @@
 import React from 'react';
+import { Platform, Linking, ActionSheetIOS } from 'react-native';
 
 import connect from 'utils/connect';
 
@@ -28,17 +29,25 @@ class CategoryScreen extends React.Component {
   }
 
   onPressDetails = offer => e => {
-    const { Offer } = this.props;
-    Offer.deleteById(offer.id)
-
-    this.cube.scrollTo(this.state.current + 1, true)
-    // const { category } = this.props.navigation.state.params;
-    // this.props.navigation.navigate('Offer', { category, offer })
+    const { category } = this.props.navigation.state.params;
+    this.props.navigation.navigate('Offer', { category, offer })
   }
 
   onPressOrder = offer => e => {
-    const { category } = this.props.navigation.state.params;
-    this.props.navigation.navigate('Offer', { category, offer })
+    const phoneNumber = '0782723058'
+    ActionSheetIOS.showActionSheetWithOptions({
+      options: ['Appeler', 'Annuler'],
+      cancelButtonIndex: 1,
+    },
+    (buttonIndex) => {
+      console.log('buttonIndex : ', buttonIndex);
+      if (buttonIndex === 0) {
+        Linking.openURL(Platform.OS === 'ios'
+          ? `telprompt:${phoneNumber}`
+          : `tel:${phoneNumber}`
+        )
+      }
+    });
   }
 
   onNavigate = screen => e => {
@@ -93,7 +102,7 @@ class CategoryScreen extends React.Component {
 
   renderEnd = (model, index) => {
     return (
-      <UI.Screen.Content style={{ backgroundColor: 'purple' }} />
+      <UI.Screen.Content style={{ backgroundColor: '#2E3B55' }} />
     )
   }
   render() {
@@ -145,7 +154,7 @@ class CategoryScreen extends React.Component {
             <UI.Liner style={{marginTop: 30}}/>
 
             <UI.Screen.Row style={{ justifyContent: 'space-between', alignSelf: 'stretch' }}>
-              <UI.Button type="default" onPress={onPressDetails(offers[current])}>Delete {current}</UI.Button>
+              <UI.Button type="default" onPress={onPressDetails(offers[current])}>Details</UI.Button>
               <UI.Button type="primary" onPress={onPressOrder(offers[current])}>Réserver</UI.Button>
             </UI.Screen.Row>
 

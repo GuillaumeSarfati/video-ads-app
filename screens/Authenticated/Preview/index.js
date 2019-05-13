@@ -10,6 +10,10 @@ import { For } from 'react-loops';
 
 class ProfileScreen extends React.Component {
 
+  state = {
+    status: 'none'
+  }
+
   componentDidMount() {
     const { Category } = this.props;
     const { categories } = this.props;
@@ -34,12 +38,25 @@ class ProfileScreen extends React.Component {
      return body.bucket + '/' + body.key
 
   }
+  onNavigate = screen => e => {
+    const { navigation } = this.props
+
+    screen
+      ? navigation.navigate(screen)
+      : navigation.pop()
+
+  }
   onSend = (uri, codec) => async () => {
     const { me, categories } = this.props
     const { Offer } = this.props;
 
     const category = categories[0]
+
+    this.setState({status: 'progress'})
+
     const video = await this.uploadVideo(uri, codec)
+
+    this.setState({status: 'end'})
 
     await Offer.create({
       title: 'test',
@@ -55,8 +72,9 @@ class ProfileScreen extends React.Component {
 
   render() {
     console.log('PROFILE render : ', this.props.navigation);
-    const { onSend } = this;
-    const { categories} = this.props;
+    const { onSend, onNavigate } = this;
+    const { status } = this.state;
+    const { categories } = this.props;
     const { uri, codec } = this.props.navigation.state.params
 
     return (
@@ -71,7 +89,7 @@ class ProfileScreen extends React.Component {
 
           <UI.Screen.Header>
             <UI.Screen.Header.Bar>
-              <UI.Screen.Header.Bar.Back dark>
+              <UI.Screen.Header.Bar.Back dark onPress={onNavigate()}>
                 Back
               </UI.Screen.Header.Bar.Back>
               <UI.Screen.Liner/>
@@ -90,7 +108,16 @@ class ProfileScreen extends React.Component {
           </UI.Screen.Content>
           <UI.Screen.Footer style={{ backgroundColor: '#2E3B55' }}>
             <UI.Button type="primary" onPress={onSend(uri, codec)} large>Envoyer</UI.Button>
-            <UI.Informations>Après votre envoi il faudra quelques heures avant que votre Pop Ads soit visible</UI.Informations>
+            {
+              status === 'none' && <UI.Informations>Après votre envoi il faudra quelques heures avant que votre Pop Ads soit visible</UI.Informations>
+            }
+            {
+              status === 'progress' && <UI.Informations>Upload in progress</UI.Informations>
+            }
+            {
+              status === 'end' && <UI.Informations>Upload DONE</UI.Informations>
+            }
+
           </UI.Screen.Footer>
         </UI.Screen>
       </UI.Screen.Content>
