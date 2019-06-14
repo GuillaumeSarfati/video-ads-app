@@ -11,7 +11,9 @@ class SplashScreen extends React.Component {
 
       console.log('me : ', me);
       navigation.navigate(me
-        ? 'FlowMember'
+        // TODO
+        // ? 'FlowMember'
+        ? 'FlowPro'
         : 'Home'
       )
     }, 300)

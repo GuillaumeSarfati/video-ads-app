@@ -16,19 +16,47 @@ class ProScreen extends React.Component {
   }
 
   render() {
-    const { models } = this.props;
+    const { offers } = this.props;
     const { onPress } = this;
 
     return (
-      <UI.Screen>
-        <UI.Text>Pro</UI.Text>
-        <UI.Button onPress={onPress}>AuthenticatedScreen</UI.Button>
+      <UI.Screen scroll>
+
+        <UI.Screen.Header background>
+          <UI.Screen.Column style={{paddingVertical: 30}}>
+            <UI.Screen.Title style={{paddingBottom: 30}}>Pop Annonces</UI.Screen.Title>
+          </UI.Screen.Column>
+        </UI.Screen.Header>
+
+        {
+          offers.length
+          ? (
+            <UI.Screen.Column style={{padding: 15}}>
+              <UI.Screen.Description>Zapping Pop Annonces</UI.Screen.Description>
+              <UI.Offers>
+              {
+                offers.map(offer => (
+                  <UI.Video/>
+                ))
+              }
+              </UI.Offers>
+            </UI.Screen.Column>
+          )
+          : (
+            <UI.Screen.Column style={{alignItems: 'center', paddingVertical: 30}}>
+              <UI.Record/>
+            </UI.Screen.Column>
+          )
+        }
+
       </UI.Screen>
     )
   }
 }
 
 export default connect(
-  state => ({}),
+  state => ({
+    offers: state.offers,
+  }),
   (dispatch, props, models) => ({}),
 )(ProScreen);

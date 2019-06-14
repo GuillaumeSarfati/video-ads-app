@@ -39,6 +39,7 @@ Screen.Row = UI.Row;
 Screen.Column = UI.Column;
 Screen.Footer = UI.Footer;
 Screen.Liner = UI.Liner;
+Screen.Title = UI.Title;
 Screen.Description = UI.Description;
 Screen.Label = UI.Label;
 

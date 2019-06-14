@@ -3,6 +3,7 @@ import styled from 'styled-components/native';
 export InputScrollView from 'react-native-input-scroll-view';
 export Header from 'components/Header';
 export Shadow from 'components/Shadow';
+export Title from 'components/Title';
 export Description from 'components/Description';
 export Liner from 'components/Liner';
 export Label from 'components/Label';

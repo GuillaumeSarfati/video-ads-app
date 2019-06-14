@@ -45,7 +45,7 @@ class ProfileScreen extends React.Component {
               <UI.Screen.Header.Subtitle>
               {
                 me.pro
-                ? 'Connecté en tant que pro'
+                ? 'Connecté en tant que prestataire'
                 : 'Connecté en tant que particulier'
               }
 
@@ -63,7 +63,13 @@ class ProfileScreen extends React.Component {
               <UI.List.Item.Title>Porte-monnaie</UI.List.Item.Title>
             </UI.List.Item>
             <UI.List.Item onPress={onSwitch}>
-              <UI.List.Item.Title>Switcher en tant que prestataire</UI.List.Item.Title>
+              <UI.List.Item.Title>
+                {
+                  me.pro
+                  ? 'Switcher en tant que particulier'
+                  : 'Switcher en tant que prestataire'
+                }
+              </UI.List.Item.Title>
             </UI.List.Item>
           </UI.List>
           <UI.List>

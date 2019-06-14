@@ -13,6 +13,8 @@ export {
   TextInput,
 } from 'react-native';
 
+export { Ionicons as Icon } from '@expo/vector-icons';
+
 export const Component = styled.View`
   flex: 1;
   align-self: stretch;

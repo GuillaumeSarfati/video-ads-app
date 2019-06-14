@@ -17,5 +17,6 @@ Component.ScrollView = UI.ScrollView;
 Component.TouchableWithoutFeedback = UI.TouchableWithoutFeedback;
 Component.TouchableOpacity = UI.TouchableOpacity;
 Component.TextInput = UI.TextInput;
+Component.Icon = UI.Icon;
 
 export default Component;
