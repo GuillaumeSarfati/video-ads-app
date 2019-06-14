@@ -9,6 +9,6 @@
 	<key>manifestUrl</key>
 	<string>exp://exp.host/@gsarfatipopeye/popeye-development</string>
 	<key>releaseChannel</key>
-	<string>default</string>
+	<string>development</string>
 </dict>
 </plist>

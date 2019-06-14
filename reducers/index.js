@@ -8,6 +8,9 @@ import schema from './schema';
 import member from './member';
 import members from './members';
 
+import creditCard from './creditCard';
+import creditCards from './creditCards';
+
 import administrator from './administrator';
 import administrators from './administrators';
 
@@ -34,6 +37,9 @@ export default combineReducers({
 
   members,
   member,
+
+  creditCard,
+  creditCards,
 
   administrators,
   administrator,
