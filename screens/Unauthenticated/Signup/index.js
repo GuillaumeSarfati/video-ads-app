@@ -37,6 +37,7 @@ class LoginScreen extends React.Component {
       sponsorship
     })
 
+    console.log('navigate to phone number');
     navigation.navigate('PhoneNumber')
   }
 

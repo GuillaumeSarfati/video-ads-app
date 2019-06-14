@@ -1,5 +1,5 @@
 import React from 'react';
-import { AsyncStorage, YellowBox } from 'react-native';
+import { View, AsyncStorage, YellowBox, Dimensions } from 'react-native';
 import { AppLoading, Asset, Font, SplashScreen } from 'expo';
 import { PersistGate } from 'redux-persist/integration/react'
 import { Provider } from 'react-redux'
@@ -63,12 +63,23 @@ export default class App extends React.Component {
       }),
     ]);
   };
-
-
+  // TODO try more
+  // <View style={{
+  //   position: 'absolute',
+  //   top: - (896 - 568) / 2,
+  //   left: - (414 - 320) / 2,
+  //   width: 414, // 320
+  //   height: 896, // 568
+  //
+  //   transform: [
+  //     { scaleX: 320 / 414 },
+  //     { scaleY: 320 / 414 },
+  //   ]
+  // }}>
   render() {
     const { Navigation } = this;
     const { isSplashReady, isAppReady } = this.state;
-
+    console.log('Dimensions : ', Dimensions.get("window"));
     if (isAppReady) {
       return (
         <Provider store={store}>

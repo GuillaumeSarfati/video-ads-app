@@ -52,6 +52,7 @@ class ShopScreen extends React.Component {
 export default connect(
   state => ({
     articles: state.articles,
+    creditCard: state.creditCard,
   }),
   (dispatch, props, models) => ({
     Article: models.Article,

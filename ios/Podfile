@@ -117,6 +117,9 @@ target 'popeye' do
   pod 'FBSDKLoginKit'
 
   pod 'react-native-fbsdk', :path => '../node_modules/react-native-fbsdk'
+  pod 'RNAwesomeCardIO', :path => '../node_modules/react-native-awesome-card-io'
+
+
 
 
   post_install do |installer|
