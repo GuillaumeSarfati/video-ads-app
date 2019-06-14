@@ -2,6 +2,7 @@ import React from 'react';
 import { For } from 'react-loops';
 import connect from 'utils/connect';
 import background from '../../../../assets/images/background/wave.png';
+
 import { Transition } from 'react-navigation-fluid-transitions';
 
 import * as UI from './ui'
@@ -28,10 +29,17 @@ class CategoriesScreen extends React.Component {
     const { onNavigate } = this;
 
     return (
-      <UI.Screen scroll>
+      <UI.Screen scroll background={require('assets/images/background/island.png')}>
           <Transition appear="top">
-          <UI.Header background>
-            <UI.Title>Petites Annonces</UI.Title>
+          <UI.Header>
+            <UI.Search
+              onSearch={(query) => console.log(query)}
+              onPressFilter={onNavigate('Search')}
+            />
+            <UI.Screen.Column style={{paddingVertical: 30}}>
+              <UI.Title style={{paddingBottom: 30}}>Trouver un service video</UI.Title>
+              <UI.Screen.Description>Lorem ipsum dolor sit amet, jkhsdfhsd dhksjhf, dhsfg dh dsj.</UI.Screen.Description>
+            </UI.Screen.Column>
           </UI.Header>
           </Transition>
           <Transition appear="bottom">

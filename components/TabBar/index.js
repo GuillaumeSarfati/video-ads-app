@@ -9,12 +9,19 @@ import * as UI from './ui'
 class TabBarComponent extends React.Component {
 
   state = {
-    tabs: [
-      'Flow',
-      'Record',
-      'Shop',
-      'Profile',
-    ],
+    tabs: {
+      member: [
+        'FlowMember',
+        'Shop',
+        'Profile',
+      ],
+      pro: [
+        'FlowPro',
+        'Record',
+        'Shop',
+        'Profile',
+      ],
+    },
     current: 'Flow',
   }
 
@@ -47,7 +54,7 @@ class TabBarComponent extends React.Component {
     return (
       <UI.Component>
         {
-          tabs.map(tab => (
+          tabs[me.pro ? 'pro' : 'member'].map(tab => (
             <UI.ButtonTest
               key={tab}
               current={current === tab}

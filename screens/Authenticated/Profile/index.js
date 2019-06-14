@@ -21,13 +21,19 @@ class ProfileScreen extends React.Component {
     onNavigate(screen)(e)
   }
 
+  onSwitch = e => {
+    const { Member, me } = this.props;
+
+    Member.update({pro: !me.pro})
+  }
+
   shouldComponentUpdate(nextProps) {
     return !!nextProps.me
   }
 
   render() {
     const { me } = this.props;
-    const { onNavigate, onLogout } = this;
+    const { onNavigate, onSwitch, onLogout } = this;
 
     return (
       <UI.Screen scroll>
@@ -36,7 +42,14 @@ class ProfileScreen extends React.Component {
             <UI.Avatar source={{uri: me.picture}} size={80}/>
             <UI.Screen.Column>
               <UI.Screen.Header.Title>{me.firstname} {me.lastname}</UI.Screen.Header.Title>
-              <UI.Screen.Header.Subtitle>Connecté en tant que particulier</UI.Screen.Header.Subtitle>
+              <UI.Screen.Header.Subtitle>
+              {
+                me.pro
+                ? 'Connecté en tant que pro'
+                : 'Connecté en tant que particulier'
+              }
+
+              </UI.Screen.Header.Subtitle>
             </UI.Screen.Column>
           </UI.Screen.Row>
         </UI.Screen.Header>
@@ -49,7 +62,7 @@ class ProfileScreen extends React.Component {
             <UI.List.Item>
               <UI.List.Item.Title>Porte-monnaie</UI.List.Item.Title>
             </UI.List.Item>
-            <UI.List.Item>
+            <UI.List.Item onPress={onSwitch}>
               <UI.List.Item.Title>Switcher en tant que prestataire</UI.List.Item.Title>
             </UI.List.Item>
           </UI.List>

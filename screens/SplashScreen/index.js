@@ -8,8 +8,10 @@ class SplashScreen extends React.Component {
   componentDidMount() {
     setTimeout(() => {
       const { navigation, me } = this.props
+
+      console.log('me : ', me);
       navigation.navigate(me
-        ? 'Flow'
+        ? 'FlowMember'
         : 'Home'
       )
     }, 300)
@@ -33,7 +35,7 @@ class SplashScreen extends React.Component {
           justifyContent: 'center',
           alignItems: 'center',
           // TODO Remove tricks when Ewa send good assets
-          paddingTop: 80,
+          paddingTop: 180,
           paddingRight: 5
         }}>
           <Logo transition={me ? false : true}/>

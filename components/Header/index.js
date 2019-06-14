@@ -10,9 +10,11 @@ const Header = props => props.background
   </UI.Background>
 )
 : (
-  <UI.Component disabled={!props.onPress}>
-    { props.children }
-  </UI.Component>
+  <UI.NoBackground>
+    <UI.Component disabled={!props.onPress}>
+      { props.children }
+    </UI.Component>
+  </UI.NoBackground>
 )
 
 

@@ -10,6 +10,7 @@ export Text from 'components/Text';
 export {
   TouchableWithoutFeedback,
   TouchableOpacity,
+  TextInput,
 } from 'react-native';
 
 export const Component = styled.View`
