@@ -24,7 +24,11 @@ class ProfileScreen extends React.Component {
   onSwitch = e => {
     const { Member, me } = this.props;
 
-    Member.update({pro: !me.pro})
+    Member.update({
+      mode: me.mode === 'consumer'
+        ? 'supplier'
+        : 'consumer'
+      })
   }
 
   shouldComponentUpdate(nextProps) {
@@ -38,13 +42,13 @@ class ProfileScreen extends React.Component {
     return (
       <UI.Screen scroll>
         <UI.Screen.Header background>
-          <UI.Screen.Row justifyContent="space-between">
+          <UI.Screen.Row style={{justifyContent: "space-between", alignItems: 'center', padding: 30}}>
             <UI.Avatar source={{uri: me.picture}} size={80}/>
-            <UI.Screen.Column>
-              <UI.Screen.Header.Title>{me.firstname} {me.lastname}</UI.Screen.Header.Title>
+            <UI.Screen.Column style={{justifyContent: 'center'}}>
+              <UI.Component.Text style={{fontWeight: '900', fontSize: 32, color: 'white'}}>{me.firstname} {me.lastname}</UI.Component.Text>
               <UI.Screen.Header.Subtitle>
               {
-                me.pro
+                me.mode === 'supplier'
                 ? 'Connecté en tant que prestataire'
                 : 'Connecté en tant que particulier'
               }
@@ -65,7 +69,7 @@ class ProfileScreen extends React.Component {
             <UI.List.Item onPress={onSwitch}>
               <UI.List.Item.Title>
                 {
-                  me.pro
+                  me.mode === 'supplier'
                   ? 'Switcher en tant que particulier'
                   : 'Switcher en tant que prestataire'
                 }

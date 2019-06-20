@@ -17,6 +17,11 @@ const Screens = {
       </UI.InputScrollView>
     </UI.View>
   ),
+  background: ({ scroll, background, children, ...props }) => (
+    <UI.Background source={background} style={{flex: 1}} {...props}>
+        { children }
+    </UI.Background>
+  ),
   default: ({ scroll, background, children, ...props }) => (
     <UI.View style={{flex: 1}} {...props}>
         { children }
@@ -24,7 +29,8 @@ const Screens = {
   ),
 }
 
-const Screen = ({ scroll, input, ...props }) => {
+const Screen = ({ scroll, background, input, ...props }) => {
+    if (background) return Screens.background({background, ...props})
     if (scroll) return Screens.scroll(props)
     if (input) return Screens.input(props)
     return Screens.default(props)

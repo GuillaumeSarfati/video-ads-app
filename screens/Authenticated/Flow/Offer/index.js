@@ -15,7 +15,9 @@ class OfferScreen extends React.Component {
   }
 
   render() {
-    const { offer, category } = this.props.navigation.state.params
+    const offer = { id: 'kjhjh'}
+    const category = { id: 'kjhjh'}
+    // const { offer, category } = this.props.navigation.state.params
     const { onNavigate } = this
 
     return (
@@ -33,13 +35,17 @@ class OfferScreen extends React.Component {
         </UI.Screen.Header>
 
         <UI.Screen.Content style={{padding: 30}}>
-          <UI.Screen.Label dark>Description de l'annonce</UI.Screen.Label>
+          <UI.Component.Action onPress={onNavigate()}>Voir la piece jointe</UI.Component.Action>
           <UI.Screen.Liner dark/>
-          <UI.Screen.Description style={{fontWeight: '500', marginBottom: 30 }}>
+          <UI.Screen.Label dark>DESCRIPTION DE LA POP ANNONCE</UI.Screen.Label>
+          <UI.Screen.Description style={{fontWeight: '500', marginVertical: 30}}>
             Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.
           </UI.Screen.Description>
-          <UI.Screen.Label dark>Commentaires</UI.Screen.Label>
           <UI.Screen.Liner dark/>
+          <UI.Screen.Row style={{ justifyContent: 'space-between', alignItems: 'flex-start'}}>
+            <UI.Screen.Label dark>COMMENTAIRES</UI.Screen.Label>
+            <UI.Component.Action type="default" small onPress={onNavigate('Comment')}>Laisser un avis</UI.Component.Action>
+          </UI.Screen.Row>
           <UI.Comment />
           <UI.Comment />
           <UI.Comment />

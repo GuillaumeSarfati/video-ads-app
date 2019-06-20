@@ -57,20 +57,22 @@ class LoginScreen extends React.Component {
       <UI.Screen input>
         <UI.Screen.Header>
           <UI.Screen.Header.Bar>
-            <UI.Screen.Header.Bar.Close onPress={onNavigate()}>
-              Home
-            </UI.Screen.Header.Bar.Close>
+            <UI.Screen.Header.Bar.Back onPress={onNavigate()}>
+              Connectez-vous
+            </UI.Screen.Header.Bar.Back>
           </UI.Screen.Header.Bar>
           <UI.Screen.Header.Title dark>Inscription</UI.Screen.Header.Title>
         </UI.Screen.Header>
         <UI.Screen.Content style={{ justifyContent: 'flex-start' }}>
           <UI.Screen.Column style={{ padding: 30}}>
+            <UI.Screen.Row>
+              <UI.Button type={this.state.gender === 'female' ? "primary" : "default"} onPress={() => onChange('gender')('female')}>Femme</UI.Button>
+              <UI.Button type={this.state.gender === 'male' ? "primary" : "default"} onPress={() => onChange('gender')('male')}>Homme</UI.Button>
+            </UI.Screen.Row>
+
             <UI.TextInput value={firstname} onChangeText={onChange('firstname')} placeholder="Prénom"/>
             <UI.TextInput value={lastname} onChangeText={onChange('lastname')} placeholder="Nom"/>
             <UI.TextInput value={birthday} onChangeText={onChange('birthday')} placeholder="Date de naissance YYYY-MM-JJ"/>
-            <UI.CheckBox value={gender} onChange={onChange('gender')} type={'male'} placeholder="Homme"/>
-            <UI.CheckBox value={gender} onChange={onChange('gender')} type={'female'} placeholder="Femme"/>
-
             <UI.TextInput value={email} onChangeText={onChange('email')} placeholder="Adresse email" autoCapitalize="none"/>
             <UI.TextInput value={password} onChangeText={onChange('password')} placeholder="Mot de passe" secureTextEntry/>
           </UI.Screen.Column>

@@ -27,7 +27,7 @@ class WelcomeScreen extends React.Component {
           <UI.Description center>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</UI.Description>
         </UI.Screen.Content>
         <UI.Screen.Footer>
-          <UI.Button onPress={onNavigate('Choose')}>Continuer</UI.Button>
+          <UI.Button onPress={onNavigate('Choose')} large>Continuer</UI.Button>
         </UI.Screen.Footer>
       </UI.Screen>
     )

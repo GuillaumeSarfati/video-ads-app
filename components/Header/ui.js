@@ -15,6 +15,7 @@ export const  Background = styled.ImageBackground`
                 align-self: stretch;
                 justify-content: flex-start;
                 paddingTop: 25px;
+                justify-content: center;
               `
 
 export const  Component = styled.TouchableOpacity`

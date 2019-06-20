@@ -10,6 +10,7 @@ import makeStore from 'utils/store';
 
 import Screens from 'screens';
 import Modals from 'modals';
+import Loading from 'components/Loading';
 
 const { store, persistor } = makeStore();
 
@@ -61,6 +62,15 @@ export default class App extends React.Component {
         require('assets/images/logo.png'),
         require('assets/images/record/progress.png'),
         require('assets/images/gradient.png'),
+
+        require('assets/images/rating/star-fill.png'),
+        require('assets/images/rating/star-empty.png'),
+        require('assets/images/rating/star.png'),
+        require('assets/images/rating/star-border-yellow.png'),
+        require('assets/images/rating/star-border-grey.png'),
+
+        require('assets/images/supplier.png'),
+        require('assets/images/consumer.png'),
       ]),
       Font.loadAsync({
         'space-mono': require('./assets/fonts/SpaceMono-Regular.ttf'),
@@ -69,27 +79,16 @@ export default class App extends React.Component {
       }),
     ]);
   };
-  // TODO try more
-  // <View style={{
-  //   position: 'absolute',
-  //   top: - (896 - 568) / 2,
-  //   left: - (414 - 320) / 2,
-  //   width: 414, // 320
-  //   height: 896, // 568
-  //
-  //   transform: [
-  //     { scaleX: 320 / 414 },
-  //     { scaleY: 320 / 414 },
-  //   ]
-  // }}>
+
   render() {
     const { Navigation } = this;
     const { isSplashReady, isAppReady } = this.state;
-    console.log('Dimensions : ', Dimensions.get("window"));
+
     if (isAppReady) {
       return (
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
+            <Loading />
             <Modals />
             <Screens />
           </PersistGate>

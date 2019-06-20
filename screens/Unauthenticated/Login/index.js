@@ -49,7 +49,7 @@ class LoginScreen extends React.Component {
         <UI.Screen.Header>
           <UI.Screen.Header.Bar>
             <UI.Screen.Header.Bar.Close onPress={onNavigate()}>
-              Home
+              Accueil
             </UI.Screen.Header.Bar.Close>
           </UI.Screen.Header.Bar>
           <UI.Screen.Header.Title dark>Connectez-vous</UI.Screen.Header.Title>

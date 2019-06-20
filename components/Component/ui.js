@@ -7,6 +7,11 @@ export Label from 'components/Label';
 export Image from 'components/Image';
 export Text from 'components/Text';
 export TextInput from 'components/TextInput';
+export TextGradient from 'components/TextGradient';
+export Gradient from 'components/Gradient';
+export RatingInput from 'components/RatingInput';
+export Button from 'components/Button';
+export Action from 'components/Action';
 
 export {
   TouchableWithoutFeedback,

@@ -18,4 +18,5 @@ export const  Categories = styled.View`
                 flex-wrap: wrap;
                 flex-direction: row;
                 padding-left: 15px;
+                padding-top: 40px;
               `;

@@ -43,7 +43,7 @@ class LoginScreen extends React.Component {
         <UI.Screen.Content style={{ justifyContent: 'flex-start', alignItems: 'flex-start'  }}>
           <UI.Screen.Column style={{ padding: 30}}>
             <UI.Screen.Description>At vero eos et accusamus et iust  nissimos ducimus qui blanditiis praes entium volup tatum deleniti.</UI.Screen.Description>
-            <UI.TextInput value={code} onChange={onChange('code')} placeholder="Code de confirmation"/>
+            <UI.CodeInput value={code} onChange={onChange('code')} placeholder="Code de confirmation"/>
           </UI.Screen.Column>
         </UI.Screen.Content>
         <UI.Screen.Footer>

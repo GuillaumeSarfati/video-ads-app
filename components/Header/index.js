@@ -8,14 +8,14 @@ const Header = props => props.background
     ? require('assets/images/background/wave.png')
     : props.background
   }>
-    <UI.Component disabled={!props.onPress}>
+    <UI.Component disabled={!props.onPress} style={props.style}>
       { props.children }
     </UI.Component>
   </UI.Background>
 )
 : (
   <UI.NoBackground>
-    <UI.Component disabled={!props.onPress}>
+    <UI.Component disabled={!props.onPress} style={props.style}>
       { props.children }
     </UI.Component>
   </UI.NoBackground>

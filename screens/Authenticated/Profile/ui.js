@@ -1,6 +1,7 @@
 import styled from 'styled-components/native';
 
 export Screen from 'components/Screen';
+export Component from 'components/Component';
 export Text from 'components/Text';
 export Button from 'components/Button';
 export Avatar from 'components/Avatar';

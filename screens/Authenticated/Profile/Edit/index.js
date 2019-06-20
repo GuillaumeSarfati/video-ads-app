@@ -1,12 +1,11 @@
 import React from 'react';
-import background from '../../../../assets/images/background/wave.png';
 
 import connect from 'utils/connect';
 
 import * as UI from './ui'
 
 class EditScreen extends React.Component {
-  state =  this.props.me
+  state = this.props.me
 
   onNavigate = screen => e => {
     const { navigation } = this.props
@@ -21,11 +20,15 @@ class EditScreen extends React.Component {
   }
 
   onSave = async () => {
+    console.log('ON SAVE : ', this.state);
     const { Member, navigation } = this.props
-    console.log('MEMBER : ', Member);
-    console.log('ME : ', this.state);
-    await Member.patchAttributesById(this.state.id, this.state)
-    navigation.pop()
+    try {
+      await Member.patchAttributesById(this.state.id, this.state)
+      navigation.pop()
+    }
+    catch (e) {
+      console.log('ERROR : ', e)
+    }
   }
   render() {
     const { me } = this.props;

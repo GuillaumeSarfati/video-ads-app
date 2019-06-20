@@ -16,12 +16,9 @@ const TextInput = styled.TextInput`
 
 export default props => (
     <Gradient
-      start={{x: 0.0, y: 1}} end={{x: 1, y: 1.0}}
-      colors={[
-        'rgba(47, 137, 248, 0.777)',
-        'rgba(169, 124, 204, 0.777)',
-      ]}
-      locations={[0,1]}
+      start={{x: 1, y: 1}} end={{x: 0, y: 0}}
+      colors={[ 'rgba(222, 186, 221, 1)', 'rgba(172, 217, 242, 1)', 'rgba(183, 233, 236, 1)']}
+      locations={[0,0.5, 1]}
       style={{marginTop: 10, marginBottom: 15, borderRadius: 9}}
     >
     <TextInput {...props} placeholderTextColor="rgb(155, 174, 201)"/>

@@ -11,12 +11,17 @@ Component.Row = UI.Row;
 Component.Column = UI.Column;
 Component.Footer = UI.Footer;
 Component.Label = UI.Label;
-Component.Text = UI.Text;
 Component.Image = UI.Image;
 Component.ScrollView = UI.ScrollView;
 Component.TouchableWithoutFeedback = UI.TouchableWithoutFeedback;
 Component.TouchableOpacity = UI.TouchableOpacity;
+Component.Text = UI.Text;
 Component.TextInput = UI.TextInput;
+Component.TextGradient = UI.TextGradient;
 Component.Icon = UI.Icon;
+Component.Gradient = UI.Gradient;
+Component.RatingInput = UI.RatingInput;
+Component.Button = UI.Button;
+Component.Action = UI.Action;
 
 export default Component;

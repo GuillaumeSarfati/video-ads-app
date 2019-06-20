@@ -21,8 +21,8 @@ export const createApiAction = ({ DEFINE }) => {
 
 export const Api = config => {
   return axios.create({
-    // baseURL: 'http://development.popeye.com:3000/api',
-    baseURL: `https://pop-eye-api-core.herokuapp.com/api`,
+    // baseURL: `https://pop-eye-api-core.herokuapp.com/api`,
+    baseURL: 'http://development.popeye.com:3000/api',
     withCredentials: true,
     ...config
   });

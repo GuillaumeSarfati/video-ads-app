@@ -12,7 +12,6 @@ export const Background = styled.ImageBackground`
   flex: 1;
   justify-content: center;
   align-items: center;
-  position: absolute;
 `
 
 export const View = styled.View`

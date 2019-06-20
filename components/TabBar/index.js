@@ -10,19 +10,21 @@ class TabBarComponent extends React.Component {
 
   state = {
     tabs: {
-      member: [
-        'FlowMember',
+      consumer: [
+        'FlowConsumer',
         'Shop',
         'Profile',
       ],
-      pro: [
-        'FlowPro',
+      supplier: [
+        'FlowSupplier',
         'Record',
         'Shop',
         'Profile',
       ],
     },
-    current: 'Flow',
+    current: this.props.me && this.props.me.mode === 'consumer'
+      ? 'FlowConsumer'
+      : 'FlowSupplier',
   }
 
   shouldComponentUpdate(nextProps) {
@@ -54,7 +56,7 @@ class TabBarComponent extends React.Component {
     return (
       <UI.Component>
         {
-          tabs[me.pro ? 'pro' : 'member'].map(tab => (
+          tabs[me.mode].map(tab => (
             <UI.ButtonTest
               key={tab}
               current={current === tab}

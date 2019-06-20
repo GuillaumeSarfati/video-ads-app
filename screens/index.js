@@ -34,6 +34,7 @@ import Categories from 'screens/Authenticated/Flow/Categories';
 import Pro from 'screens/Authenticated/Flow/Pro';
 import Category from 'screens/Authenticated/Flow/Category';
 import Offer from 'screens/Authenticated/Flow/Offer';
+import Comment from 'screens/Authenticated/Comment';
 import Search from 'screens/Authenticated/Flow/Search';
 
 import TabBar from 'components/TabBar';
@@ -41,15 +42,16 @@ import TabBar from 'components/TabBar';
 export const CategoryNavigator = createFluidNavigator({
   Category,
   Offer,
+  Comment,
 }, { headerMode: 'none', navigationOptions: {gesturesEnabled: true, tabBarVisible: false } })
 
 
-export const FlowMember = createFluidNavigator({
+export const FlowConsumer = createFluidNavigator({
   Categories,
   CategoryNavigator,
 }, { headerMode: 'none', navigationOptions: {gesturesEnabled: true } })
 
-FlowMember.navigationOptions = ({ navigation }) => {
+FlowConsumer.navigationOptions = ({ navigation }) => {
   let { routeName } = navigation.state.routes[navigation.state.index];
   let navigationOptions =  { gesturesEnabled: true }
 
@@ -60,7 +62,7 @@ FlowMember.navigationOptions = ({ navigation }) => {
   return navigationOptions;
 };
 
-export const FlowPro = createFluidNavigator({
+export const FlowSupplier = createFluidNavigator({
   Pro,
   CategoryNavigator,
 }, { headerMode: 'none', navigationOptions: {gesturesEnabled: true } })
@@ -79,11 +81,12 @@ export const LoginNavigator = createStackNavigator({
 }, { headerMode: 'none', navigationOptions: { gesturesEnabled: true }})
 
 export const Authenticated = createBottomTabNavigator({
-  FlowMember,
-  FlowPro,
+  FlowConsumer,
+  FlowSupplier,
   Shop,
   CreditCard,
   ProfileNavigator,
+  Comment,
 }, { mode: 'modal', headerMode: 'none', tabBarComponent: TabBar, lazy: false, navigationOptions: { gesturesEnabled: false }})
 
 export const Unauthenticated = createStackNavigator({
@@ -106,9 +109,6 @@ export const App = createStackNavigator({
 }, { mode: 'modal', headerMode: 'none' })
 
 export const SplashNavigator = createFluidNavigator({
-  // Record,
-  // Create,
-  Edit,
   SplashScreen,
   App,
 }, { headerMode: 'none', navigationOptions: {gesturesEnabled: false } })
