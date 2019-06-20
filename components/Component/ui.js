@@ -6,11 +6,11 @@ export Description from 'components/Description';
 export Label from 'components/Label';
 export Image from 'components/Image';
 export Text from 'components/Text';
+export TextInput from 'components/TextInput';
 
 export {
   TouchableWithoutFeedback,
   TouchableOpacity,
-  TextInput,
 } from 'react-native';
 
 export { Ionicons as Icon } from '@expo/vector-icons';

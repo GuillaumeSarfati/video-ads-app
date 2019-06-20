@@ -22,6 +22,7 @@ import Change from 'screens/Unauthenticated/Login/Password/Change';
 // Authenticated
 import Record from 'screens/Authenticated/Record';
 import Preview from 'screens/Authenticated/Preview';
+import Create from 'screens/Authenticated/Create';
 import Shop from 'screens/Authenticated/Shop';
 import CreditCard from 'screens/Authenticated/Shop/CreditCard';
 
@@ -100,10 +101,13 @@ export const App = createStackNavigator({
   Unauthenticated,
   Record,
   Preview,
+  Create,
   Search,
 }, { mode: 'modal', headerMode: 'none' })
 
 export const SplashNavigator = createFluidNavigator({
+  // Record,
+  Create,
   SplashScreen,
   App,
 }, { headerMode: 'none', navigationOptions: {gesturesEnabled: false } })

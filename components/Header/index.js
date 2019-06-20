@@ -3,7 +3,11 @@ import * as UI from './ui';
 
 const Header = props => props.background
 ? (
-  <UI.Background source={require('assets/images/background/wave.png')}>
+  <UI.Background source={
+    props.background === true
+    ? require('assets/images/background/wave.png')
+    : props.background
+  }>
     <UI.Component disabled={!props.onPress}>
       { props.children }
     </UI.Component>

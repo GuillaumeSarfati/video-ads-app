@@ -4,11 +4,11 @@ import * as UI from './ui';
 
 const Screens = {
   scroll: ({ scroll, background, children, ...props }) => (
-    <UI.Background source={background} {...props}>
+      <UI.View>
       <UI.ScrollView bounces={false} contentContainerStyle={{ justifyContent: 'flex-start', alignSelf: 'stretch'}}>
-        { children }
+      { children }
       </UI.ScrollView>
-    </UI.Background>
+      </UI.View>
   ),
   input: ({ scroll, background, children, ...props }) => (
     <UI.View {...props}>
@@ -18,10 +18,8 @@ const Screens = {
     </UI.View>
   ),
   default: ({ scroll, background, children, ...props }) => (
-    <UI.View {...props}>
-      <UI.Background source={background}>
+    <UI.View style={{flex: 1}} {...props}>
         { children }
-      </UI.Background>
     </UI.View>
   ),
 }

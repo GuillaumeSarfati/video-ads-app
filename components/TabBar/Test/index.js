@@ -1,6 +1,8 @@
 import React from 'react';
 import * as UI from './ui';
 
+import { LinearTextGradient } from "react-native-text-gradient";
+
 export default class Test extends React.Component {
   componentWillReceiveProps() {
     const CustomLayoutLinear = {
@@ -35,22 +37,41 @@ export default class Test extends React.Component {
 
     return (
       <UI.Component>
-        <UI.Button onPress={onPress}>
 
-        <UI.ButtonFocus
-          start={{x: 0.0, y: 1}} end={{x: 1, y: 1.0}}
-          colors={colors}
-          locations={locations}
-        >
-          {
-            current
-            ? <UI.ButtonFocus.Image/>
-            : <UI.Button.Image/>
-          }
+      <UI.Button onPress={onPress}>
 
-          <UI.ButtonFocus.Text>{current ? children : null}</UI.ButtonFocus.Text>
+        {
+          current
+          ? (
+            <UI.ButtonFocus
+              start={{x: 0.0, y: 1}} end={{x: 1, y: 1.0}}
+              colors={colors}
+              locations={locations}
+            >
+              <UI.Icon current={current}>{children}</UI.Icon>
+              <LinearTextGradient
+                style={{fontSize: 18, marginLeft: 8 }}
+                locations={[0, 1]}
+                colors={['#A97CCC', '#2F89F8']}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 0 }}
+              >
+              {current ? children : null}
+              </LinearTextGradient>
+            </UI.ButtonFocus>
+          )
+          : (
+            <UI.ButtonFocus
+              start={{x: 0.0, y: 1}} end={{x: 1, y: 1.0}}
+              colors={['transparent', 'transparent']}
+              locations={locations}
+            >
+            <UI.Icon current={current}>{children}</UI.Icon>
+            </UI.ButtonFocus>
+          )
 
-        </UI.ButtonFocus>
+        }
+
         </UI.Button>
       </UI.Component>
     )

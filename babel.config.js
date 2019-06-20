@@ -10,6 +10,7 @@ module.exports = api => {
           "components": "./components",
           "reducers": "./reducers",
           "screens": "./screens",
+          "modals": "./modals",
           "assets": "./assets",
           "utils": "./utils"
         }

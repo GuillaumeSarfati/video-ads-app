@@ -9,15 +9,15 @@ class ProScreen extends React.Component {
     const { Model } = this.props;
   }
 
-  onPress = () => {
+  onNavigate = screen => e => {
     const { navigation } = this.props
 
-    navigation.navigate('Authenticated')
+    navigation.navigate(screen)
   }
 
   render() {
     const { offers } = this.props;
-    const { onPress } = this;
+    const { onNavigate } = this;
 
     return (
       <UI.Screen scroll>
@@ -44,7 +44,7 @@ class ProScreen extends React.Component {
           )
           : (
             <UI.Screen.Column style={{alignItems: 'center', paddingVertical: 30}}>
-              <UI.Record/>
+              <UI.Record onPress={onNavigate('Record')}/>
             </UI.Screen.Column>
           )
         }

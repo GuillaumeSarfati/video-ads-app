@@ -5,8 +5,9 @@ import connect from 'utils/connect';
 import * as UI from './ui'
 
 import { Text, View, TouchableOpacity, Alert } from 'react-native';
-import { Camera, Permissions, Constants, KeepAwake } from 'expo';
+import { Camera, Permissions, Constants, KeepAwake, DangerZone } from 'expo';
 
+const { Lottie } = DangerZone;
 class RecordScreen extends React.Component {
   state = {
     hasCameraPermission: null,
@@ -17,13 +18,19 @@ class RecordScreen extends React.Component {
 
   async componentDidMount() {
     const { status } = await Permissions.askAsync(Permissions.CAMERA);
+    const { App, Modal } = this.props
+    const { app } = this.props
 
-    KeepAwake.activate();
+    if (app.welcomeRecord !== true) {
+      App.set({ welcomeRecord: true })
+      Modal.open(<UI.Welcome/>)
+    }
 
     this.setState({ hasCameraPermission: status === 'granted' });
+    KeepAwake.activate();
   }
 
-  componentDidUnmount() {
+  componentWillUnmount() {
     KeepAwake.deactivate();
   }
 
@@ -34,6 +41,7 @@ class RecordScreen extends React.Component {
   }
 
   onStartRecord = async () => {
+
     if (this.camera) {
 
       if (Constants.isDevice) {
@@ -115,7 +123,7 @@ class RecordScreen extends React.Component {
                 ? <UI.StopRecord onPress={onStopRecord}>
                     <UI.Record source={require('assets/images/record/progress.png')} />
                   </UI.StopRecord>
-                : <UI.StartRecord onPress={onStartRecord} />
+                : <UI.ButtonRecord onPress={onStartRecord} />
             }
             {
               status === 'record'
@@ -133,6 +141,11 @@ class RecordScreen extends React.Component {
 }
 
 export default connect(
-  state => ({}),
-  (dispatch, props, models) => ({}),
+  state => ({
+    app: state.app,
+  }),
+  (dispatch, props, models) => ({
+    Modal: models.Modal,
+    App: models.App,
+  }),
 )(RecordScreen);

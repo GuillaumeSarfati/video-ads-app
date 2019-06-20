@@ -3,7 +3,7 @@ import * as UI from '../ui';
 
 const Close = ({children, onPress, light}) => (
   <UI.Button onPress={onPress}>
-    <UI.Icon source={require('assets/images/header/close.png')}/>
+    <UI.Icon style={{paddingRight: 15}}>&#xf406;</UI.Icon>
     {
       typeof children === 'string'
       ? <UI.Text light={light}>{ children }</UI.Text>

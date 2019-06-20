@@ -1,10 +1,18 @@
 import React from 'react';
-import * as UI from './ui';
+import { LinearTextGradient } from "react-native-text-gradient";
 
-export default ({children, ...props}) => (
-  <UI.Component>
-    <UI.Button {...props}>
-      <UI.Button.Text>{children}</UI.Button.Text>
-    </UI.Button>
-  </UI.Component>
+const icons  = {
+  FlowPro: "\&#xf443;"
+}
+
+export default ({current, children}) => (
+  <LinearTextGradient
+    style={{ fontWeight: "bold", fontFamily: 'Ionicons', fontSize: 26 }}
+    locations={[0, 1]}
+    colors={current ? ['#A97CCC', '#2F89F8'] : ['#d7d7d7', '#d7d7d7']}
+    start={{ x: 0, y: 0 }}
+    end={{ x: 1, y: 0 }}
+  >
+    &#xf443;
+  </LinearTextGradient>
 )

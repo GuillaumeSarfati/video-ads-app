@@ -261,6 +261,8 @@ PODS:
     - React/RCTBlob
   - RNAwesomeCardIO (0.8.2):
     - React
+  - RNTextGradientView (0.1.5):
+    - React
   - yoga (0.57.1.React)
 
 DEPENDENCIES:
@@ -321,6 +323,7 @@ DEPENDENCIES:
   - React/RCTVibration (from `../node_modules/react-native`)
   - React/RCTWebSocket (from `../node_modules/react-native`)
   - RNAwesomeCardIO (from `../node_modules/react-native-awesome-card-io`)
+  - RNTextGradientView (from `../node_modules/react-native-text-gradient/RNTextGradientView.podspec`)
   - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 EXTERNAL SOURCES:
@@ -411,6 +414,8 @@ EXTERNAL SOURCES:
     :path: ../node_modules/react-native-fbsdk
   RNAwesomeCardIO:
     :path: ../node_modules/react-native-awesome-card-io
+  RNTextGradientView:
+    :path: ../node_modules/react-native-text-gradient/RNTextGradientView.podspec
   yoga:
     :path: ../node_modules/react-native/ReactCommon/yoga
 
@@ -484,8 +489,9 @@ SPEC CHECKSUMS:
   React: 1fe0eb13d90b625d94c3b117c274dcfd2e760e11
   react-native-fbsdk: d5f98cc5abecbcc463e3c35c04743d716d002d37
   RNAwesomeCardIO: 3a48cf16f3de5296d424a00e48c7932e5c888340
+  RNTextGradientView: a0ddcc2cb5a2b5de13652a0059a17abd8c5acd87
   yoga: b1ce48b6cf950b98deae82838f5173ea7cf89e85
 
-PODFILE CHECKSUM: e584be23cacbce8377b6be8cd4a89698ba088b2d
+PODFILE CHECKSUM: 10a4b9e4a158bb0d683b7178029e1470715709cc
 
 COCOAPODS: 1.4.0

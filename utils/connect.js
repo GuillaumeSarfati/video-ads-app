@@ -32,6 +32,16 @@ export const models = modelsMethods.reduce((models, model) => {
     return methods
   }, {})
 
+  // TODO Refacto
+
+  models['App'] = {};
+  models['App'].set = createAction('App_SET');
+  models['App'].update = createAction('App_UPDATE');
+  models['App'].clear = createAction('App_CLEAR');
+
+  models['Modal'] = {};
+  models['Modal'].open = createAction('Modal_OPEN');
+  models['Modal'].close = createAction('Modal_CLOSE');
 
   models[model.name].set = createAction(model.name + '_SET');
   models[model.name].update = createAction(model.name + '_UPDATE');

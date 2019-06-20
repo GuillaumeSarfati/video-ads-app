@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, AsyncStorage, YellowBox, Dimensions } from 'react-native';
+import { View, AsyncStorage, YellowBox, Dimensions, UIManager } from 'react-native';
+
 import { AppLoading, Asset, Font, SplashScreen } from 'expo';
 import { PersistGate } from 'redux-persist/integration/react'
 import { Provider } from 'react-redux'
@@ -8,8 +9,10 @@ import { createAppContainer } from 'react-navigation';
 import makeStore from 'utils/store';
 
 import Screens from 'screens';
+import Modals from 'modals';
 
 const { store, persistor } = makeStore();
+
 
 
 // TODO comment
@@ -61,6 +64,8 @@ export default class App extends React.Component {
       ]),
       Font.loadAsync({
         'space-mono': require('./assets/fonts/SpaceMono-Regular.ttf'),
+        'Ionicons': require('./node_modules/@expo/vector-icons/fonts/Ionicons.ttf'),
+        'MaterialIcons': require('./node_modules/@expo/vector-icons/fonts/MaterialIcons.ttf'),
       }),
     ]);
   };
@@ -85,6 +90,7 @@ export default class App extends React.Component {
       return (
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
+            <Modals />
             <Screens />
           </PersistGate>
         </Provider>

@@ -12,7 +12,7 @@ export const  NoBackground = styled.View`
               `
 
 export const  Background = styled.ImageBackground`
-                min-height: 300px;
+                min-height: 330px;
                 align-self: stretch;
                 justify-content: flex-start;
                 paddingTop: 25px;

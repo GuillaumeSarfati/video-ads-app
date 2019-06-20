@@ -1,5 +1,8 @@
 import styled from 'styled-components/native';
 
+export TextGradient from 'components/TextGradient'
+
+export Icon from 'components/Header/Bar/Icon'
 export Back from 'components/Header/Bar/Back'
 export Close from 'components/Header/Bar/Close'
 export Filters from 'components/Header/Bar/Filters'
@@ -14,12 +17,7 @@ export const  Component = styled.View`
 export const  Button = styled.TouchableOpacity`
                 flex-direction: row;
                 align-items: center;
-                padding: 15px 15px 15px 0;
-              `
-
-export const  Icon = styled.Image`
-                width: 20px;
-                height: 20px;
+                justify-content: center;
               `
 
 export const  Text = styled.Text`

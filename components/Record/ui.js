@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 
 import { Dimensions } from 'react-native';
 
-export Gradient from 'components/Gradient';
+export ButtonRecord from 'components/ButtonRecord';
 export Component from 'components/Component';
 
 export const  Video = styled.View`
@@ -14,22 +14,6 @@ export const  Video = styled.View`
                 box-shadow: 0px 0px 30px #D6E2F5;
                 background: black;
                 border-radius: 16px;
-              `;
-
-export const  Button = styled.TouchableOpacity`
-                flex-direction: row;
-                justify-content: center;
-                align-items: center;
-                border-radius: 40px;
-
-              `;
-              Button.Opacity = styled.View`
-                border: 15px solid rgba(47, 137, 248, 0.35);
-                border-radius: 100px;
-              `
-              Button.Text = styled.Text`
-                color: white;
-                font-weight: bold;
               `;
 
 export const  Description = styled.View`

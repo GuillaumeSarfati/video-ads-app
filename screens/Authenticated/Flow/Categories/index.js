@@ -29,16 +29,16 @@ class CategoriesScreen extends React.Component {
     const { onNavigate } = this;
 
     return (
-      <UI.Screen scroll background={require('assets/images/background/island.png')}>
+      <UI.Screen scroll>
           <Transition appear="top">
-          <UI.Header>
+          <UI.Header background={require('assets/images/background/island.png')}>
             <UI.Search
               onSearch={(query) => console.log(query)}
               onPressFilter={onNavigate('Search')}
             />
             <UI.Screen.Column style={{paddingVertical: 30}}>
               <UI.Title style={{paddingBottom: 30}}>Trouver un service video</UI.Title>
-              <UI.Screen.Description>Lorem ipsum dolor sit amet, jkhsdfhsd dhksjhf, dhsfg dh dsj.</UI.Screen.Description>
+              <UI.Screen.Description light>Lorem ipsum dolor sit amet, jkhsdfhsd dhksjhf, dhsfg dh dsj.</UI.Screen.Description>
             </UI.Screen.Column>
           </UI.Header>
           </Transition>
