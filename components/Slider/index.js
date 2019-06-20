@@ -17,9 +17,7 @@ export default class SliderComponent extends React.Component {
             backgroundColor: '#25B0E3'
           }}
           customMarker={UI.Marker}
-          onValuesChangeStart={this.onValuesChangeStart}
-          onValuesChange={this.onValuesChange}
-          onValuesChangeFinish={this.onValuesChangeFinish}
+          
       />
     )
   }

@@ -3,11 +3,10 @@ import styled from 'styled-components/native'
 import TextGradient from 'components/TextGradient';
 
 const Container = styled.View`
-
+  padding: 15px;
 `;
 
 const Text = styled.Text`
-                position: absolute;
                 top: 0px;
                 left: 0px;
                 max-width: 340px;
@@ -21,9 +20,10 @@ const Text = styled.Text`
 
 const Shadow = styled(TextGradient)`
                 position: absolute;
+                z-index: -1;
                 width: 1000px;
-                top: 5px;
-                left: 15px;
+                top: 20px;
+                left: 30px;
                 opacity: 0.25;
                 text-align: ${props => props.center ? 'center' : 'left' };
                 color: ${props => props.dark ? '#384E71' : 'white' };

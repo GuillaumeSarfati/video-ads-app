@@ -19,7 +19,7 @@ export default class Search extends React.Component {
     return (
       <UI.Search>
         <UI.Icon name="ios-search" size={26} color="#B2C0D5" />
-        <UI.Component.TextInput
+        <UI.TextInput
           style={{flex: 1, paddingLeft: 15}}
           placeholder="Trouver un service video ..."
           onChangeText={onChangeText}

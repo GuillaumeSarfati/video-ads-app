@@ -56,7 +56,7 @@ class ProfileScreen extends React.Component {
         <UI.Screen.Content>
           <UI.List>
             <UI.List.Title>PROFIL</UI.List.Title>
-            <UI.List.Item>
+            <UI.List.Item onPress={onNavigate('Edit')}>
               <UI.List.Item.Title>Informations personnelles</UI.List.Item.Title>
             </UI.List.Item>
             <UI.List.Item>

@@ -107,7 +107,8 @@ export const App = createStackNavigator({
 
 export const SplashNavigator = createFluidNavigator({
   // Record,
-  Create,
+  // Create,
+  Edit,
   SplashScreen,
   App,
 }, { headerMode: 'none', navigationOptions: {gesturesEnabled: false } })

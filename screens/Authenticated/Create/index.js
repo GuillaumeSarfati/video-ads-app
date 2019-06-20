@@ -6,6 +6,11 @@ import connect from 'utils/connect';
 import * as UI from './ui'
 
 class CreateScreen extends React.Component {
+  offer = {
+    description: '',
+    distance: 1,
+    price: 20,
+  }
 
   componentWillMount() {
     const { Category } = this.props;
@@ -20,9 +25,15 @@ class CreateScreen extends React.Component {
     : navigation.pop()
   }
 
+
+  onChange = property => value => {
+    this.offer[property] = value
+    console.log('this.offer : ', this.offer);
+  }
+
   render() {
     const { categories } = this.props
-    const { onNavigate } = this
+    const { onChange, onNavigate } = this
     return (
       <UI.Screen scroll>
 
@@ -41,12 +52,14 @@ class CreateScreen extends React.Component {
         <UI.Screen.Column style={{paddingHorizontal: 30}}>
           <UI.Screen.Label dark>DESCRIPTION DE LA POP ANNONCE</UI.Screen.Label>
           <UI.Component.TextInput
+            onChangeText={onChange('description')}
             placeholder="Description"
             multiline
           />
           <UI.Screen.Liner dark/>
         </UI.Screen.Column>
 
+        {/*
         <UI.Screen.Column style={{paddingHorizontal: 30}}>
           <UI.Screen.Label dark>CATEGORIES</UI.Screen.Label>
           <UI.Screen.Liner dark/>
@@ -59,54 +72,10 @@ class CreateScreen extends React.Component {
           )}/>
           </UI.ScrollView>
         </UI.Screen.Row>
+        */}
 
-        <UI.Screen.Column style={{paddingHorizontal: 30}}>
-        <UI.Screen.Row style={{alignSelf: 'stretch', justifyContent: 'space-between', alignItems: 'center'}}>
-          <UI.Screen.Label dark>Prix</UI.Screen.Label>
-          <UI.TextGradient>0€ - 500€ /heure </UI.TextGradient>
-        </UI.Screen.Row>
-        <UI.Screen.Liner dark/>
-        <UI.Screen.Row style={{justifyContent: 'center', marginBottom: 30}}>
-          <UI.Slider
-            min={0}
-            max={100}
-            sliderLength={414 - 60}
-            values={[18, 55]}
-          />
-        </UI.Screen.Row>
-        </UI.Screen.Column>
-
-        <UI.Screen.Column style={{paddingHorizontal: 30}}>
-        <UI.Screen.Row style={{alignSelf: 'stretch', justifyContent: 'space-between', alignItems: 'center'}}>
-          <UI.Screen.Label dark>Distance</UI.Screen.Label>
-          <UI.TextGradient>Chez vous - 25km </UI.TextGradient>
-        </UI.Screen.Row>
-        <UI.Screen.Liner dark/>
-        <UI.Screen.Row style={{justifyContent: 'center', marginBottom: 30}}>
-          <UI.Slider
-            min={0}
-            max={100}
-            sliderLength={414 - 60}
-            values={[18, 55]}
-          />
-        </UI.Screen.Row>
-        </UI.Screen.Column>
-
-        <UI.Screen.Column style={{paddingHorizontal: 30}}>
-        <UI.Screen.Label dark>Recherche en fonction d'un lieu</UI.Screen.Label>
-        <UI.Screen.Liner dark/>
-        <UI.Screen.Row style={{justifyContent: 'center', marginBottom: 30}}>
-        <UI.MapView
-          style={{ width: 414 - 60, height: 414 - 60, borderRadius: 8 }}
-          initialRegion={{
-            latitude: 37.78825,
-            longitude: -122.4324,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
-          }}
-        />
-        </UI.Screen.Row>
-        </UI.Screen.Column>
+        <UI.Price onChange={onChange('price')}/>
+        <UI.Distance onChange={onChange('distance')}/>
 
         </UI.Screen.Content>
 

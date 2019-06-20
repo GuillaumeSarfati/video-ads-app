@@ -29,12 +29,7 @@ class ShopScreen extends React.Component {
 
     return (
       <UI.Screen scroll>
-          <UI.Screen.Header background>
-          <UI.Screen.Header.Bar>
-            <UI.Screen.Header.Bar.Back onPress={onNavigate()} light>
-              Back
-            </UI.Screen.Header.Bar.Back>
-          </UI.Screen.Header.Bar>
+        <UI.Screen.Header background>
           <UI.Screen.Header.Title>Pop Eye Plus</UI.Screen.Header.Title>
         </UI.Screen.Header>
         <UI.Screen.Content>
