@@ -2,6 +2,9 @@ export Screen from 'components/Screen';
 export Button from 'components/Button';
 export Slider from 'components/Slider';
 export Category from 'components/Category';
+export TextGradient from 'components/TextGradient';
+export Distance from 'components/Distance';
+export Price from 'components/Price';
 
 export { MapView } from 'expo'
 export { ScrollView } from 'react-native'

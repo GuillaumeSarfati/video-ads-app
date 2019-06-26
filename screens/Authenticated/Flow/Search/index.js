@@ -6,6 +6,10 @@ import connect from 'utils/connect';
 import * as UI from './ui'
 
 class SearchScreen extends React.Component {
+  state = {
+    price: [20, 140],
+    distance: [0, 10],
+  }
 
   componentWillMount() {
     const { Category } = this.props;
@@ -20,9 +24,31 @@ class SearchScreen extends React.Component {
     : navigation.pop()
   }
 
+  onChange = property => value => {
+    this.setState({ [property]: value })
+  }
+
+  onSearch = () => {
+    const { Offer } = this.props;
+
+    Offer.find({
+      filter: {
+        where: {
+          price: { between: this.state.price },
+          _geoloc: {
+            near: this.state.price,
+            maxDistance: this.state.distance,
+            unit: 'kilometers'
+          },
+        },
+      },
+    })
+  }
+
   render() {
+    const { price, distance } = this.state
     const { categories } = this.props
-    const { onNavigate } = this
+    const { onNavigate, onChange, onSearch } = this
     return (
       <UI.Screen scroll>
 
@@ -38,64 +64,27 @@ class SearchScreen extends React.Component {
 
         <UI.Screen.Content>
 
-        <UI.Screen.Row style={{paddingHorizontal: 30}}>
-          <UI.Screen.Label dark>Categories</UI.Screen.Label>
-          <UI.Screen.Liner dark/>
-        </UI.Screen.Row>
-        <UI.Screen.Row style={{justifyContent: 'center', marginBottom: 30}}>
-          <UI.ScrollView contentContainerStyle={{padding: 50}} horizontal>
+        <UI.Screen.Column style={{paddingHorizontal: 30}}>
+          <UI.Screen.Label dark>CATEGORIES</UI.Screen.Label>
+        </UI.Screen.Column>
+        <UI.Screen.Row style={{justifyContent: 'center', }}>
+          <UI.ScrollView contentContainerStyle={{padding: 30}} horizontal>
           <For of={categories} as={category => (
             <UI.Category model={category}/>
           )}/>
           </UI.ScrollView>
         </UI.Screen.Row>
-
-        <UI.Screen.Column style={{paddingHorizontal: 30}}>
-        <UI.Screen.Label dark>Prix</UI.Screen.Label>
-        <UI.Screen.Liner dark/>
-        <UI.Screen.Row style={{justifyContent: 'center', marginBottom: 30}}>
-          <UI.Slider
-            min={0}
-            max={100}
-            sliderLength={414 - 60}
-            values={[18, 55]}
-          />
-        </UI.Screen.Row>
+        <UI.Screen.Column style={{paddingHorizontal: 30, marginBottom: 30}}>
+          <UI.Screen.Liner dark/>
         </UI.Screen.Column>
 
-        <UI.Screen.Column style={{paddingHorizontal: 30}}>
-        <UI.Screen.Label dark>Distance</UI.Screen.Label>
-        <UI.Screen.Liner dark/>
-        <UI.Screen.Row style={{justifyContent: 'center', marginBottom: 30}}>
-          <UI.Slider
-            min={0}
-            max={100}
-            sliderLength={414 - 60}
-            values={[18, 55]}
-          />
-        </UI.Screen.Row>
-        </UI.Screen.Column>
-
-        <UI.Screen.Column style={{paddingHorizontal: 30}}>
-        <UI.Screen.Label dark>Recherche en fonction d'un lieu</UI.Screen.Label>
-        <UI.Screen.Liner dark/>
-        <UI.Screen.Row style={{justifyContent: 'center', marginBottom: 30}}>
-        <UI.MapView
-          style={{ width: 414 - 60, height: 414 - 60, borderRadius: 8 }}
-          initialRegion={{
-            latitude: 37.78825,
-            longitude: -122.4324,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
-          }}
-        />
-        </UI.Screen.Row>
-        </UI.Screen.Column>
+        <UI.Price values={price} onChange={onChange('price')}/>
+        <UI.Distance values={distance} onChange={onChange('distance')}/>
 
         </UI.Screen.Content>
 
         <UI.Screen.Footer>
-          <UI.Button large>Lancer la recherche</UI.Button>
+          <UI.Button onPress={onSearch} large>Lancer la recherche</UI.Button>
         </UI.Screen.Footer>
 
       </UI.Screen>
@@ -110,5 +99,6 @@ export default connect(
   }),
   (dispatch, props, models) => ({
     Category: models.Category,
+    Offer: models.Offer,
   }),
 )(SearchScreen);

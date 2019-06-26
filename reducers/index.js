@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 
 import app from './app';
 import modal from './modal';
+import loading from './loading';
 
 import me from './me';
 import accessToken from './accessToken';
@@ -35,6 +36,7 @@ import article from './article';
 export default combineReducers({
   modal,
   app,
+  loading,
 
   me,
   accessToken,

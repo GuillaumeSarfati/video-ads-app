@@ -3,15 +3,11 @@ import * as UI from './ui';
 
 export default class Price extends React.Component {
   state = {
-    price: 20,
+    price: this.props.values,
   }
 
   onPriceChange = values => {
-    const price = values[0];
-
-    if (price !== this.state.price) {
-      this.setState({price: values[0]})
-    }
+    this.setState({price: values})
   }
 
 
@@ -25,16 +21,17 @@ export default class Price extends React.Component {
       <UI.Screen.Column style={{paddingHorizontal: 30}}>
       <UI.Screen.Row style={{alignSelf: 'stretch', justifyContent: 'space-between', alignItems: 'center'}}>
         <UI.Screen.Label dark>PRIX</UI.Screen.Label>
-        <UI.TextGradient>{price ? price + '€' : 'Gratuit' } - 500€ /heure </UI.TextGradient>
+        <UI.TextGradient>{price[0] ? price[0] + '€' : 'Gratuit' } - { price[1] ? price[1] : '500'}€ /heure </UI.TextGradient>
       </UI.Screen.Row>
       <UI.Screen.Row style={{justifyContent: 'center'}}>
         <UI.Slider
           min={0}
           max={500}
+          step={5}
           sliderLength={414 - 60}
-          values={[price]}
+          values={price}
           onValuesChange={onPriceChange}
-          onValuesChangeFinish={values => onChange(values[0])}
+          onValuesChangeFinish={onChange}
         />
       </UI.Screen.Row>
       <UI.Screen.Liner dark/>

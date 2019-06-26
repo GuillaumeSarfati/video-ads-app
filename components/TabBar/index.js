@@ -17,7 +17,7 @@ class TabBarComponent extends React.Component {
       ],
       supplier: [
         'FlowSupplier',
-        'Record',
+        'RecordVideo',
         'Shop',
         'Profile',
       ],
@@ -67,7 +67,9 @@ class TabBarComponent extends React.Component {
           ))
         }
         <UI.TouchableOpacity onPress={onNavigate('Profile')}>
-          <UI.Avatar source={{ uri: me.picture }} />
+          <UI.Gradient style={{padding: 5, borderRadius: 100}}>
+            <UI.Avatar source={{ uri: me.picture }} />
+          </UI.Gradient>
         </UI.TouchableOpacity>
       </UI.Component>
     )

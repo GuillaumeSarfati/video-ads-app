@@ -10,7 +10,7 @@ import makeStore from 'utils/store';
 
 import Screens from 'screens';
 import Modals from 'modals';
-import Loading from 'components/Loading';
+import Loading from 'modals/loading';
 
 const { store, persistor } = makeStore();
 
@@ -52,6 +52,7 @@ export default class App extends React.Component {
     return Promise.all([
       Asset.loadAsync([
         require('assets/splash.png'),
+
         require('assets/images/tab/home.png'),
         require('assets/images/categories/default.png'),
         require('assets/images/background/home.png'),

@@ -55,7 +55,7 @@ export default class Distance extends React.Component {
       </UI.MapView>
       <UI.Screen.Row style={{alignSelf: 'stretch', justifyContent: 'space-between', alignItems: 'center'}}>
         <UI.Screen.Label dark>DISTANCE</UI.Screen.Label>
-         <UI.TextGradient>{distance ? distance + 'km' : 'Chez vous' } - 25km </UI.TextGradient>
+         <UI.TextGradient>{distance ? distance + 'km' : 'Ici' } - 25km </UI.TextGradient>
       </UI.Screen.Row>
       <UI.Screen.Row style={{justifyContent: 'center'}}>
         <UI.Slider

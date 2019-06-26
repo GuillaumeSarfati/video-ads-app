@@ -5,6 +5,7 @@ export Component from 'components/Component';
 export Text from 'components/Text';
 export Button from 'components/Button';
 export Avatar from 'components/Avatar';
+export Shadow from 'components/Shadow';
 
 export const  List = styled.View`
                 align-self: stretch;

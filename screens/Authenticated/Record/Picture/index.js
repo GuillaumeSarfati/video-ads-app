@@ -2,7 +2,7 @@ import React from 'react';
 
 import connect from 'utils/connect';
 
-import * as UI from './ui'
+import * as UI from '../ui'
 
 import { Text, View, TouchableOpacity, Alert } from 'react-native';
 import { Camera, Permissions, Constants, KeepAwake, DangerZone } from 'expo';

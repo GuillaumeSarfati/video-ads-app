@@ -12,6 +12,7 @@ class CategoriesScreen extends React.Component {
     const { Category } = this.props;
     const { categories } = this.props;
 
+    Category.find()
     if (!categories.length) Category.find()
     if (!categories.length) Category.find({ include: 'offers' })
   }
@@ -19,6 +20,7 @@ class CategoriesScreen extends React.Component {
   onNavigate = screen => category => {
     const { Offer, Category, navigation } = this.props
     Category.set(category)
+
     Offer.set(category.offers)
     // Offer.find({filter: { where: { categoryId: category.id }}})
     navigation.navigate(screen, { category, hideTabBar: true })

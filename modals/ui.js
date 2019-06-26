@@ -2,6 +2,8 @@ import { Dimensions, View, Animated, TouchableWithoutFeedback, TouchableOpacity 
 
 import styled from 'styled-components/native';
 
+export Loading from 'components/Loading';
+
 export const FullScreen = styled(Animated.View)`
   justify-content: center;
   align-items: center;

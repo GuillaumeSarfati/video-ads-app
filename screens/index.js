@@ -20,7 +20,8 @@ import Check from 'screens/Unauthenticated/Login/Password/Check';
 import Change from 'screens/Unauthenticated/Login/Password/Change';
 
 // Authenticated
-import Record from 'screens/Authenticated/Record';
+import RecordVideo from 'screens/Authenticated/Record/Video';
+import RecordPicture from 'screens/Authenticated/Record/Picture';
 import Preview from 'screens/Authenticated/Preview';
 import Create from 'screens/Authenticated/Create';
 import Shop from 'screens/Authenticated/Shop';
@@ -102,13 +103,15 @@ export const App = createStackNavigator({
   Home,
   Authenticated,
   Unauthenticated,
-  Record,
+  RecordVideo,
+  RecordPicture,
   Preview,
   Create,
   Search,
 }, { mode: 'modal', headerMode: 'none' })
 
 export const SplashNavigator = createFluidNavigator({
+  Search,
   SplashScreen,
   App,
 }, { headerMode: 'none', navigationOptions: {gesturesEnabled: false } })
