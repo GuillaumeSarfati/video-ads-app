@@ -13,7 +13,7 @@ export default class Loading extends React.Component {
   }
   render() {
     return (
-      <UI.Screen.Column style={{
+      <UI.Shadow style={{
         position: 'absolute',
         zIndex: 9999,
         backgroundColor: 'white',
@@ -22,6 +22,13 @@ export default class Loading extends React.Component {
         borderRadius: 16,
         left: Dimensions.get('window').width / 2 - 50,
         top: Dimensions.get('window').height / 2 - 50,
+        justifyContent: 'center',
+        alignItems:  'center',
+      }}>
+      <UI.Screen.Column style={{
+        width: 100,
+        height: 100,
+        borderRadius: 16,
         justifyContent: 'center',
         alignItems:  'center',
       }}>
@@ -39,6 +46,7 @@ export default class Loading extends React.Component {
         // Just click the one you like, place that file in the 'assets' folder to the left, and replace the above 'require' statement
       />
       </UI.Screen.Column>
+      </UI.Shadow>
     )
   }
 }

@@ -12,6 +12,8 @@ export Gradient from 'components/Gradient';
 export RatingInput from 'components/RatingInput';
 export Button from 'components/Button';
 export Action from 'components/Action';
+export Avatar from 'components/Avatar';
+export Zapping from 'components/Zapping';
 
 export {
   TouchableWithoutFeedback,

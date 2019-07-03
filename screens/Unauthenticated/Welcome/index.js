@@ -25,6 +25,7 @@ class WelcomeScreen extends React.Component {
           <UI.Image source={require('assets/images/illustration.png')}/>
           <UI.Title dark>Bienvenue</UI.Title>
           <UI.Description center>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</UI.Description>
+          <UI.Component.Avatar onSnapshot={onNavigate('RecordPicture')} size={100} />
         </UI.Screen.Content>
         <UI.Screen.Footer>
           <UI.Button onPress={onNavigate('Choose')} large>Continuer</UI.Button>

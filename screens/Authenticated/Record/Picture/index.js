@@ -40,63 +40,15 @@ class RecordScreen extends React.Component {
     navigation.navigate(screen, params)
   }
 
-  onStartRecord = async () => {
-
+  onSnapshot = async () => {
     if (this.camera) {
-
-      if (Constants.isDevice) {
-
-        this.setState({ status: 'record' }, this.startCountdown)
-
-        const { uri, codec = 'mp4'} = await this.camera.recordAsync({
-          quality: Camera.Constants.VideoQuality['1080p'],
-          maxDuration: 30,
-        });
-        this.onNavigate('Preview', {
-          uri,
-          codec,
-        })()
-      }
-      else {
-        this.onNavigate('Preview', {
-          uri: 'http://192.168.0.18:3001/uploads/e1664050-6883-11e9-a6f6-5328d1ea26a6-2a122ec2-aa6b-431c-a07e-bc2e68a8c1d7.mov',
-          codec: 'mp4'
-        })()
-      }
-    }
-  }
-
-  onStopRecord = async () => {
-    this.stopCountdown()
-
-    if (this.camera) {
-      this.setState({ time: 30 })
-      this.camera.stopRecording()
-    }
-  }
-
-  startCountdown = () => {
-    this.countdown = setInterval(() => {
-      if (this.state.time === 0) {
-        this.onStopRecord()
-
-      }
-      else {
-        this.setState({time: this.state.time - 1})
-      }
-
-    }, 1000)
-  }
-
-  stopCountdown = () => {
-    if (this.countdown) {
-      clearInterval(this.countdown)
+      let picture = await this.camera.takePictureAsync();
     }
   }
 
   render() {
     const { status, time, uri } = this.state;
-    const { onStartRecord, onStopRecord } = this;
+    const { onSnapshot } = this;
 
     return (
       <UI.Screen>
@@ -118,19 +70,7 @@ class RecordScreen extends React.Component {
         </UI.Screen.Content>
 
         <UI.Screen.Footer style={{backgroundColor: '#2E3B55'}}>
-            {
-              status === 'record'
-                ? <UI.StopRecord onPress={onStopRecord}>
-                    <UI.Record source={require('assets/images/record/progress.png')} />
-                  </UI.StopRecord>
-                : <UI.ButtonRecord onPress={onStartRecord} />
-            }
-            {
-              status === 'record'
-                ? <UI.Informations>Enregistrement en cours {time}s...</UI.Informations>
-                : <UI.Informations>Appuyey pour enregistrer</UI.Informations>
-            }
-
+            <UI.ButtonRecord onPress={onSnapshot} />
         </UI.Screen.Footer>
 
 

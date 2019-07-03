@@ -6,6 +6,7 @@ export const INITIAL_STATE = null;
 export default handleActions({
   [models.Member.set]: (state, action) => action.payload,
   [models.Member.update]: (state, action) => ({ ...state, ...action.payload }),
+  [models.Member.patchAttributesById.FULFILLED]: (state, action) => action.payload.data,
   [models.Member.login.FULFILLED]: (state, action) => action.payload.data.me,
   [models.Member.signup.FULFILLED]: (state, action) => action.payload.data.me,
   [models.Member.facebook.FULFILLED]: (state, action) => action.payload.data.me,

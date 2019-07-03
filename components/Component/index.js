@@ -23,5 +23,7 @@ Component.Gradient = UI.Gradient;
 Component.RatingInput = UI.RatingInput;
 Component.Button = UI.Button;
 Component.Action = UI.Action;
+Component.Avatar = UI.Avatar;
+Component.Zapping = UI.Zapping;
 
 export default Component;

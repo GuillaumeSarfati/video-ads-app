@@ -6,6 +6,11 @@ export const INITIAL_STATE = {
 };
 
 export default handleActions({
+
+  [models.Member.patchAttributesById.PENDING]: (state, action) => ({ isLoading: state.isLoading + 1 }),
+  [models.Member.patchAttributesById.FULFILLED]: (state, action) => ({ isLoading: state.isLoading - 1 }),
+
   [models.Offers.find.PENDING]: (state, action) => ({ isLoading: state.isLoading + 1 }),
   [models.Offers.find.FULFILLED]: (state, action) => ({ isLoading: state.isLoading - 1 }),
+  
 }, INITIAL_STATE);

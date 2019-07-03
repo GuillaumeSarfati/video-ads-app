@@ -46,6 +46,7 @@ class CategoriesScreen extends React.Component {
           </Transition>
           <Transition appear="bottom">
             <UI.Categories>
+              <UI.Component.Zapping/>
               {
                 categories.map((category, index) => (
                   <UI.Category

@@ -17,11 +17,11 @@ class ChooseScreen extends React.Component {
     const { Member, navigation, me } = this.props;
     const { mode } = this.state;
 
-    await Member.update({ mode })
+    await Member.patchAttributsById(me.id, { mode })
 
     navigation.navigate(mode === 'consumer'
-      ? 'FlowMember'
-      : 'FlowPro'
+      ? 'FlowConsumer'
+      : 'FlowSupplier'
     )
   }
   render() {
