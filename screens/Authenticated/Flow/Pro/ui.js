@@ -8,5 +8,4 @@ export Video from 'components/Video';
 export const  Offers = styled.View`
                 flex-wrap: wrap;
                 flex-direction: row;
-                padding-left: 15px;
               `;

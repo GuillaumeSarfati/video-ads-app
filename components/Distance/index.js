@@ -21,7 +21,11 @@ export default class Distance extends React.Component {
   }
 
   onRegionChange = (region) => {
-    this.setState({ region });
+    const { onChangeGeoloc } = this.props;
+    this.setState({ region }, onChangeGeoloc({
+      lat: region.latitude,
+      lng: region.longitude,
+    }));
   }
 
   render() {

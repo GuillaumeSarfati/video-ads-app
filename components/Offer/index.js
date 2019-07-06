@@ -3,18 +3,19 @@ import React from 'react';
 import * as UI from './ui';
 
 export default props => {
-  const { children, model, dark } = props
+
+  const { children, model, category, member, dark } = props
   const { onPress } = props
   return (
 
     <UI.Transition shared="offer">
       <UI.Component onPress={onPress}>
-            <UI.Avatar source={{uri: model.member.picture}}/>
+            <UI.Avatar source={{uri: member.picture}}/>
 
             <UI.Informations>
               <UI.Rating model={{ stars: 3 }}/>
-              <UI.Informations.Title dark={dark}>{model.member.firstname}</UI.Informations.Title>
-              <UI.Informations.Subtitle dark={dark}>{model.category.title}</UI.Informations.Subtitle>
+              <UI.Informations.Title dark={dark}>{member.firstname}</UI.Informations.Title>
+              <UI.Informations.Subtitle dark={dark}>{category.title}</UI.Informations.Subtitle>
             </UI.Informations>
 
             <UI.Price>

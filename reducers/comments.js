@@ -4,6 +4,7 @@ import { models } from 'utils/connect'
 export const INITIAL_STATE = [];
 
 export default handleActions({
+  [models.Comment.find.PENDING]: (state, action) => INITIAL_STATE,
   [models.Comment.find.FULFILLED]: (state, action) => action.payload.data,
   [models.Comment.search.FULFILLED]: (state, action) => action.payload.data,
   [models.Comment.findById.FULFILLED]: (state, action) => [action.payload.data],

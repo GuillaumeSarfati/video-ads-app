@@ -25,5 +25,8 @@ Component.Button = UI.Button;
 Component.Action = UI.Action;
 Component.Avatar = UI.Avatar;
 Component.Zapping = UI.Zapping;
+Component.Choice = UI.Choice;
+Component.SubChoice = UI.SubChoice;
+Component.Available = UI.Available;
 
 export default Component;

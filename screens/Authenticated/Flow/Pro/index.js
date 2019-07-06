@@ -6,7 +6,14 @@ import * as UI from './ui'
 
 class ProScreen extends React.Component {
   componentWillMount = async () => {
-    const { Model } = this.props;
+    const { Offer, me } = this.props;
+    Offer.find({
+      filter: {
+        where: {
+          memberId: me.id,
+        }
+      }
+    })
   }
 
   onNavigate = screen => e => {
@@ -21,10 +28,10 @@ class ProScreen extends React.Component {
 
     return (
       <UI.Screen scroll>
-
         <UI.Screen.Header background>
+          <UI.Component.Available/>
           <UI.Screen.Column style={{paddingVertical: 30}}>
-            <UI.Screen.Title style={{paddingBottom: 30}}>Pop Annonces</UI.Screen.Title>
+            <UI.Screen.Header.Title style={{paddingBottom: 30}}>Pop Annonces</UI.Screen.Header.Title>
           </UI.Screen.Column>
         </UI.Screen.Header>
 
@@ -56,7 +63,10 @@ class ProScreen extends React.Component {
 
 export default connect(
   state => ({
+    me: state.me,
     offers: state.offers,
   }),
-  (dispatch, props, models) => ({}),
+  (dispatch, props, models) => ({
+    Offer: models.Offer,
+  }),
 )(ProScreen);

@@ -14,6 +14,9 @@ export Button from 'components/Button';
 export Action from 'components/Action';
 export Avatar from 'components/Avatar';
 export Zapping from 'components/Zapping';
+export Choice from 'components/Choice';
+export SubChoice from 'components/SubChoice';
+export Available from 'components/Available';
 
 export {
   TouchableWithoutFeedback,

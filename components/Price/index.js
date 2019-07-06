@@ -21,7 +21,7 @@ export default class Price extends React.Component {
       <UI.Screen.Column style={{paddingHorizontal: 30}}>
       <UI.Screen.Row style={{alignSelf: 'stretch', justifyContent: 'space-between', alignItems: 'center'}}>
         <UI.Screen.Label dark>PRIX</UI.Screen.Label>
-        <UI.TextGradient>{price[0] ? price[0] + '€' : 'Gratuit' } - { price[1] ? price[1] : '500'}€ /heure </UI.TextGradient>
+        <UI.TextGradient>{price[0] ? price[0] + '€' : 'Gratuit' }{ price[1] ? ' - ' + price[1] + '€' : ''} /heure </UI.TextGradient>
       </UI.Screen.Row>
       <UI.Screen.Row style={{justifyContent: 'center'}}>
         <UI.Slider

@@ -23,18 +23,17 @@ class CategoryScreen extends React.Component {
     })
   }
 
-  onPressOffer = offer => e => {
-    const { category } = this.props.navigation.state.params;
-    this.props.navigation.navigate('Offer', { category, offer })
+  onPressOffer = offer =>  {
+    this.props.Offer.setOne(offer)
+    this.props.navigation.navigate('Offer', { offer })
   }
 
   onPressDetails = offer => e => {
-    const { category } = this.props.navigation.state.params;
-    this.props.navigation.navigate('Offer', { category, offer })
+    this.props.Offer.setOne(offer)
+    this.props.navigation.navigate('Offer', { offer })
   }
 
   onPressOrder = offer => e => {
-    const phoneNumber = '0782723058'
     ActionSheetIOS.showActionSheetWithOptions({
       options: ['Appeler', 'Annuler'],
       cancelButtonIndex: 1,
@@ -43,8 +42,8 @@ class CategoryScreen extends React.Component {
       console.log('buttonIndex : ', buttonIndex);
       if (buttonIndex === 0) {
         Linking.openURL(Platform.OS === 'ios'
-          ? `telprompt:${phoneNumber}`
-          : `tel:${phoneNumber}`
+          ? `telprompt:${offer.member.phoneNumber}`
+          : `tel:${offer.member.phoneNumber}`
         )
       }
     });
@@ -150,7 +149,12 @@ class CategoryScreen extends React.Component {
 
 
             <UI.Liner style={{marginBottom: 30}}/>
-            <UI.Offer model={offers[current]} onPress={onPressOffer(offers[current])}/>
+            <UI.Offer
+              model={offers[current]}
+              category={offers[current].category}
+              member={offers[current].member}
+              onPress={() => onPressOffer(offers[current])}
+            />
             <UI.Liner style={{marginTop: 30}}/>
 
             <UI.Screen.Row style={{ justifyContent: 'space-between', alignSelf: 'stretch' }}>

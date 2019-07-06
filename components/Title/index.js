@@ -26,7 +26,6 @@ const Shadow = styled(TextGradient)`
                 left: 30px;
                 opacity: 0.25;
                 text-align: ${props => props.center ? 'center' : 'left' };
-                color: ${props => props.dark ? '#384E71' : 'white' };
                 font-size: 42px;
                 font-weight: 900;
 

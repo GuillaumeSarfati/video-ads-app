@@ -6,15 +6,23 @@ import * as UI from './ui'
 
 class CommentScreen extends React.Component {
   state = {
-    mode: 'consumer',
+    text: '',
+    stars: 5,
   }
 
-  onComment = () => {
-
+  onChange = property => value => {
+    this.setState({[property]: value})
   }
 
-  onRate = star => {
+  onSave = async () => {
+    const { Comment, Rating } = this.props
+    const { me, offer } = this.props
 
+    const comment = (await Comment.create({ text: this.state.text, offerId: offer.id, memberId: me.id })).value.data
+    console.log('COMMENT : ', comment);
+    const rating = (await Rating.create({ stars: this.state.stars, offerId: offer.id, memberId: me.id, commentId: comment.id })).value.data
+
+    this.onNavigate()()
   }
 
   onNavigate = screen => async e => {
@@ -27,7 +35,7 @@ class CommentScreen extends React.Component {
 
   render() {
     const { me } = this.props;
-    const { onComment, onRate, onNavigate } = this;
+    const { onChange, onSave, onNavigate } = this;
 
     return (
       <UI.Screen>
@@ -42,16 +50,20 @@ class CommentScreen extends React.Component {
         </UI.Screen.Header>
 
         <UI.Screen.Column style={{ flex: 1, justifyContent: 'center', padding: 30 }}>
-          <UI.Description>Ne vous inquiétez pas vous pouvez a tout moment switcher de profil pour devenir prestataire ou bien rechercher des services</UI.Description>
+          <UI.Description>Lorem ipsum dolor sit amet...</UI.Description>
 
           <UI.Screen.Column style={{ paddingVertical: 30 }}>
-            <UI.Component.RatingInput onChange={onRate} />
+            <UI.Component.RatingInput onChange={onChange('stars')} />
           </UI.Screen.Column>
 
-          <UI.Component.TextInput placeholder="placeholder" multiline/>
+          <UI.Component.TextInput
+            onChangeText={onChange('text')}
+            placeholder="placeholder"
+            multiline
+          />
         </UI.Screen.Column>
         <UI.Screen.Footer>
-          <UI.Button onPress={onComment}>Valider l'avis</UI.Button>
+          <UI.Button onPress={onSave}>Valider l'avis</UI.Button>
         </UI.Screen.Footer>
       </UI.Screen>
     )
@@ -61,8 +73,11 @@ class CommentScreen extends React.Component {
 export default connect(
   state => ({
     me: state.me,
+    offer: state.offer,
   }),
   (dispatch, props, models) => ({
     Member: models.Member,
+    Comment: models.Comment,
+    Rating: models.Rating,
   }),
 )(CommentScreen);

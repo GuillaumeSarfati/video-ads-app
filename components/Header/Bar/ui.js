@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-
+import { Dimensions } from 'react-native';
 export TextGradient from 'components/TextGradient'
 
 export Icon from 'components/Header/Bar/Icon'
@@ -9,6 +9,7 @@ export Filters from 'components/Header/Bar/Filters'
 
 export const  Component = styled.View`
                 height: 50px;
+                width: ${Dimensions.get('window').width - 30}px;
                 flex-direction: row;
                 align-items: center;
                 justify-content: space-between;
