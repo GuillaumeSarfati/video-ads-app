@@ -5,7 +5,7 @@ import connect from 'utils/connect';
 
 import * as UI from './ui'
 
-class CategoryScreen extends React.Component {
+class OffersScreen extends React.Component {
   state = {
     current: 0
   }
@@ -111,7 +111,7 @@ class CategoryScreen extends React.Component {
     const { renderFace, renderEnd, onSwipe, onLoad, onNavigate, onPressNext, onPressOffer, onPressDetails, onPressOrder } = this;
 
     return (
-      <UI.View>
+      <UI.View style={{flex: 1, backgroundColor: 'green'}}>
 
         <UI.Cube
           ref={cube => { this.cube = cube; }}
@@ -130,8 +130,9 @@ class CategoryScreen extends React.Component {
         <UI.Screen.Header style={{position: 'absolute', top: 0, left: 0}}>
 
           <UI.Screen.Header.Bar>
-            <UI.Screen.Header.Bar.Back  onPress={onNavigate()} light>
-              <UI.Category light>{category.title}</UI.Category>
+            <UI.Screen.Header.Bar.Back  onPress={onNavigate()}>
+              {category.title}
+              {/*<UI.Category light>{category.title}</UI.Category>*/}
             </UI.Screen.Header.Bar.Back>
 
             <UI.Screen.Header.Bar.Filters onPress={onNavigate('Search')} light>
@@ -180,4 +181,4 @@ export default connect(
     User: models.User,
     Offer: models.Offer,
   }),
-)(CategoryScreen);
+)(OffersScreen);

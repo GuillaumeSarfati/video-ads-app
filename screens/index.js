@@ -33,15 +33,15 @@ import Edit from 'screens/Authenticated/Profile/Edit';
 // Authenticated Flow
 import Categories from 'screens/Authenticated/Flow/Categories';
 import Pro from 'screens/Authenticated/Flow/Pro';
-import Category from 'screens/Authenticated/Flow/Category';
+import Offers from 'screens/Authenticated/Flow/Offers';
 import Offer from 'screens/Authenticated/Flow/Offer';
 import Comment from 'screens/Authenticated/Comment';
 import Search from 'screens/Authenticated/Flow/Search';
 
 import TabBar from 'components/TabBar';
 
-export const CategoryNavigator = createFluidNavigator({
-  Category,
+export const OffersNavigator = createFluidNavigator({
+  Offers,
   Offer,
   Comment,
 }, { headerMode: 'none', navigationOptions: {gesturesEnabled: true, tabBarVisible: false } })
@@ -49,14 +49,14 @@ export const CategoryNavigator = createFluidNavigator({
 
 export const FlowConsumer = createFluidNavigator({
   Categories,
-  CategoryNavigator,
+  OffersNavigator,
 }, { headerMode: 'none', navigationOptions: {gesturesEnabled: true } })
 
 FlowConsumer.navigationOptions = ({ navigation }) => {
   let { routeName } = navigation.state.routes[navigation.state.index];
   let navigationOptions =  { gesturesEnabled: true }
 
-  if (routeName === 'CategoryNavigator' || routeName === 'Category' || routeName === 'Offer') {
+  if (routeName === 'OffersNavigator' || routeName === 'Offers' || routeName === 'Offer') {
     navigationOptions.tabBarVisible = false;
   }
 

@@ -18,11 +18,8 @@ class ProScreen extends React.Component {
           memberId: me.id,
         },
         include: [
-          {
-            relation: 'category',
-            scope: { include: 'subCategories' },
-          },
           'subCategory',
+          {relation: 'category', scope: { include: 'subCategories' }},
           'member',
         ]
       }
@@ -44,12 +41,13 @@ class ProScreen extends React.Component {
     const { offers } = this.props;
     const { onNavigate, onPressOffer } = this;
 
+    console.log('offers : ', offers);
     return (
       <UI.Screen scroll>
         <UI.Screen.Header background>
           <UI.Component.Available/>
           <UI.Screen.Column style={{paddingVertical: 30}}>
-            <UI.Screen.Header.Title style={{paddingBottom: 30}}>Pop Annonces</UI.Screen.Header.Title>
+            <UI.Screen.Header.Title style={{paddingBottom: 30}} light>Pop Annonces</UI.Screen.Header.Title>
           </UI.Screen.Column>
         </UI.Screen.Header>
 

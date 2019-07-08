@@ -6,9 +6,9 @@ export { Ionicons as Icon } from '@expo/vector-icons';
 
 export const Search = styled.View`
   background: white;
-  border-radius: 5px;
+  border-radius: 8px;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 10px 15px;
+  padding: 15px 15px;
 `

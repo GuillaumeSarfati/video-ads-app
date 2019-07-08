@@ -104,6 +104,9 @@ class CreateScreen extends React.Component {
         </UI.Screen.Header>
 
         <UI.Screen.Content>
+          <UI.Screen.Column style={{paddingHorizontal: 30}}>
+            <UI.Component.Video large/>
+          </UI.Screen.Column>
           <UI.ScrollView contentContainerStyle={{paddingHorizontal: 30, paddingTop: 30, paddingBottom: 30}} horizontal showsHorizontalScrollIndicator={false}>
             <For of={categories} as={category => (
               <UI.Component.Choice

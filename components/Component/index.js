@@ -32,5 +32,6 @@ Component.Available = UI.Available;
 Component.Offers = UI.Offers;
 Component.Offer = UI.Offer;
 Component.Video = UI.Video;
+Component.Shadow = UI.Shadow;
 
 export default Component;

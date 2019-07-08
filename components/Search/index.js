@@ -17,6 +17,7 @@ export default class Search extends React.Component {
     const { onPressFilter } = this.props;
 
     return (
+      <UI.Component.Shadow style={{alignSelf: 'stretch'}}>
       <UI.Search>
         <UI.Icon name="ios-search" size={26} color="#B2C0D5" />
         <UI.TextInput
@@ -29,6 +30,7 @@ export default class Search extends React.Component {
           <UI.Icon name="ios-options" size={20} color="#B2C0D5" />
         </UI.Component.TouchableOpacity>
       </UI.Search>
+      </UI.Component.Shadow>
     );
   }
 }

@@ -1,6 +1,7 @@
 import React from 'react';
-import styled from 'styled-components/native'
 import TextGradient from 'components/TextGradient';
+import {Dimensions} from 'react-native';
+import styled from 'styled-components/native'
 
 const Container = styled.View`
   padding: 15px;
@@ -21,15 +22,14 @@ const Text = styled.Text`
 const Shadow = styled(TextGradient)`
                 position: absolute;
                 z-index: -1;
-                width: 1000px;
+                width: ${Dimensions.get("window").width * 1}px;
                 top: 20px;
                 left: 30px;
                 opacity: 0.25;
+                line-height: 48px;
                 text-align: ${props => props.center ? 'center' : 'left' };
                 font-size: 42px;
                 font-weight: 900;
-
-
               `;
 
 export default props => (

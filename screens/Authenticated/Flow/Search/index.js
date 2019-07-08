@@ -28,6 +28,7 @@ class SearchScreen extends React.Component {
     this.setState({ [property]: value })
   }
 
+
   onSearch = () => {
     const { Offer } = this.props;
 
@@ -35,8 +36,8 @@ class SearchScreen extends React.Component {
       filter: {
         where: {
           price: { between: this.state.price },
-          _geoloc: {
-            near: this.state.price,
+          geoloc: {
+            near: this.state.geoloc,
             maxDistance: this.state.distance,
             unit: 'kilometers'
           },
@@ -79,7 +80,7 @@ class SearchScreen extends React.Component {
         </UI.Screen.Column>
 
         <UI.Price values={price} onChange={onChange('price')}/>
-        <UI.Distance values={distance} onChange={onChange('distance')}/>
+        <UI.Distance values={distance} onChangeGeoloc={onChange('geoloc')} onChangeDistance={onChange('distance')}/>
 
         </UI.Screen.Content>
 
