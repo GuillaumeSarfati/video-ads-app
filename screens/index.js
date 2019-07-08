@@ -65,7 +65,7 @@ FlowConsumer.navigationOptions = ({ navigation }) => {
 
 export const FlowSupplier = createFluidNavigator({
   Pro,
-  CategoryNavigator,
+  Offer,
 }, { headerMode: 'none', navigationOptions: {gesturesEnabled: true } })
 
 export const ProfileNavigator = createStackNavigator({

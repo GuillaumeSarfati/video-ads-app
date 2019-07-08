@@ -17,6 +17,10 @@ export Zapping from 'components/Zapping';
 export Choice from 'components/Choice';
 export SubChoice from 'components/SubChoice';
 export Available from 'components/Available';
+export Rating from 'components/Rating';
+export Offers from 'components/Offers';
+export Offer from 'components/Offer';
+export Video from 'components/Video';
 
 export {
   TouchableWithoutFeedback,

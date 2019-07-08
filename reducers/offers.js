@@ -9,4 +9,9 @@ export default handleActions({
   [models.Offer.search.FULFILLED]: (state, action) => action.payload.data,
   [models.Offer.findById.FULFILLED]: (state, action) => [action.payload.data],
   [models.Offer.findOne.FULFILLED]: (state, action) => [action.payload.data],
+  [models.Offer.patchAttributesById.FULFILLED]: (state, action) => state.map(offer => {
+    return offer.id === action.payload.data.id
+      ? { ...offer, ...action.payload.data }
+      : offer
+  }),
 }, INITIAL_STATE);

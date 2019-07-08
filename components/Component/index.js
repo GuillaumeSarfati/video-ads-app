@@ -21,6 +21,7 @@ Component.TextGradient = UI.TextGradient;
 Component.Icon = UI.Icon;
 Component.Gradient = UI.Gradient;
 Component.RatingInput = UI.RatingInput;
+Component.Rating = UI.Rating;
 Component.Button = UI.Button;
 Component.Action = UI.Action;
 Component.Avatar = UI.Avatar;
@@ -28,5 +29,8 @@ Component.Zapping = UI.Zapping;
 Component.Choice = UI.Choice;
 Component.SubChoice = UI.SubChoice;
 Component.Available = UI.Available;
+Component.Offers = UI.Offers;
+Component.Offer = UI.Offer;
+Component.Video = UI.Video;
 
 export default Component;

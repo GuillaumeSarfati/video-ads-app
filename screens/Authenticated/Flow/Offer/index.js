@@ -14,13 +14,15 @@ class OfferScreen extends React.Component {
     : navigation.pop()
   }
 
-  componentWillMount = () => {
+  componentWillMount = async () => {
     const { Offer, Comment } = this.props;
     const { offer } = this.props.navigation.state.params;
 
-    console.log('OFFER ID : ', offer.id);
+    Offer.setOne(offer)
+    //
+    // console.log('OFFER ID : ', offer.id);
     if (!this.props.offer || this.props.offer.id !== offer.id) {
-      Offer.find({
+      await Offer.find({
         filter: {
           where: { id: offer.id },
           include: ['category', 'member'],
@@ -38,7 +40,6 @@ class OfferScreen extends React.Component {
   }
   render() {
     const { offer, comments } = this.props;
-    console.log('offer screen : ', {offer, comments});
     const { category, member } = offer;
     const { onNavigate } = this
 

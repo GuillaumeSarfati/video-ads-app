@@ -24,7 +24,7 @@ class ProfileScreen extends React.Component {
   onSwitch = e => {
     const { Member, me } = this.props;
 
-    Member.update({
+    Member.patchAttributesById(me.id, {
       mode: me.mode === 'consumer'
         ? 'supplier'
         : 'consumer'

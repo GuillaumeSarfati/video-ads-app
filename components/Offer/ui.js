@@ -5,6 +5,9 @@ export Avatar from 'components/Avatar';
 export Rating from 'components/Rating';
 export Transition from 'components/Transition';
 
+export Title from './Title';
+export Subtitle from './Subtitle';
+
 export const  Component = styled.TouchableOpacity`
                 align-self: stretch;
                 flex-direction:row;

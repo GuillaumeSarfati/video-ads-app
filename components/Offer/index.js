@@ -2,7 +2,7 @@ import React from 'react';
 
 import * as UI from './ui';
 
-export default props => {
+const Offer = props => {
 
   const { children, model, category, member, dark } = props
   const { onPress } = props
@@ -29,3 +29,8 @@ export default props => {
     </UI.Transition>
   )
 }
+
+Offer.Title = UI.Title;
+Offer.Subtitle = UI.Subtitle;
+
+export default Offer;

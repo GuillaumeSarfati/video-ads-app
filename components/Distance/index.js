@@ -1,15 +1,33 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import * as UI from './ui';
 
 export default class Distance extends React.Component {
+
+  // static propTypes = {
+  //     geoloc: PropTypes.shape({
+  //       latitude: PropTypes.number,
+  //       longitude: PropTypes.number,
+  //       latitudeDelta: PropTypes.number,
+  //       longitudeDelta: PropTypes.number,
+  //     }),
+  //     distance: PropTypes.arrayOf(PropTypes.number)
+  // }
+  //
+  // static defaultProps = {
+  //   geoloc: {
+  //     latitude: 37.78825,
+  //     longitude: -122.4324,
+  //     latitudeDelta: 0.0922,
+  //     longitudeDelta: 0.0421,
+  //   },
+  //   distance: [0],
+  // }
+
   state = {
-    region: {
-      latitude: 37.78825,
-      longitude: -122.4324,
-      latitudeDelta: 0.0922,
-      longitudeDelta: 0.0421,
-    },
-    distance: 1,
+    geoloc: this.props.geoloc,
+    distance: this.props.distance,
   }
 
   onDistanceChange = values => {
@@ -20,31 +38,31 @@ export default class Distance extends React.Component {
     }
   }
 
-  onRegionChange = (region) => {
+  onGeolocChange = (geoloc) => {
     const { onChangeGeoloc } = this.props;
-    this.setState({ region }, onChangeGeoloc({
-      lat: region.latitude,
-      lng: region.longitude,
+    this.setState({ geoloc }, onChangeGeoloc({
+      lat: geoloc.latitude,
+      lng: geoloc.longitude,
     }));
   }
 
   render() {
-    const { onRegionChange, onDistanceChange } = this;
-    const { onChange } = this.props;
-    const { region, distance } = this.state;
+    const { onGeolocChange, onDistanceChange } = this;
+    const { onChangeDistance } = this.props;
+    const { geoloc, distance } = this.state;
 
     return (
       <UI.Screen.Column style={{paddingHorizontal: 30}}>
       <UI.MapView
         style={{ width: 414 - 60, height: 414 - 60, borderRadius: 8 , marginBottom: 15}}
-        initialRegion={region}
-        onRegionChange={onRegionChange}
+        initialRegion={geoloc}
+        onRegionChange={onGeolocChange}
       >
         {
           this.state.distance
           ? (
             <UI.MapView.Circle
-              center={region}
+              center={geoloc}
               strokeWidth={5}
               strokeColor="rgba(47, 137, 248, 1)"
               fillColor="rgba(47, 137, 248, 0.5)"
@@ -52,7 +70,7 @@ export default class Distance extends React.Component {
             />
           )
           : (
-            <UI.MapView.Marker coordinate={region} />
+            <UI.MapView.Marker coordinate={geoloc} />
           )
         }
 
@@ -68,7 +86,7 @@ export default class Distance extends React.Component {
           sliderLength={414 - 60}
           values={[distance]}
           onValuesChange={onDistanceChange}
-          onValuesChangeFinish={values => onChange(values[0])}
+          onValuesChangeFinish={values => onChangeDistance(values[0])}
         />
       </UI.Screen.Row>
       <UI.Screen.Liner dark/>
