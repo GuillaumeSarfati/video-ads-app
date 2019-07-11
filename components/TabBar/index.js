@@ -9,6 +9,11 @@ import * as UI from './ui'
 class TabBarComponent extends React.Component {
 
   state = {
+    titles: {
+      'FlowConsumer': 'Home',
+      'FlowSupplier': 'Home',
+      'Shop': 'Boutique',
+    },
     tabs: {
       consumer: [
         'FlowConsumer',
@@ -49,7 +54,7 @@ class TabBarComponent extends React.Component {
   }
 
   render() {
-    const { tabs, current } = this.state;
+    const { tabs, titles, current } = this.state;
     const { me } = this.props;
     const { onNavigate } = this;
 
@@ -62,7 +67,7 @@ class TabBarComponent extends React.Component {
               current={current === tab}
               onPress={onNavigate(tab)}
             >
-              { tab }
+              { titles[tab] || tab }
             </UI.ButtonTest>
           ))
         }

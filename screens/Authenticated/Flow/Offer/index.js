@@ -6,11 +6,15 @@ import * as UI from './ui'
 
 class OfferScreen extends React.Component {
 
-  onNavigate = screen => e => {
+  state = {
+    offers: []
+  }
+
+  onNavigate = (screen, params) => e => {
     const { navigation } = this.props;
 
     screen
-    ? navigation.navigate(screen)
+    ? navigation.navigate(screen, params)
     : navigation.pop()
   }
 
@@ -19,8 +23,7 @@ class OfferScreen extends React.Component {
     const { offer } = this.props.navigation.state.params;
 
     Offer.setOne(offer)
-    //
-    // console.log('OFFER ID : ', offer.id);
+
     if (!this.props.offer || this.props.offer.id !== offer.id) {
       await Offer.find({
         filter: {
@@ -37,12 +40,30 @@ class OfferScreen extends React.Component {
       }
     });
 
+
+  }
+
+  componentDidMount = async () => {
+    const { Offer, Comment } = this.props;
+    const { offer } = this.props.navigation.state.params;
+
+    const offers = (await Offer.find({
+      filter: {
+        where: { memberId: offer.memberId },
+        include: ['member', 'category', 'subCategory'],
+      }
+    })).value.data
+
+    this.setState({ offers })
+
   }
   render() {
     const { offer, comments } = this.props;
+    const { offers } = this.state
     const { category, member } = offer;
     const { onNavigate } = this
 
+    console.log('OFFFFFERS : ', offers);
     return (
       <UI.Screen scroll>
         <UI.Screen.Header>
@@ -65,6 +86,7 @@ class OfferScreen extends React.Component {
         </UI.Screen.Header>
 
         <UI.Screen.Content style={{padding: 30}}>
+          <UI.Component.Video large/>
           <UI.Component.Action onPress={onNavigate()}>Voir la piece jointe</UI.Component.Action>
           <UI.Screen.Liner dark/>
           <UI.Screen.Label dark>DESCRIPTION DE LA POP ANNONCE</UI.Screen.Label>
@@ -76,6 +98,7 @@ class OfferScreen extends React.Component {
             <UI.Screen.Label dark>COMMENTAIRES</UI.Screen.Label>
             <UI.Component.Action type="default" small onPress={onNavigate('Comment')}>Laisser un avis</UI.Component.Action>
           </UI.Screen.Row>
+
           {
             comments.map(comment => (
               <UI.Comment
@@ -85,6 +108,15 @@ class OfferScreen extends React.Component {
               />
             ))
           }
+
+          <UI.Screen.Column>
+            <UI.Screen.Liner dark/>
+            <UI.Screen.Label dark>POP ANNONCES</UI.Screen.Label>
+            {/*<UI.Component.Offers
+              model={offers || []}
+              onPress={offer => onNavigate('Offer', { offer })}
+            />*/}
+          </UI.Screen.Column>
 
         </UI.Screen.Content>
         <UI.Screen.Footer>

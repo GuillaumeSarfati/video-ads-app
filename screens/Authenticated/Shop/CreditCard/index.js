@@ -10,7 +10,9 @@ class TemplateScreen extends React.Component {
   onNavigate = screen => e => {
     const { navigation } = this.props
 
-    navigation.navigate(screen)
+    screen
+      ? navigation.navigate(screen)
+      : navigation.pop()
   }
 
   onScanCard = async card => {
@@ -26,18 +28,32 @@ class TemplateScreen extends React.Component {
   }
   render() {
     const { creditCard } = this.props;
-    const { onScanCard } = this;
+    const { onScanCard, onNavigate } = this;
 
     return (
-      <UI.Screen style={{padding: 15}}>
-        <UI.Screen.Column style={{flex: 1, justifyContent: 'center'}}>
+      <UI.Screen style={{justifyContent: 'space-between'}}>
+        <UI.Screen.Header>
+          <UI.Screen.Header.Bar>
+            <UI.Screen.Header.Bar.Back onPress={onNavigate()}>
+              Porte Monnaie
+            </UI.Screen.Header.Bar.Back>
+
+          </UI.Screen.Header.Bar>
+          <UI.Screen.Header.Title dark>Votre moyen de paiement</UI.Screen.Header.Title>
+        </UI.Screen.Header>
+
+        <UI.Screen.Column style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
           {
             creditCard
               ? <UI.CreditCard model={creditCard} />
-              : <UI.Text> You need to scan your card first </UI.Text>
+              : <UI.Component.Image style={{opacity: 0.25, width: 125, height: 100}} source={require('assets/images/scan.png')}/>
           }
         </UI.Screen.Column>
-        <UI.Button onPress={onScanCard}>Scanner ma carte</UI.Button>
+
+        <UI.Screen.Footer>
+          <UI.Button onPress={onScanCard}>Scanner ma carte</UI.Button>
+        </UI.Screen.Footer>
+
       </UI.Screen>
     )
   }

@@ -33,5 +33,9 @@ Component.Offers = UI.Offers;
 Component.Offer = UI.Offer;
 Component.Video = UI.Video;
 Component.Shadow = UI.Shadow;
+Component.Search = UI.Search;
+Component.Pack = UI.Pack;
+Component.Switch = UI.Switch;
+Component.Option = UI.Option;
 
 export default Component;

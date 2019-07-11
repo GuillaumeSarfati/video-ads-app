@@ -62,7 +62,7 @@ class ProScreen extends React.Component {
         {
           this.state.tab === 'active' && (
             <UI.Screen.Column style={{alignItems: 'center', paddingVertical: 30}}>
-              <UI.Record onPress={onNavigate('Record')}/>
+              <UI.Record onPress={onNavigate('RecordVideo')}/>
             </UI.Screen.Column>
           )
         }

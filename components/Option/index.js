@@ -1,7 +1,7 @@
 import React from 'react';
 import * as UI from './ui';
 
-export default ({ model, index, onPress }) => (
+export default ({ model, index, onChange, value }) => (
       <UI.Article>
         <UI.Article.Header>
           <UI.Article.Header.Title>
@@ -14,9 +14,7 @@ export default ({ model, index, onPress }) => (
           </UI.Article.Content.Description>
         </UI.Article.Content>
         <UI.Article.Footer>
-          <UI.Button onPress={onPress}>
-            {model.price} {model.currency}
-          </UI.Button>
+          <UI.Component.Switch onValueChange={onChange(model)} value={value} />
         </UI.Article.Footer>
       </UI.Article>
 )

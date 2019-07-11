@@ -19,11 +19,14 @@ class CategoriesScreen extends React.Component {
 
   onNavigate = screen => category => {
     const { Offer, Category, navigation } = this.props
-    Category.set(category)
-
-    Offer.set(category.offers)
-    // Offer.find({filter: { where: { categoryId: category.id }}})
-    navigation.navigate(screen, { category, hideTabBar: true })
+    if (category) {
+      Category.set(category)
+      Offer.set(category.offers)
+      navigation.navigate(screen, category)
+    }
+    else {
+      navigation.navigate(screen, { title: 'Zapping'})
+    }
   }
 
   render() {
@@ -32,8 +35,8 @@ class CategoriesScreen extends React.Component {
 
     return (
       <UI.Screen scroll>
-          <Transition appear="top">
           {/*<UI.Header background={require('assets/images/background/island.png')}>*/}
+          <Transition appear="top">
           <UI.Header>
             <UI.Screen.Column style={{paddingHorizontal: 15}}>
               <UI.Search
@@ -49,7 +52,7 @@ class CategoriesScreen extends React.Component {
           </Transition>
           <Transition appear="bottom">
             <UI.Categories>
-              <UI.Component.Zapping/>
+              <UI.Component.Zapping onPress={() => onNavigate('Offers')()}/>
               {
                 categories.map((category, index) => (
                   <UI.Category
@@ -61,7 +64,7 @@ class CategoriesScreen extends React.Component {
                 ))
               }
             </UI.Categories>
-          </Transition>
+            </Transition>
       </UI.Screen>
     )
   }

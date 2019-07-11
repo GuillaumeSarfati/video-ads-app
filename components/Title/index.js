@@ -22,7 +22,7 @@ const Text = styled.Text`
 const Shadow = styled(TextGradient)`
                 position: absolute;
                 z-index: -1;
-                width: ${Dimensions.get("window").width * 1}px;
+                width: ${Dimensions.get("window").width * (42 / 28) - 120}px;
                 top: 20px;
                 left: 30px;
                 opacity: 0.25;

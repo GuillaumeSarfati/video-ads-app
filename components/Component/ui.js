@@ -21,10 +21,14 @@ export Rating from 'components/Rating';
 export Offers from 'components/Offers';
 export Offer from 'components/Offer';
 export Video from 'components/Video';
+export Search from 'components/Search';
+export Pack from 'components/Pack';
+export Option from 'components/Option';
 
 export {
   TouchableWithoutFeedback,
   TouchableOpacity,
+  Switch,
 } from 'react-native';
 
 export { Ionicons as Icon } from '@expo/vector-icons';

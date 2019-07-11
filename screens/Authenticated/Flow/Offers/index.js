@@ -7,20 +7,31 @@ import * as UI from './ui'
 
 class OffersScreen extends React.Component {
   state = {
+    mode: 'list',
     current: 0
   }
+
   componentWillMount() {
-
     const { Offer } = this.props;
-    const { category } = this.props.navigation.state.params;
+    const { id } = this.props.navigation.state.params;
 
-    Offer.find({
-      filter: {
-        order: 'DESC',
-        include: ['member', 'category'],
-        where: { categoryId : category.id},
-      }
-    })
+    if (id) {
+      Offer.find({
+        filter: {
+          order: 'DESC',
+          include: ['member', 'category', 'subCategory'],
+          where: { categoryId : id},
+        }
+      })
+    }
+    else {
+      Offer.find({
+        filter: {
+          order: 'DESC',
+          include: ['member', 'category', 'subCategory'],
+        }
+      })
+    }
   }
 
   onPressOffer = offer =>  {
@@ -86,6 +97,8 @@ class OffersScreen extends React.Component {
     console.log('ON LOAD : ', index);
   }
 
+  onToggleMode = mode => this.setState({ mode })
+
   renderFace = (model, index) => {
     const { current } = this.state;
     return (
@@ -100,18 +113,80 @@ class OffersScreen extends React.Component {
   }
 
   renderEnd = (model, index) => {
+    const { onNavigate, onToggleMode } = this;
+    const { title } = this.props.navigation.state.params;
     return (
-      <UI.Screen.Content style={{ backgroundColor: '#2E3B55' }} />
+      <UI.Screen.Column style={{ flex: 1, paddingHorizontal: 15, backgroundColor: 'white' }}>
+
+
+        <UI.Screen.Column style={{flex: 1, justifyContent:'center'}}>
+          <UI.Screen.Title dark>Vous n'avez pas trouvé ?</UI.Screen.Title>
+          <UI.Screen.Description style={{padding: 15}}>Publier une demande</UI.Screen.Description>
+        </UI.Screen.Column>
+
+        <UI.Screen.Footer style={{justifyContent:'center', alignItems: 'center'}}>
+          <UI.Component.Button onPress={onNavigate('RecordVideo')}>Créer une demande</UI.Component.Button>
+        </UI.Screen.Footer>
+
+      </UI.Screen.Column>
     )
   }
-  render() {
+
+  renderList() {
     const { current } = this.state;
     const { offers } = this.props;
-    const { category } = this.props.navigation.state.params;
-    const { renderFace, renderEnd, onSwipe, onLoad, onNavigate, onPressNext, onPressOffer, onPressDetails, onPressOrder } = this;
+    const { title } = this.props.navigation.state.params;
+    const { renderFace, renderEnd, onSwipe, onLoad, onNavigate, onPressNext, onPressOffer, onPressDetails, onPressOrder, onToggleMode } = this;
 
     return (
-      <UI.View style={{flex: 1, backgroundColor: 'green'}}>
+      <UI.Screen style={{flex: 1}} scroll>
+
+        <UI.Screen.Header>
+
+          <UI.Screen.Header.Bar>
+            <UI.Screen.Header.Bar.Back  onPress={onNavigate()}>
+              {title}
+            </UI.Screen.Header.Bar.Back>
+
+            <UI.Screen.Header.Bar.Filters onPress={() => onToggleMode('fullscreen')}>
+              Plein écran
+            </UI.Screen.Header.Bar.Filters>
+          </UI.Screen.Header.Bar>
+
+          <UI.Screen.Column style={{paddingTop: 15}}>
+            <UI.Component.Search
+              onSearch={(query) => console.log(query)}
+              onPressFilter={onNavigate('Search')}
+            />
+          </UI.Screen.Column>
+
+        </UI.Screen.Header>
+
+        <UI.Screen.Title  style={{marginBottom: 30}} dark>
+          {title}
+        </UI.Screen.Title>
+
+        <UI.Screen.Column style={{paddingLeft: 15}}>
+          <UI.Component.Offers
+            models={offers}
+            onPress={offer => onPressDetails(offer)()}
+          />
+        </UI.Screen.Column>
+
+        <UI.Screen.Footer>
+          <UI.Component.Button onPress={onNavigate('RecordVideo')}>Créer une demande</UI.Component.Button>
+        </UI.Screen.Footer>
+      </UI.Screen>
+    )
+  }
+  renderFullScreen() {
+    const { current } = this.state;
+    const { offers } = this.props;
+    const { title } = this.props.navigation.state.params;
+    const { renderFace, renderEnd, onSwipe, onLoad, onNavigate, onPressNext, onPressOffer, onPressDetails, onPressOrder, onToggleMode } = this;
+
+    return (
+      <UI.Screen style={{flex: 1}}>
 
         <UI.Cube
           ref={cube => { this.cube = cube; }}
@@ -127,16 +202,16 @@ class OffersScreen extends React.Component {
           // onMove={this.onMove}
         />
 
-        <UI.Screen.Header style={{position: 'absolute', top: 0, left: 0}}>
+        <UI.Screen.Header style={{position: 'absolute', top: 25, left: 0}}>
 
           <UI.Screen.Header.Bar>
             <UI.Screen.Header.Bar.Back  onPress={onNavigate()}>
-              {category.title}
-              {/*<UI.Category light>{category.title}</UI.Category>*/}
+              {title}
+              {/*<UI.Category light>{title}</UI.Category>*/}
             </UI.Screen.Header.Bar.Back>
 
-            <UI.Screen.Header.Bar.Filters onPress={onNavigate('Search')} light>
-              filters
+            <UI.Screen.Header.Bar.Filters onPress={() => onToggleMode('list')} light>
+              Liste
             </UI.Screen.Header.Bar.Filters>
 
           </UI.Screen.Header.Bar>
@@ -166,8 +241,14 @@ class OffersScreen extends React.Component {
             </UI.Screen.Footer>
           )
         }
-      </UI.View>
+      </UI.Screen>
     )
+  }
+
+  render() {
+    return this.state.mode === 'fullscreen'
+      ? this.renderFullScreen()
+      : this.renderList()
   }
 }
 

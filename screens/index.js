@@ -2,6 +2,7 @@ import React from 'react';
 import { createAppContainer, createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 import { createFluidNavigator } from 'react-navigation-fluid-transitions';
 
+import Playground from 'screens/Playground';
 import SplashScreen from 'screens/SplashScreen';
 import Home from 'screens/Home';
 
@@ -24,7 +25,9 @@ import RecordVideo from 'screens/Authenticated/Record/Video';
 import RecordPicture from 'screens/Authenticated/Record/Picture';
 import Preview from 'screens/Authenticated/Preview';
 import Create from 'screens/Authenticated/Create';
+import Options from 'screens/Authenticated/Options';
 import Shop from 'screens/Authenticated/Shop';
+import Wallet from 'screens/Authenticated/Wallet';
 import CreditCard from 'screens/Authenticated/Shop/CreditCard';
 
 import Profile from 'screens/Authenticated/Profile';
@@ -40,17 +43,18 @@ import Search from 'screens/Authenticated/Flow/Search';
 
 import TabBar from 'components/TabBar';
 
-export const OffersNavigator = createFluidNavigator({
+export const FlowConsumer = createFluidNavigator({
+  Categories,
   Offers,
   Offer,
   Comment,
 }, { headerMode: 'none', navigationOptions: {gesturesEnabled: true, tabBarVisible: false } })
 
 
-export const FlowConsumer = createFluidNavigator({
-  Categories,
-  OffersNavigator,
-}, { headerMode: 'none', navigationOptions: {gesturesEnabled: true } })
+// export const FlowConsumer = createStackNavigator({
+//   Categories,
+//   OffersNavigator,
+// }, { headerMode: 'none', navigationOptions: {gesturesEnabled: true } })
 
 FlowConsumer.navigationOptions = ({ navigation }) => {
   let { routeName } = navigation.state.routes[navigation.state.index];
@@ -81,11 +85,17 @@ export const LoginNavigator = createStackNavigator({
   Change,
 }, { headerMode: 'none', navigationOptions: { gesturesEnabled: true }})
 
+
+export const ShopNavigator = createStackNavigator({
+  Shop,
+  Wallet,
+  CreditCard,
+}, { headerMode: 'none', navigationOptions: { gesturesEnabled: true }})
+
 export const Authenticated = createBottomTabNavigator({
   FlowConsumer,
   FlowSupplier,
-  Shop,
-  CreditCard,
+  ShopNavigator,
   ProfileNavigator,
   Comment,
 }, { mode: 'modal', headerMode: 'none', tabBarComponent: TabBar, lazy: false, navigationOptions: { gesturesEnabled: false }})
@@ -107,10 +117,12 @@ export const App = createStackNavigator({
   RecordPicture,
   Preview,
   Create,
+  Options,
   Search,
 }, { mode: 'modal', headerMode: 'none' })
 
 export const SplashNavigator = createFluidNavigator({
+  Playground,
   SplashScreen,
   App,
 }, { headerMode: 'none', navigationOptions: {gesturesEnabled: false } })

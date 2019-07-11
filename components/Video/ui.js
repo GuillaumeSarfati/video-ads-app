@@ -21,4 +21,5 @@ export const  Video = styled.View`
                 margin-bottom: 15px;
                 background: black;
                 border-radius: 16px;
+                overflow: hidden;
               `;

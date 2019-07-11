@@ -5,7 +5,7 @@ const colors = {
   selected: [ 'rgba(222, 186, 221, 1)', 'rgba(172, 217, 242, 1)', 'rgba(183, 233, 236, 1)'],
   unselected: [ 'rgba(222, 186, 221, 0)', 'rgba(172, 217, 242, 0)', 'rgba(183, 233, 236, 0)'],
 }
-export default ({style, selected, icon, onPress, title, subtitle, ...props}) => {
+export default ({style, selected, icon, onPress, title, subtitle, description, ...props}) => {
     return (
       <UI.Shadow>
       <UI.Choice style={style} onPress={onPress}>
@@ -18,7 +18,7 @@ export default ({style, selected, icon, onPress, title, subtitle, ...props}) => 
         <UI.Content>
           <UI.Icon source={icon}/>
           <UI.Title>{title}</UI.Title>
-          <UI.Subtitle>{subtitle}</UI.Subtitle>
+          <UI.Subtitle>{subtitle || description}</UI.Subtitle>
         </UI.Content>
         </UI.Gradient>
       </UI.Choice>

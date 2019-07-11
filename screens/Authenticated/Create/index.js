@@ -8,14 +8,10 @@ import * as UI from './ui'
 class CreateScreen extends React.Component {
   constructor(props) {
     super(props)
-    const { offer } = props.navigation.state.params
-
-    if (offer) {
+    try {
       this.isNewInstance = false
-      this.state = offer
-    }
-
-    else {
+      this.state = props.navigation.state.params.offer
+    } catch (e) {
       this.isNewInstance = true
       this.state = {
         description: '',
@@ -26,8 +22,6 @@ class CreateScreen extends React.Component {
         }
       }
     }
-
-    console.log('STATE = ', this.state);
   }
 
 

@@ -19,23 +19,24 @@ class ShopScreen extends React.Component {
       : navigation.pop()
   }
 
-  onBuy = article => e => {
-    console.log('ON BUY ARTICLE : ', {article, e})
+  onPressArticle = article => e => {
+    const { navigation } = this.props
+    navigation.navigate('Wallet')
   }
 
   render() {
     const { articles } = this.props;
-    const { onNavigate, onBuy } = this;
+    const { onNavigate, onPressArticle } = this;
 
     return (
       <UI.Screen scroll>
         <UI.Screen.Header background>
-          <UI.Screen.Header.Title>Pop Eye Plus</UI.Screen.Header.Title>
+          <UI.Screen.Header.Title light>Boutique Pop Eye</UI.Screen.Header.Title>
         </UI.Screen.Header>
         <UI.Screen.Content>
           <UI.Screen.Column style={{ padding: 30}}>
             <For of={articles} as={(article) => (
-              <UI.Article model={article} onPress={onBuy(article)}/>
+              <UI.Article model={article} onPress={onPressArticle(article)}/>
             )}/>
           </UI.Screen.Column>
         </UI.Screen.Content>

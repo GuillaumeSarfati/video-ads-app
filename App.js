@@ -53,6 +53,7 @@ export default class App extends React.Component {
       Asset.loadAsync([
         require('assets/splash.png'),
 
+        require('assets/images/scan.png'),
         require('assets/images/play.png'),
         require('assets/images/tab/home.png'),
         require('assets/images/categories/default.png'),
