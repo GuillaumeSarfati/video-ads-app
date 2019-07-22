@@ -10,24 +10,13 @@ class CommentScreen extends React.Component {
   }
 
   componentWillMount() {
-    const { Packs } = this.props;
+    const { Packs, Modal } = this.props;
 
     Packs.find()
   }
 
   onChange = property => value => {
     this.setState({[property]: value})
-  }
-
-  onSave = async () => {
-    const { Comment, Rating } = this.props
-    const { me, offer } = this.props
-
-    const comment = (await Comment.create({ text: this.state.text, offerId: offer.id, memberId: me.id })).value.data
-    console.log('COMMENT : ', comment);
-    const rating = (await Rating.create({ stars: this.state.stars, offerId: offer.id, memberId: me.id, commentId: comment.id })).value.data
-
-    this.onNavigate()()
   }
 
   onNavigate = screen => async e => {
@@ -40,10 +29,33 @@ class CommentScreen extends React.Component {
 
   onPressPack = current => e => this.setState({ current })
 
+  onBuy = async e => {
+
+    const { Packs, Modal, creditCard, me, navigation } = this.props
+
+    if (creditCard) {
+      const response = await Packs.buy(this.state.current.id, me.id)
+      Modal.open(
+        <UI.Modals.Success
+          title="Félicitation"
+          description={"Vous venez de recharger " + this.state.current.coins + " Eyes Cubes."}
+        />
+      )
+    }
+    else {
+      Modal.open(
+        <UI.Modals.Error
+          title="Désolé..."
+          description={"Une Erreur est survenue lors de votre paiement."}
+        />
+      )
+      navigation.navigate('CreditCard')
+    }
+  }
   render() {
-    const { me, packs } = this.props;
+    const { me, creditCard, packs } = this.props;
     const { current } = this.state;
-    const { onPressPack, onNavigate } = this;
+    const { onPressPack, onBuy, onNavigate } = this;
 
     return (
       <UI.Screen style={{justifyContent: 'space-between'}}>
@@ -69,8 +81,12 @@ class CommentScreen extends React.Component {
           }
         </UI.Screen.Row>
 
+        <UI.Screen.Row style={{justifyContent: 'center'}}>
+          <UI.Component.CreditCard onPress={onNavigate('CreditCard')} model={creditCard} small/>
+        </UI.Screen.Row>
+
         <UI.Screen.Footer>
-          <UI.Button type={current ? 'primary': 'default'} onPress={onNavigate('CreditCard')}>Acheter</UI.Button>
+          <UI.Button type={current ? 'primary': 'default'} onPress={onBuy}>Acheter</UI.Button>
         </UI.Screen.Footer>
       </UI.Screen>
     )
@@ -81,9 +97,11 @@ export default connect(
   state => ({
     me: state.me,
     packs: state.packs,
+    creditCard: state.creditCard,
   }),
   (dispatch, props, models) => ({
     Member: models.Member,
     Packs: models.Packs,
+    Modal: models.Modal,
   }),
 )(CommentScreen);

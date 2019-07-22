@@ -8,7 +8,7 @@ export Text from 'components/Text';
 export Button from 'components/Button';
 export ButtonRecord from 'components/ButtonRecord'
 export Gradient from 'components/Gradient';
-export Welcome from 'modals/Welcome';
+export Modals from 'modals';
 
 export const Record = styled.Image`
                         width: 80px;

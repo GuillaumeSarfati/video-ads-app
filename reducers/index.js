@@ -30,6 +30,7 @@ import comment from './comment';
 import ratings from './ratings';
 import rating from './rating';
 
+import favorites from './favorites';
 import packs from './packs';
 
 import articles from './articles';
@@ -66,8 +67,9 @@ export default combineReducers({
   ratings,
   rating,
 
+  favorites,
   packs,
-  
+
   articles,
   article,
 });

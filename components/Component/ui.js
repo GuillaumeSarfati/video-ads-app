@@ -24,6 +24,8 @@ export Video from 'components/Video';
 export Search from 'components/Search';
 export Pack from 'components/Pack';
 export Option from 'components/Option';
+export CreditCard from 'components/CreditCard';
+export Loading from 'components/Loading';
 
 export {
   TouchableWithoutFeedback,

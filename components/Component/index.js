@@ -37,5 +37,7 @@ Component.Search = UI.Search;
 Component.Pack = UI.Pack;
 Component.Switch = UI.Switch;
 Component.Option = UI.Option;
+Component.CreditCard = UI.CreditCard;
+Component.Loading = UI.Loading;
 
 export default Component;

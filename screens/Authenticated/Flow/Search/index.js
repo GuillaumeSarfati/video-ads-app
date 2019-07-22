@@ -7,13 +7,19 @@ import * as UI from './ui'
 
 class SearchScreen extends React.Component {
   state = {
+    category: undefined,
+    subCategory: undefined,
     price: [20, 140],
     distance: [0, 10],
   }
 
   componentWillMount() {
     const { Category } = this.props;
-    Category.find()
+    Category.find({
+      filter: {
+        include: 'subCategories'
+      }
+    })
   }
 
   onNavigate = screen => e => {
@@ -24,26 +30,50 @@ class SearchScreen extends React.Component {
     : navigation.pop()
   }
 
-  onChange = property => value => {
-    this.setState({ [property]: value })
+  onChange = (...properties) => (...values) => {
+    properties.forEach((property, i) => this.setState({[property]: values[i]}))
   }
 
 
-  onSearch = () => {
-    const { Offer } = this.props;
+  onSearch = async () => {
+    const { Offer, navigation } = this.props;
+    const { category, subCategory } = this.state;
 
-    Offer.find({
+    const offers = await Offer.find({
       filter: {
         where: {
-          price: { between: this.state.price },
+          and: [
+            {
+              categoryId: category
+                ? category.id
+                : undefined
+            },
+            {
+              subCategoryId: subCategory
+                ? subCategory.id
+                : undefined
+            },
+            {price: { between: this.state.price }},
+          ],
+
           geoloc: {
             near: this.state.geoloc,
             maxDistance: this.state.distance,
             unit: 'kilometers'
           },
         },
+        include: [
+          'member',
+          'category',
+          'subCategory',
+        ],
       },
-    })
+    });
+
+    navigation.navigate('Offers', {
+      title: 'Résultats de votre recherche'
+    });
+
   }
 
   render() {
@@ -68,13 +98,34 @@ class SearchScreen extends React.Component {
         <UI.Screen.Column style={{paddingHorizontal: 30}}>
           <UI.Screen.Label dark>CATEGORIES</UI.Screen.Label>
         </UI.Screen.Column>
-        <UI.Screen.Row style={{justifyContent: 'center', }}>
+        <UI.Screen.Column style={{justifyContent: 'center', }}>
           <UI.ScrollView contentContainerStyle={{padding: 30}} horizontal>
           <For of={categories} as={category => (
-            <UI.Category model={category}/>
+            <UI.Component.Choice
+              selected={this.state.category === category}
+              icon={require('assets/images/categories/default.png')}
+              onPress={() => onChange('category')(category)}
+              title={category.title}
+              subtitle={'lorem ipsum dolor sit amet...'}
+              style={{marginRight: 15}}
+            />
           )}/>
           </UI.ScrollView>
-        </UI.Screen.Row>
+          {
+            this.state.category && this.state.category.subCategories && (
+              <UI.ScrollView contentContainerStyle={{paddingHorizontal: 30, paddingBottom: 30}} horizontal showsHorizontalScrollIndicator={false}>
+                <For of={this.state.category.subCategories} as={subCategory => (
+                  <UI.Component.SubChoice
+                    selected={this.state.subCategory === subCategory}
+                    onPress={() => onChange('subCategory')(subCategory)}
+                    title={subCategory.title}
+                    style={{marginRight: 7.5}}
+                  />
+                )}/>
+              </UI.ScrollView>
+            )
+          }
+        </UI.Screen.Column>
         <UI.Screen.Column style={{paddingHorizontal: 30, marginBottom: 30}}>
           <UI.Screen.Liner dark/>
         </UI.Screen.Column>

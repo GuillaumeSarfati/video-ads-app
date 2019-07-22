@@ -1,5 +1,6 @@
 import React from 'react';
-
+import { ExpoConfigView } from '@expo/samples';
+import { AsyncStorage } from 'react-native';
 import connect from 'utils/connect';
 
 import * as UI from './ui'
@@ -14,11 +15,20 @@ class OptionsScreen extends React.Component {
   onNavigate = screen => e => {
     const { navigation } = this.props
 
-    navigation.navigate(screen)
+    screen
+      ? navigation.navigate(screen)
+      : navigation.pop()
+  }
+
+  onClearStorage = async () => {
+    const { navigation } = this.props
+
+    await AsyncStorage.clear()
+    await navigation.navigate('Home')
   }
 
   render() {
-    const { onNavigate } = this;
+    const { onNavigate, onClearStorage } = this;
 
     const { offer } = this.props;
 
@@ -27,26 +37,21 @@ class OptionsScreen extends React.Component {
 
       <UI.Screen.Header>
         <UI.Screen.Header.Bar>
-          <UI.Screen.Header.Bar.Back onPress={onNavigate('FlowConsumer')}>
-            Application
+          <UI.Screen.Header.Bar.Back onPress={onNavigate()}>
+            Settings
           </UI.Screen.Header.Bar.Back>
 
         </UI.Screen.Header.Bar>
-        <UI.Screen.Header.Title dark>Playground</UI.Screen.Header.Title>
+        <UI.Screen.Header.Title dark>Developer</UI.Screen.Header.Title>
       </UI.Screen.Header>
 
+        <ExpoConfigView style={{flex: 1}}/>
         <UI.Screen.Content style={{ justifyContent: 'center', alignItems: 'center' }}>
-          <UI.Screen.Column style={{paddingLeft:22.5}}>
-            <UI.Component.Video
-              model={offer}
-              controls={{
-                favorite: true,
-                sound: true,
-              }}
-              large
-            />
+          <UI.Screen.Column style={{padding: 50, alignItems:'center'}}>
+            <UI.Component.Button onPress={onClearStorage}>Clear Storage</UI.Component.Button>
           </UI.Screen.Column>
         </UI.Screen.Content>
+
 
 
       </UI.Screen>

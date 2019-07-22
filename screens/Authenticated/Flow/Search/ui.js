@@ -1,4 +1,5 @@
 export Screen from 'components/Screen';
+export Component from 'components/Component';
 export Button from 'components/Button';
 export Slider from 'components/Slider';
 export Category from 'components/Category';

@@ -17,6 +17,7 @@ const persistConfig = {
     'ui',
     'accessToken',
     'categories',
+    'creditCard',
   ],
 }
 

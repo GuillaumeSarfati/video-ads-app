@@ -2,6 +2,9 @@ import React from 'react';
 import { createAppContainer, createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 import { createFluidNavigator } from 'react-navigation-fluid-transitions';
 
+import Developer from 'screens/Developer';
+import Feedback from 'screens/Feedback';
+import External from 'screens/External';
 import Playground from 'screens/Playground';
 import SplashScreen from 'screens/SplashScreen';
 import Home from 'screens/Home';
@@ -36,6 +39,7 @@ import Edit from 'screens/Authenticated/Profile/Edit';
 // Authenticated Flow
 import Categories from 'screens/Authenticated/Flow/Categories';
 import Pro from 'screens/Authenticated/Flow/Pro';
+import Favorites from 'screens/Authenticated/Flow/Favorites';
 import Offers from 'screens/Authenticated/Flow/Offers';
 import Offer from 'screens/Authenticated/Flow/Offer';
 import Comment from 'screens/Authenticated/Comment';
@@ -88,8 +92,8 @@ export const LoginNavigator = createStackNavigator({
 
 export const ShopNavigator = createStackNavigator({
   Shop,
-  Wallet,
-  CreditCard,
+  // Wallet,
+  // CreditCard,
 }, { headerMode: 'none', navigationOptions: { gesturesEnabled: true }})
 
 export const Authenticated = createBottomTabNavigator({
@@ -117,12 +121,17 @@ export const App = createStackNavigator({
   RecordPicture,
   Preview,
   Create,
+  Favorites,
   Options,
+  Wallet,
+  CreditCard,
   Search,
+  External,
+  Developer,
+  Feedback,
 }, { mode: 'modal', headerMode: 'none' })
 
 export const SplashNavigator = createFluidNavigator({
-  Playground,
   SplashScreen,
   App,
 }, { headerMode: 'none', navigationOptions: {gesturesEnabled: false } })

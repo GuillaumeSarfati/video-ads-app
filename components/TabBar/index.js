@@ -17,6 +17,7 @@ class TabBarComponent extends React.Component {
     tabs: {
       consumer: [
         'FlowConsumer',
+        'Favorites',
         'Shop',
         'Profile',
       ],

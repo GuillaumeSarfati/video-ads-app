@@ -59,7 +59,7 @@ class CreateScreen extends React.Component {
       ...offer,
     })
 
-    navigation.navigate('FlowSupplier')
+    navigation.navigate('Options')
   }
 
   onEdit = async () => {

@@ -20,7 +20,6 @@ class EditScreen extends React.Component {
   }
 
   onSave = async () => {
-    console.log('ON SAVE : ', this.state);
     const { Member, navigation } = this.props
     try {
       await Member.patchAttributesById(this.state.id, this.state)

@@ -22,7 +22,6 @@ class Modal extends React.Component {
   componentRef = React.createRef();
 
   componentWillReceiveProps(nextProps) {
-    console.log('[ MODAL ] componentWillReceiveProps : ', nextProps.children);
     if (nextProps.isOpen) {
       this.appear(this.isAllowedToBackdropPress)
     }
@@ -56,7 +55,10 @@ class Modal extends React.Component {
       toValue: 0,
       duration: 200,
     }),
-  ]).start(() => this.setState({ isOpen: false }, () => this.props.Modal.close()))
+  ]).start(() => this.setState({ isOpen: false }, () => {
+    console.log('disappear CLOSE');
+    this.props.Modal.close()
+  }))
 
   Modal = () => {
     const {
@@ -107,6 +109,10 @@ class Modal extends React.Component {
 
   render = () => (this.state.isOpen ? this.Modal() : null);
 }
+
+Modal.Welcome = UI.Welcome;
+Modal.Success = UI.Success;
+Modal.Error = UI.Error;
 
 export default connect(
   state => ({

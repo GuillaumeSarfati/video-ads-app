@@ -29,9 +29,27 @@ class CategoriesScreen extends React.Component {
     }
   }
 
+  onPressCategory = async (category) => {
+    const { Offer, navigation } = this.props
+
+    const offers = await Offer.find({
+      filter: {
+        order: 'DESC',
+        include: ['member', 'category', 'subCategory'],
+        where: {
+          categoryId : category.id
+            ? category.id
+            : undefined
+          },
+      }
+    })
+
+    navigation.navigate('Offers', category)
+
+  }
   render() {
     const { categories } = this.props;
-    const { onNavigate } = this;
+    const { onNavigate, onPressCategory } = this;
 
     return (
       <UI.Screen scroll>
@@ -52,12 +70,12 @@ class CategoriesScreen extends React.Component {
           </Transition>
           <Transition appear="bottom">
             <UI.Categories>
-              <UI.Component.Zapping onPress={() => onNavigate('Offers')()}/>
+              <UI.Component.Zapping onPress={() => onPressCategory({title: 'Zapping'})}/>
               {
                 categories.map((category, index) => (
                   <UI.Category
                     key={category.id}
-                    onPress={() => onNavigate('Offers')(category)}
+                    onPress={() => onPressCategory(category)}
                     model={category}
                     index={index}
                   />

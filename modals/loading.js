@@ -51,7 +51,7 @@ class LoadingModal extends React.Component {
       toValue: 0,
       duration: 200,
     }),
-  ]).start(() => this.setState({ isLoading: false }, () => this.props.Modal.close()))
+  ]).start(() => this.setState({ isLoading: false }))
 
   Modal = () => {
     const {

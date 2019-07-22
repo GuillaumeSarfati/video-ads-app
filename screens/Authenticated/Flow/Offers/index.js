@@ -11,28 +11,28 @@ class OffersScreen extends React.Component {
     current: 0
   }
 
-  componentWillMount() {
-    const { Offer } = this.props;
-    const { id } = this.props.navigation.state.params;
-
-    if (id) {
-      Offer.find({
-        filter: {
-          order: 'DESC',
-          include: ['member', 'category', 'subCategory'],
-          where: { categoryId : id},
-        }
-      })
-    }
-    else {
-      Offer.find({
-        filter: {
-          order: 'DESC',
-          include: ['member', 'category', 'subCategory'],
-        }
-      })
-    }
-  }
+  // componentWillMount() {
+  //   const { Offer } = this.props;
+  //   const { id } = this.props.navigation.state.params;
+  //
+  //   if (id) {
+  //     Offer.find({
+  //       filter: {
+  //         order: 'DESC',
+  //         include: ['member', 'category', 'subCategory'],
+  //         where: { categoryId : id},
+  //       }
+  //     })
+  //   }
+  //   else {
+  //     Offer.find({
+  //       filter: {
+  //         order: 'DESC',
+  //         include: ['member', 'category', 'subCategory'],
+  //       }
+  //     })
+  //   }
+  // }
 
   onPressOffer = offer =>  {
     this.props.Offer.setOne(offer)
@@ -50,7 +50,6 @@ class OffersScreen extends React.Component {
       cancelButtonIndex: 1,
     },
     (buttonIndex) => {
-      console.log('buttonIndex : ', buttonIndex);
       if (buttonIndex === 0) {
         Linking.openURL(Platform.OS === 'ios'
           ? `telprompt:${offer.member.phoneNumber}`
@@ -93,8 +92,6 @@ class OffersScreen extends React.Component {
   }
 
   onLoad = (index) => {
-    // TODO load data
-    console.log('ON LOAD : ', index);
   }
 
   onToggleMode = mode => this.setState({ mode })

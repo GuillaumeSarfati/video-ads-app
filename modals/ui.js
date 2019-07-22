@@ -2,6 +2,9 @@ import { Dimensions, View, Animated, TouchableWithoutFeedback, TouchableOpacity 
 
 import styled from 'styled-components/native';
 
+export Welcome from 'modals/Welcome';
+export Success from 'modals/Success';
+export Error from 'modals/Error';
 export Loading from 'components/Loading';
 
 export const FullScreen = styled(Animated.View)`

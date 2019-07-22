@@ -6,10 +6,10 @@ import background from '../../../assets/images/background/wave.png';
 import * as UI from './ui'
 
 class ProfileScreen extends React.Component {
-  onNavigate = screen => e => {
+  onNavigate = (screen, params) => e => {
     const { navigation } = this.props
 
-    navigation.navigate(screen)
+    navigation.navigate(screen, params)
   }
 
   onLogout = screen => e => {
@@ -65,7 +65,7 @@ class ProfileScreen extends React.Component {
             <UI.List.Item onPress={onNavigate('Edit')}>
               <UI.List.Item.Title>Informations personnelles</UI.List.Item.Title>
             </UI.List.Item>
-            <UI.List.Item>
+            <UI.List.Item onPress={onNavigate('Wallet')}>
               <UI.List.Item.Title>Porte-monnaie</UI.List.Item.Title>
             </UI.List.Item>
             <UI.List.Item onPress={onSwitch}>
@@ -80,22 +80,40 @@ class ProfileScreen extends React.Component {
           </UI.List>
           <UI.List>
             <UI.List.Title>AIDE</UI.List.Title>
-            <UI.List.Item>
+
+            <UI.List.Item onPress={onNavigate('External', { uri: 'https://pop-eye.fr/confiance-popeye' })}>
               <UI.List.Item.Title>FAQs</UI.List.Item.Title>
             </UI.List.Item>
-            <UI.List.Item>
+
+            <UI.List.Item onPress={onNavigate('External', { uri: 'https://pop-eye.fr/mentions-legales' })}>
               <UI.List.Item.Title>Mentions légales</UI.List.Item.Title>
             </UI.List.Item>
-            <UI.List.Item>
+
+            <UI.List.Item onPress={onNavigate('External', { uri: 'https://pop-eye.fr/cgu' })}>
               <UI.List.Item.Title>CGU</UI.List.Item.Title>
             </UI.List.Item>
+
             <UI.List.Item>
-              <UI.List.Item.Title>A propos</UI.List.Item.Title>
+              <UI.List.Item.Title onPress={onNavigate('External', { uri: 'https://pop-eye.fr/a-propos-de-nous-notre-philosophie' })}>A propos</UI.List.Item.Title>
             </UI.List.Item>
+
             <UI.List.Item>
-              <UI.List.Item.Title>Nous contacter</UI.List.Item.Title>
+              <UI.List.Item.Title onPress={onNavigate('External', { uri: 'https://pop-eye.fr/nous-contacter' })}>Nous contacter</UI.List.Item.Title>
+            </UI.List.Item>
+
+          </UI.List>
+
+          <UI.List>
+            <UI.List.Title>BÊTA</UI.List.Title>
+
+            <UI.List.Item onPress={onNavigate('Developer')}>
+              <UI.List.Item.Title>Developer</UI.List.Item.Title>
+            </UI.List.Item>
+            <UI.List.Item onPress={onNavigate('Feedback')}>
+              <UI.List.Item.Title>Feedback</UI.List.Item.Title>
             </UI.List.Item>
           </UI.List>
+
         </UI.Screen.Content>
         <UI.Screen.Footer>
           <UI.Button type="default" onPress={onLogout('Home')} large>Deconnexion</UI.Button>

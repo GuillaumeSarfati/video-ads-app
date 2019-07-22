@@ -4,7 +4,7 @@ import connect from 'utils/connect';
 
 import * as UI from './ui'
 
-class CommentScreen extends React.Component {
+class FeedbackScreen extends React.Component {
   state = {
     text: '',
     stars: 5,
@@ -15,25 +15,15 @@ class CommentScreen extends React.Component {
   }
 
   onSave = async () => {
-    const { Comment, Rating, Modal } = this.props
+    const { Feedback, Modal } = this.props
     const { me, offer } = this.props
 
-    try {
+    await Feedback.create({ text: this.state.text, memberId: me.id })
 
-      const comment = (await Comment.create({ text: this.state.text, offerId: offer.id, memberId: me.id })).value.data
-      const rating = (await Rating.create({ stars: this.state.stars, offerId: offer.id, memberId: me.id, commentId: comment.id })).value.data
-
-      Modal.open(<UI.Modals.Success
-        title="Merci"
-        description="Votre contribution est importante."
-      />)
-      
-    } catch (e) {
-      Modal.open(<UI.Modals.Error
-        title="Désolé..."
-        description="Une erreur est survenue."
-      />)
-    }
+    Modal.open(<UI.Modals.Success
+      title="Merci"
+      description="Votre contribution est importante."
+    />)
 
     this.onNavigate()()
   }
@@ -55,19 +45,15 @@ class CommentScreen extends React.Component {
         <UI.Screen.Header>
           <UI.Screen.Header.Bar>
             <UI.Screen.Header.Bar.Back onPress={onNavigate()}>
-              Pop Annonce
+              Settings
             </UI.Screen.Header.Bar.Back>
 
           </UI.Screen.Header.Bar>
-          <UI.Screen.Header.Title dark>Laisser un avis</UI.Screen.Header.Title>
+          <UI.Screen.Header.Title dark>Votre Feedback c'est important !</UI.Screen.Header.Title>
         </UI.Screen.Header>
 
         <UI.Screen.Column style={{ flex: 1, justifyContent: 'center', padding: 30 }}>
           <UI.Description>Lorem ipsum dolor sit amet...</UI.Description>
-
-          <UI.Screen.Column style={{ paddingVertical: 30 }}>
-            <UI.Component.RatingInput onChange={onChange('stars')} />
-          </UI.Screen.Column>
 
           <UI.Component.TextInput
             onChangeText={onChange('text')}
@@ -76,7 +62,7 @@ class CommentScreen extends React.Component {
           />
         </UI.Screen.Column>
         <UI.Screen.Footer>
-          <UI.Button onPress={onSave}>Valider l'avis</UI.Button>
+          <UI.Button onPress={onSave}>Envoyer un Feedback</UI.Button>
         </UI.Screen.Footer>
       </UI.Screen>
     )
@@ -86,12 +72,9 @@ class CommentScreen extends React.Component {
 export default connect(
   state => ({
     me: state.me,
-    offer: state.offer,
   }),
   (dispatch, props, models) => ({
-    Member: models.Member,
+    Feedback: models.Feedback,
     Modal: models.Modal,
-    Comment: models.Comment,
-    Rating: models.Rating,
   }),
-)(CommentScreen);
+)(FeedbackScreen);

@@ -38,11 +38,11 @@ class ProScreen extends React.Component {
   }
 
   render() {
-    const { offers } = this.props;
+    const { offers, me } = this.props;
     const { onNavigate, onPressOffer } = this;
 
     console.log('offers : ', offers);
-    return (
+    return me ? (
       <UI.Screen scroll>
         <UI.Screen.Header background>
           <UI.Component.Available/>
@@ -77,7 +77,7 @@ class ProScreen extends React.Component {
           )
         }
       </UI.Screen>
-    )
+    ): null
   }
 }
 

@@ -11,4 +11,9 @@ export default handleActions({
   [models.Member.signup.FULFILLED]: (state, action) => action.payload.data.me,
   [models.Member.facebook.FULFILLED]: (state, action) => action.payload.data.me,
   [models.Member.clear]: (state, action) => INITIAL_STATE,
+
+  [models.Pack.buy.FULFILLED]: (state, action) => ({
+    ...state,
+    coins: state.coins + action.payload.data.coins,
+  }),
 }, INITIAL_STATE);

@@ -63,7 +63,6 @@ class OfferScreen extends React.Component {
     const { category, member } = offer;
     const { onNavigate } = this
 
-    console.log('OFFFFFERS : ', offers);
     return (
       <UI.Screen scroll>
         <UI.Screen.Header>
@@ -86,7 +85,15 @@ class OfferScreen extends React.Component {
         </UI.Screen.Header>
 
         <UI.Screen.Content style={{padding: 30}}>
-          <UI.Component.Video large/>
+        <UI.Component.Video
+          model={offer}
+          controls={{
+            favorite: true,
+            share: true,
+            sound: true,
+          }}
+          large
+        />
           <UI.Component.Action onPress={onNavigate()}>Voir la piece jointe</UI.Component.Action>
           <UI.Screen.Liner dark/>
           <UI.Screen.Label dark>DESCRIPTION DE LA POP ANNONCE</UI.Screen.Label>

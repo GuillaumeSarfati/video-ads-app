@@ -6,7 +6,6 @@ export default props => {
   const { model, member, rating } = props
   const { onPress } = props
 
-  console.log('COMMENT : ', {model, member, rating});
   return (
     <UI.Transition shared="comment">
       <UI.Component style={{marginBottom: 30}}>

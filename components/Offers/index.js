@@ -11,7 +11,12 @@ export default ({ models, onPress }) => (
           onPress={() => onPress(model, i)}
         >
 
-          <UI.Component.Video/>
+          <UI.Component.Video
+            model={model}
+            controls={{
+              favorite: true,
+            }}
+          />
 
           <UI.Component.Column style={{paddingLeft: 5, paddingBottom: 15}}>
 
@@ -20,7 +25,7 @@ export default ({ models, onPress }) => (
                 ? <UI.Component.Rating model={{stars: model.rating.stars}} />
                 : <UI.Component.Rating model={{stars: 0}} />
             }
-            
+
             <UI.Component.Offer.Title>{model.price}€ de l'heure</UI.Component.Offer.Title>
             <UI.Component.Offer.Subtitle>{model.category.title} - {model.subCategory.title}</UI.Component.Offer.Subtitle>
 

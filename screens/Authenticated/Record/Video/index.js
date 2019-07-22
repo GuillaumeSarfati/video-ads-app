@@ -23,7 +23,7 @@ class RecordScreen extends React.Component {
 
     if (app.welcomeRecord !== true) {
       App.set({ welcomeRecord: true })
-      Modal.open(<UI.Welcome/>)
+      Modal.open(<UI.Modals.Welcome/>)
     }
 
     this.setState({ hasCameraPermission: status === 'granted' });

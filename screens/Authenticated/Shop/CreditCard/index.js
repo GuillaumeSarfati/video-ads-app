@@ -2,6 +2,8 @@ import React from 'react';
 import { CardIOModule} from 'react-native-awesome-card-io';
 import { Permissions } from 'expo';
 
+var stripe = require('stripe-client')('pk_test_UvVfYE7WAB8fIpQhtPOJApmU00DqnUCpsA');
+
 import connect from 'utils/connect';
 
 import * as UI from './ui'
@@ -16,17 +18,39 @@ class TemplateScreen extends React.Component {
   }
 
   onScanCard = async card => {
-    const { CreditCard } = this.props;
+    const { CreditCard, me, navigation } = this.props;
     const { status } = await Permissions.askAsync(Permissions.CAMERA);
 
     if (status === 'granted') {
-      CreditCard.set(await CardIOModule.scanCard({
+      const card = await CardIOModule.scanCard({
         guideColor: 0xFFFFFFFF,
         hideCardIOLogo: true,
-      }))
+      })
+
+      const stripeCard = await stripe.createToken({
+        card: {
+          "number": card.cardNumber,
+          "exp_month": card.expiryMonth,
+          "exp_year": card.expiryYear,
+          "cvc": card.cvv
+        }
+      });
+
+      CreditCard.create({
+        "cardType": stripeCard.card.brand,
+        "cardNumber": stripeCard.card.last4,
+        "expiryMonth":stripeCard.card.exp_month,
+        "expiryYear":stripeCard.card.exp_year,
+        "stripeId": stripeCard.card.id,
+        "tokenId": stripeCard.id,
+        "memberId": me.id,
+      });
+
+      navigation.pop()
     }
   }
   render() {
+    console.log('stripe', stripe);
     const { creditCard } = this.props;
     const { onScanCard, onNavigate } = this;
 
@@ -61,6 +85,7 @@ class TemplateScreen extends React.Component {
 
 export default connect(
   state => ({
+    me: state.me,
     creditCard: state.creditCard,
   }),
   (dispatch, props, models) => ({
