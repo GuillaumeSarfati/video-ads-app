@@ -39,5 +39,6 @@ Component.Switch = UI.Switch;
 Component.Option = UI.Option;
 Component.CreditCard = UI.CreditCard;
 Component.Loading = UI.Loading;
+Component.DistanceInformations = UI.DistanceInformations;
 
 export default Component;

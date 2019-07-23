@@ -5,6 +5,12 @@ import connect from 'utils/connect';
 
 import * as UI from './ui'
 
+const operations = {
+  '+': (x, y) => x + y,
+  '-': (x, y) => x - y,
+  '=': (x, y) => y,
+  '*': (x, y) => x * y,
+}
 class ShopScreen extends React.Component {
   componentWillMount = async () => {
     const { Article } = this.props;
@@ -20,12 +26,35 @@ class ShopScreen extends React.Component {
   }
 
   onPressArticle = article => e => {
-    const { navigation } = this.props
-    navigation.navigate('Wallet')
+    const { Member, Modal, me, navigation } = this.props
+    console.log('article : ', article);
+    console.log('me : ', me);
+    if (me.coins >= article.coins) {
+      Member.patchAttributesById(me.id, {
+        [article.property]: operations[article.operation](
+          me[article.property],
+          article.value
+        ),
+        coins: me.coins - article.coins,
+      })
+      Modal.open(<UI.Modals.Success
+        title="Félicitation"
+        description={article.description}
+      />)
+    }
+    else {
+      Modal.open(<UI.Modals.Error
+        title="Désolé..."
+        description="Vous ne disposez pas assez d'Eyes Cubes, pas de panique vous pouvez en trouver ou rechargez !"
+        onPress={() => navigation.navigate('Wallet')}
+      />)
+
+    }
+
   }
 
   render() {
-    const { articles } = this.props;
+    const { me, articles } = this.props;
     const { onNavigate, onPressArticle } = this;
 
     return (
@@ -35,6 +64,7 @@ class ShopScreen extends React.Component {
         </UI.Screen.Header>
         <UI.Screen.Content>
           <UI.Screen.Column style={{ padding: 30}}>
+            <UI.Screen.Header.Title dark>{ me.coins } Eyes cubes</UI.Screen.Header.Title>
             <For of={articles} as={(article) => (
               <UI.Article model={article} onPress={onPressArticle(article)}/>
             )}/>
@@ -47,10 +77,13 @@ class ShopScreen extends React.Component {
 
 export default connect(
   state => ({
+    me: state.me,
     articles: state.articles,
     creditCard: state.creditCard,
   }),
   (dispatch, props, models) => ({
     Article: models.Article,
+    Member: models.Member,
+    Modal: models.Modal,
   }),
 )(ShopScreen);

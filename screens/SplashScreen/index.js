@@ -30,7 +30,7 @@ class SplashScreen extends React.Component {
           }}
           resizeMode="cover"
         />
-        <View style={{
+        {/*<View style={{
           position: 'absolute',
           width: '100%',
           height: '100%',
@@ -42,7 +42,7 @@ class SplashScreen extends React.Component {
         }}>
           <Logo transition={me ? false : true}/>
         </View>
-
+*/}
       </View>
     )
 

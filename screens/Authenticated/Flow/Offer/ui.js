@@ -7,3 +7,4 @@ export Button from 'components/Button';
 export Comment from 'components/Comment';
 export Transition from 'components/Transition';
 export Category from 'components/Category/Title';
+export Modals from 'modals';

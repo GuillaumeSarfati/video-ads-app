@@ -26,6 +26,7 @@ export Pack from 'components/Pack';
 export Option from 'components/Option';
 export CreditCard from 'components/CreditCard';
 export Loading from 'components/Loading';
+export DistanceInformations from 'components/DistanceInformations';
 
 export {
   TouchableWithoutFeedback,

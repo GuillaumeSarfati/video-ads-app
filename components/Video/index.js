@@ -56,7 +56,7 @@ class VideoComponent extends React.Component {
 
   render() {
     const { dimensions, getRef, onPlaybackStatusUpdate, onPressFavorite, onPressSound, onPressShare } = this;
-    const { model, controls, large, style } = this.props
+    const { model, controls, large, style, shouldPlay } = this.props
     return (
       <UI.Video style={[dimensions(), style]}>
 
@@ -70,7 +70,7 @@ class VideoComponent extends React.Component {
               volume={1.0}
               isMuted={this.state.isMuted}
               resizeMode="cover"
-              // shouldPlay
+              shouldPlay={shouldPlay}
               isLooping
               onPlaybackStatusUpdate={onPlaybackStatusUpdate}
               style={dimensions()}

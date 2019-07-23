@@ -26,7 +26,10 @@ export default class Distance extends React.Component {
   // }
 
   state = {
-    geoloc: this.props.geoloc,
+    geoloc: {
+      latitude: this.props.geoloc.lat,
+      longitude: this.props.geoloc.lng,
+    },
     distance: this.props.distance,
   }
 

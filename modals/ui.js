@@ -5,6 +5,7 @@ import styled from 'styled-components/native';
 export Welcome from 'modals/Welcome';
 export Success from 'modals/Success';
 export Error from 'modals/Error';
+export Recharge from 'modals/Recharge';
 export Loading from 'components/Loading';
 
 export const FullScreen = styled(Animated.View)`

@@ -16,6 +16,7 @@ class CreateScreen extends React.Component {
       this.state = {
         description: '',
         geolocDistance: 1,
+        geoloc: this.props.me.geoloc,
         price: 20,
         category: {
           subCategories: []
@@ -79,6 +80,24 @@ class CreateScreen extends React.Component {
 
     navigation.pop()
   }
+
+  getLocationAsync = async () => {
+    const { Member, me } = this.props;
+    let { status } = await Permissions.askAsync(Permissions.LOCATION);
+    if (status !== 'granted') {
+      this.setState({
+        errorMessage: 'Permission to access location was denied',
+      });
+    }
+
+    let location = await Location.getCurrentPositionAsync({});
+    Member.patchAttributesById(me.id, {
+      geoloc: {
+        lat: location.coords.latitude,
+        lng: location.coords.longitude,
+      }
+    })
+  };
 
   render() {
     const offer = this.state;

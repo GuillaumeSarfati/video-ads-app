@@ -15,7 +15,7 @@ export default ({ model, index, onPress }) => (
         </UI.Article.Content>
         <UI.Article.Footer>
           <UI.Button onPress={onPress}>
-            {model.price} {model.currency}
+            {model.coins} {model.currency}
           </UI.Button>
         </UI.Article.Footer>
       </UI.Article>

@@ -34,14 +34,14 @@ class Modal extends React.Component {
   }
 
   appear = callback => this.setState({ isOpen: true }, Animated.sequence([
+    Animated.timing(this.state.backdrop, {
+      toValue: 1,
+      duration: 300,
+    }),
     Animated.timing(this.state.children, {
       toValue: 1,
       duration: 300,
       useNativeDriver: true,
-    }),
-    Animated.timing(this.state.backdrop, {
-      toValue: 1,
-      duration: 300,
     }),
   ]).start(callback))
 
@@ -55,10 +55,7 @@ class Modal extends React.Component {
       toValue: 0,
       duration: 200,
     }),
-  ]).start(() => this.setState({ isOpen: false }, () => {
-    console.log('disappear CLOSE');
-    this.props.Modal.close()
-  }))
+  ]).start(() => this.setState({ isOpen: false }, () => this.props.Modal.close()))
 
   Modal = () => {
     const {
@@ -112,6 +109,7 @@ class Modal extends React.Component {
 
 Modal.Welcome = UI.Welcome;
 Modal.Success = UI.Success;
+Modal.Recharge = UI.Recharge;
 Modal.Error = UI.Error;
 
 export default connect(

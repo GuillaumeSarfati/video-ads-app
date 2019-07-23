@@ -65,17 +65,20 @@ class ProfileScreen extends React.Component {
             <UI.List.Item onPress={onNavigate('Edit')}>
               <UI.List.Item.Title>Informations personnelles</UI.List.Item.Title>
             </UI.List.Item>
+            <UI.List.Item onPress={onSwitch}>
+            <UI.Screen.Row style={{alignItems: 'space-between'}}>
+            <UI.List.Item.Title style={{flex: 1}}>
+            {
+              me.mode === 'supplier'
+              ? 'Switcher en tant que particulier'
+              : 'Switcher en tant que prestataire'
+            }
+            </UI.List.Item.Title>
+            <UI.Component.Image style={{width: 20, height:15}} source={require('assets/images/change.png')} />
+            </UI.Screen.Row>
+            </UI.List.Item>
             <UI.List.Item onPress={onNavigate('Wallet')}>
               <UI.List.Item.Title>Porte-monnaie</UI.List.Item.Title>
-            </UI.List.Item>
-            <UI.List.Item onPress={onSwitch}>
-              <UI.List.Item.Title>
-                {
-                  me.mode === 'supplier'
-                  ? 'Switcher en tant que particulier'
-                  : 'Switcher en tant que prestataire'
-                }
-              </UI.List.Item.Title>
             </UI.List.Item>
           </UI.List>
           <UI.List>

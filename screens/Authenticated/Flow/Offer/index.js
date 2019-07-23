@@ -1,5 +1,7 @@
 import React from 'react';
 import { NavigationActions } from 'react-navigation';
+import { Platform, Linking, ActionSheetIOS } from 'react-native';
+
 import connect from 'utils/connect';
 
 import * as UI from './ui'
@@ -55,10 +57,35 @@ class OfferScreen extends React.Component {
 
   }
 
+  onPressOrder = offer => e => {
+    ActionSheetIOS.showActionSheetWithOptions({
+      options: ['Appeler', 'Annuler'],
+      cancelButtonIndex: 1,
+    },
+    (buttonIndex) => {
+      if (buttonIndex === 0) {
+        const { Modal, Member, me, navigation } = this.props;
+
+
+        if (me.allowedContacts) {
+          Linking.openURL(Platform.OS === 'ios'
+            ? `telprompt:${offer.member.phoneNumber}`
+            : `tel:${offer.member.phoneNumber}`
+          )
+          Member.patchAttributesById(me.id, { allowedContacts: me.allowedContacts - 1 })
+        } else {
+          Modal.open(
+            <UI.Modals.Recharge onPress={() => navigation.navigate('Shop')}/>
+          )
+        }
+      }
+    });
+  }
+
   render() {
     const { offer, comments } = this.props;
     const { category, member } = offer;
-    const { onNavigate } = this
+    const { onPressOrder, onNavigate } = this
     console.log('offer : ', offer);
     console.log('category : ', category);
     console.log('member : ', member);
@@ -82,15 +109,19 @@ class OfferScreen extends React.Component {
         </UI.Screen.Header>
 
         <UI.Screen.Content style={{padding: 30}}>
+        <UI.Screen.Row style={{marginLeft: -7.5}}>
         <UI.Component.Video
+
           model={offer}
           controls={{
             favorite: true,
             share: true,
             sound: true,
           }}
+          shouldPlay
           large
         />
+        </UI.Screen.Row>
           <UI.Component.Action onPress={onNavigate()}>Voir la piece jointe</UI.Component.Action>
           <UI.Screen.Liner dark/>
           <UI.Screen.Label dark>DESCRIPTION DE LA POP ANNONCE</UI.Screen.Label>
@@ -104,8 +135,9 @@ class OfferScreen extends React.Component {
           </UI.Screen.Row>
 
           {
-            comments.map(comment => (
+            comments.map((comment, i) => (
               <UI.Comment
+                key={`comment-${i.toString()}`}
                 model={comment}
                 member={comment.member}
                 rating={comment.rating}
@@ -113,9 +145,15 @@ class OfferScreen extends React.Component {
             ))
           }
 
-          <UI.Screen.Column style={{paddingLeft: -15, paddingRight: -15}} debug>
+          <UI.Screen.Footer>
+            <UI.Transition anchor={`offer${offer.id}`}>
+              <UI.Button onPress={onPressOrder(offer)}>Contacter</UI.Button>
+            </UI.Transition>
+          </UI.Screen.Footer>
+
+          <UI.Screen.Column style={{marginLeft: -15, marginRight: -30}}>
             <UI.Screen.Liner dark/>
-            <UI.Screen.Label dark>POP ANNONCES</UI.Screen.Label>
+            <UI.Screen.Label style={{paddingLeft: 15, marginBottom: 30}} dark>AUTRES POP ANNONCES DE {member.firstname.toUpperCase()}</UI.Screen.Label>
 
             {
               member.offers
@@ -130,11 +168,7 @@ class OfferScreen extends React.Component {
           </UI.Screen.Column>
 
         </UI.Screen.Content>
-        <UI.Screen.Footer>
-          <UI.Transition anchor={`offer${offer.id}`}>
-            <UI.Button onPress={onNavigate()}>Contacter</UI.Button>
-          </UI.Transition>
-        </UI.Screen.Footer>
+
       </UI.Screen>
     )
 
@@ -143,11 +177,14 @@ class OfferScreen extends React.Component {
 
 export default connect(
   state => ({
+    me: state.me,
     offer: state.offer,
     comments: state.comments,
   }),
   (dispatch, props, models) => ({
     Offer: models.Offer,
     Comment: models.Comment,
+    Member: models.Member,
+    Modal: models.Modal,
   }),
 )(OfferScreen);

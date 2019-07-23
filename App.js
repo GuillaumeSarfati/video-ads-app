@@ -14,7 +14,11 @@ import Loading from 'modals/loading';
 
 const { store, persistor } = makeStore();
 
-
+if (typeof(Number.prototype.toRad) === "undefined") {
+  Number.prototype.toRad = function() {
+    return this * Math.PI / 180;
+  }
+}
 
 // TODO comment
 // Ignore all Yellow box
@@ -53,6 +57,8 @@ export default class App extends React.Component {
       Asset.loadAsync([
         require('assets/splash.png'),
 
+        require('assets/images/sad.png'),
+        require('assets/images/change.png'),
         require('assets/images/error.png'),
         require('assets/images/success.png'),
         require('assets/images/scan.png'),

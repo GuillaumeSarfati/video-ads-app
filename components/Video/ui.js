@@ -7,11 +7,11 @@ export Component from 'components/Component';
 export const dimensions = {
   default: {
     width: (Dimensions.get('window').width - 45) / 2,
-    height: (Dimensions.get('window').width - 45) / 2,
+    height: (Dimensions.get('window').width - 45) / 2 * (Dimensions.get('window').height / Dimensions.get('window').width / 1.6),
   },
   large: {
     width: (Dimensions.get('window').width - 45),
-    height: (Dimensions.get('window').width - 45),
+    height: (Dimensions.get('window').width - 45) * (Dimensions.get('window').height / Dimensions.get('window').width / 1.6),
   },
   fullscreen: {
     width: Dimensions.get('window').width,
