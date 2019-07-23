@@ -65,7 +65,7 @@ FlowConsumer.navigationOptions = ({ navigation }) => {
   let { routeName } = navigation.state.routes[navigation.state.index];
   let navigationOptions =  { gesturesEnabled: true }
 
-  if (routeName === 'OffersNavigator' || routeName === 'Offers' || routeName === 'Offer') {
+  if (routeName === 'Comment' || routeName === 'Offers' || routeName === 'Offer') {
     navigationOptions.tabBarVisible = false;
   }
 
@@ -103,7 +103,6 @@ export const Authenticated = createBottomTabNavigator({
   FlowSupplier,
   ShopNavigator,
   ProfileNavigator,
-  Comment,
 }, { mode: 'modal', headerMode: 'none', tabBarComponent: TabBar, lazy: false, navigationOptions: { gesturesEnabled: false }})
 
 export const Unauthenticated = createStackNavigator({
@@ -131,6 +130,7 @@ export const App = createStackNavigator({
   External,
   Developer,
   Feedback,
+
 }, { mode: 'modal', headerMode: 'none' })
 
 export const SplashNavigator = createFluidNavigator({

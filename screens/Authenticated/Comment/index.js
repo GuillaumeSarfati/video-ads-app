@@ -27,7 +27,7 @@ class CommentScreen extends React.Component {
         title="Merci"
         description="Votre contribution est importante."
       />)
-      
+
     } catch (e) {
       Modal.open(<UI.Modals.Error
         title="Désolé..."
@@ -62,7 +62,7 @@ class CommentScreen extends React.Component {
           <UI.Screen.Header.Title dark>Laisser un avis</UI.Screen.Header.Title>
         </UI.Screen.Header>
 
-        <UI.Screen.Column style={{ flex: 1, justifyContent: 'center', padding: 30 }}>
+        <UI.Screen.Column style={{ flex: 1, justifyContent: 'flex-start', padding: 30 }}>
           <UI.Description>Lorem ipsum dolor sit amet...</UI.Description>
 
           <UI.Screen.Column style={{ paddingVertical: 30 }}>
@@ -72,6 +72,7 @@ class CommentScreen extends React.Component {
           <UI.Component.TextInput
             onChangeText={onChange('text')}
             placeholder="placeholder"
+            blurOnSubmit
             multiline
           />
         </UI.Screen.Column>

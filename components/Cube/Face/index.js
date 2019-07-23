@@ -136,16 +136,16 @@ export default class Face extends React.Component {
 
 
   loadAsync = async (...args) => {
-    try {
-      if (this.video && !this.isLoaded()) {
-        // console.log(`[ FACE ${this.props.index} ] loadAsync : `, ...args);
-        return await this.video.loadAsync(...args)
-      }
-    } catch (e) {
-      this.status.errorCount++
-      // console.log(`[ FACE ${this.props.index} ] loadError : `, this.status.errorCount);
-      return await this.loadAsync(...args)
-    }
+    // try {
+    //   if (this.video && !this.isLoaded()) {
+    //     // console.log(`[ FACE ${this.props.index} ] loadAsync : `, ...args);
+    //     return await this.video.loadAsync(...args)
+    //   }
+    // } catch (e) {
+    //   this.status.errorCount++
+    //   // console.log(`[ FACE ${this.props.index} ] loadError : `, this.status.errorCount);
+    //   return await this.loadAsync(...args)
+    // }
   }
 
   playAsync = (position) => {
@@ -233,7 +233,7 @@ export default class Face extends React.Component {
             onLoad={this.onLoad}
             onError={this.onError}
             resizeMode={UI.Video.RESIZE_MODE_CONTAIN}
-
+            source={{ uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4' }}
             style={{
               position: 'absolute',
               top: 0,

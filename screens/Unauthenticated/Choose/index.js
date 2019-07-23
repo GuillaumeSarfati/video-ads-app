@@ -14,15 +14,21 @@ class ChooseScreen extends React.Component {
   }
 
   onContinue = async e => {
-    const { Member, navigation, me } = this.props;
-    const { mode } = this.state;
+    try {
+      const { Member, navigation, me } = this.props;
+      const { mode } = this.state;
 
-    await Member.patchAttributsById(me.id, { mode })
+      console.log('MODE : ', mode);
+      await Member.patchAttributesById(me.id, { mode })
 
-    navigation.navigate(mode === 'consumer'
+      navigation.navigate(mode === 'consumer'
       ? 'FlowConsumer'
       : 'FlowSupplier'
     )
+
+  } catch (e) {
+    console.log('Error : ', e)
+  }
   }
   render() {
     const { me } = this.props;

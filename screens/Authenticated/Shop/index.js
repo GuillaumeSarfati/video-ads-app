@@ -57,7 +57,7 @@ class ShopScreen extends React.Component {
     const { me, articles } = this.props;
     const { onNavigate, onPressArticle } = this;
 
-    return (
+    return me ? (
       <UI.Screen scroll>
         <UI.Screen.Header background>
           <UI.Screen.Header.Title light>Boutique Pop Eye</UI.Screen.Header.Title>
@@ -71,7 +71,7 @@ class ShopScreen extends React.Component {
           </UI.Screen.Column>
         </UI.Screen.Content>
       </UI.Screen>
-    )
+    ): null
   }
 }
 

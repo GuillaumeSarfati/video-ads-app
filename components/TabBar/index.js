@@ -75,7 +75,7 @@ class TabBarComponent extends React.Component {
 
     let location = await Location.getCurrentPositionAsync({});
     if (!me.geoloc ||  location.coords.latitude !== me.geoloc.latitude) {
-      Member.patchAttributesById(me.id, {
+      Member.update({
         geoloc: {
           lat: location.coords.latitude,
           lng: location.coords.longitude,

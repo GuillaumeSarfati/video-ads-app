@@ -11,6 +11,7 @@ class SearchScreen extends React.Component {
     subCategory: undefined,
     price: [20, 140],
     distance: [0, 10],
+    geoloc: this.props.me.geoloc,
   }
 
   componentWillMount() {
@@ -139,7 +140,7 @@ class SearchScreen extends React.Component {
         </UI.Screen.Column>
 
         <UI.Price values={price} onChange={onChange('price')}/>
-        <UI.Distance values={distance} onChangeGeoloc={onChange('geoloc')} onChangeDistance={onChange('distance')}/>
+        <UI.Distance geoloc={this.state.geoloc} values={distance} onChangeGeoloc={onChange('geoloc')} onChangeDistance={onChange('distance')}/>
 
         </UI.Screen.Content>
 
@@ -155,6 +156,7 @@ class SearchScreen extends React.Component {
 
 export default connect(
   state => ({
+    me: state.me,
     categories: state.categories,
   }),
   (dispatch, props, models) => ({
