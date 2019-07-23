@@ -66,6 +66,14 @@ class SearchScreen extends React.Component {
           'member',
           'category',
           'subCategory',
+          {
+            relation: 'favorite',
+            scope: {
+              where: {
+                memberId: me.id
+              }
+            }
+          },
         ],
       },
     });

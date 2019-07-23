@@ -15,6 +15,7 @@ Component.Image = UI.Image;
 Component.ScrollView = UI.ScrollView;
 Component.TouchableWithoutFeedback = UI.TouchableWithoutFeedback;
 Component.TouchableOpacity = UI.TouchableOpacity;
+Component.Box = UI.Box;
 Component.Text = UI.Text;
 Component.TextInput = UI.TextInput;
 Component.TextGradient = UI.TextGradient;

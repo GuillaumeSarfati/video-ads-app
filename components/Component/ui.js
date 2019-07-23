@@ -26,6 +26,7 @@ export Pack from 'components/Pack';
 export Option from 'components/Option';
 export CreditCard from 'components/CreditCard';
 export Loading from 'components/Loading';
+export Box from 'components/Box';
 export DistanceInformations from 'components/DistanceInformations';
 
 export {

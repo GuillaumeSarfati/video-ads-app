@@ -57,6 +57,16 @@ export default class App extends React.Component {
       Asset.loadAsync([
         require('assets/splash.png'),
 
+        require('assets/images/payment/card.png'),
+        require('assets/images/payment/visa.png'),
+        require('assets/images/payment/mastercard.png'),
+        require('assets/images/payment/westernunion.png'),
+
+        require('assets/images/packs/wallet.png'),
+        require('assets/images/packs/bag.png'),
+        require('assets/images/packs/bags.png'),
+        require('assets/images/packs/chest.png'),
+
         require('assets/images/sad.png'),
         require('assets/images/change.png'),
         require('assets/images/error.png'),

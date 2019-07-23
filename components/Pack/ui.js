@@ -1,41 +1,42 @@
 import styled from 'styled-components/native';
 import { Dimensions } from 'react-native';
 
-export { Transition } from 'react-navigation-fluid-transitions';
+export Shadow from 'components/Shadow';
+export Gradient from 'components/Gradient';
+export Component from 'components/Component';
 
-export const  Component = styled.View`
-                flex-direction: row;
-                box-shadow: 0px 0px 30px #D6E2F5;
-                margin-right: 15px;
-                margin-bottom: 15px;
-                background: white;
-                border-radius: 16px;
+export const  Choice = styled.TouchableOpacity`
+                  width: ${(Dimensions.get("window").width - 90) / 2}px;
+                  height: ${(Dimensions.get("window").width - 90) / 2 * 1.25}px;
+                  border-radius: 18px;
+                  overflow: hidden;
               `;
 
-export const  Pack = styled.TouchableOpacity`
-                border-radius: 16px;
-                background: white;
-                width: 100%;
-                padding: 32.5px;
+export const  Content = styled.View`
+                  width: 100%;
+                  height: 100%;
+                  border-radius: 17px;
+                  overflow: hidden;
+                  background: white;
+                  justify-content: center;
+                  align-items: center;
+                  padding-bottom: 15px;
               `;
 
-              Pack.Header = styled.View`
-                flex: 1;
-                padding: 10px;
+export const  Icon = styled.Image`
+                  width: ${(Dimensions.get("window").width - 90) / 2}px;
+                  height: ${(Dimensions.get("window").width - 90) / 2}px;
               `;
 
-              Pack.Image = styled.Image`
-                width: 34px;
-                height: 34px;
+
+export const  Title = styled.Text`
+                  color: rgb(65, 86, 118);
+                  font-size: 16px;
+                  font-weight: bold;
               `;
 
-              Pack.Title = styled.Text`
-              `
-
-              Pack.View = styled.Text`
-                color: #384E71;
-                opacity: 0.5;
-                font-size: 11px;
-                font-weight: bold;
-                line-height: 15px;
+export const  Subtitle = styled.Text`
+                  color: rgb(198, 204, 214);
+                  font-size: 14px;
+                  font-weight: bold;
               `;

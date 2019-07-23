@@ -11,19 +11,30 @@ class VideoComponent extends React.Component {
   state = {
     isMuted: this.props.isMuted || false,
     status: null,
+    favorite: this.props.model.favorite,
   }
 
   onPressSound = model => e => {
     this.setState({ isMuted: !this.state.isMuted })
   }
 
-  onPressFavorite = offer => e => {
+  onPressFavorite = offer => async e => {
     const { Favorite, me } = this.props;
+    console.log('FAVORITE : ', this.state.favorite);
+    if (!this.state.favorite) {
+      console.log('create');
+      console.log('create');
+      const favorite = await Favorite.create({
+        memberId: me.id,
+        offerId: offer.id,
+      });
+      this.setState({favorite: favorite})
+    } else {
+      console.log('delete');
+      await Favorite.deleteById(this.state.favorite.id);
+      this.setState({favorite: false})
+    }
 
-    Favorite.create({
-      memberId: me.id,
-      offerId: offer.id,
-    });
   }
 
   onPressShare = model => e => {
@@ -91,7 +102,9 @@ class VideoComponent extends React.Component {
           {
             controls && controls.favorite && (
               <UI.Component.TouchableOpacity onPress={onPressFavorite(model)} style={{justifyContent: 'center', alignItems:'center', backgroundColor: 'rgba(125, 125, 125, 0.25)', width: 40, height: 40, borderRadius: 20, margin: 5}}>
-                <UI.Component.Icon name="ios-heart-empty" size={22} color="white" />
+                <UI.Component.Icon name={this.state.favorite
+                  ? "ios-heart"
+                  : "ios-heart-empty"} size={22} color="white" />
               </UI.Component.TouchableOpacity>
             )
           }
@@ -140,5 +153,6 @@ export default connect(
   }),
   (dispatch, props, models) => ({
     Favorite: models.Favorite,
+    Modal: models.Modal,
   })
 )(VideoComponent)

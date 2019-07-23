@@ -2,6 +2,7 @@ import styled from 'styled-components/native';
 
 import { Dimensions } from 'react-native';
 
+export Modals from 'modals';
 export Component from 'components/Component';
 
 export const dimensions = {

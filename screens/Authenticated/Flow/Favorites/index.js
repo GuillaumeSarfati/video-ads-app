@@ -18,7 +18,19 @@ class OffersScreen extends React.Component {
           include: {
             relation: 'offer',
             scope: {
-              include: ['member', 'category', 'subCategory'],
+              include: [
+                'member',
+                'category',
+                'subCategory',
+                {
+                  relation: 'favorite',
+                  scope: {
+                    where: {
+                      memberId: me.id
+                    }
+                  }
+                },
+              ],
             }
           }
         }

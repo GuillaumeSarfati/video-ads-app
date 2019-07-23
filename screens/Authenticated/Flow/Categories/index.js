@@ -30,12 +30,24 @@ class CategoriesScreen extends React.Component {
   }
 
   onPressCategory = async (category) => {
-    const { Offer, navigation } = this.props
+    const { Offer, navigation, me } = this.props
 
     const offers = await Offer.find({
       filter: {
         order: 'DESC',
-        include: ['member', 'category', 'subCategory'],
+        include: [
+          'member',
+          'category',
+          'subCategory',
+          {
+            relation: 'favorite',
+            scope: {
+              where: {
+                memberId: me.id
+              }
+            }
+          },
+        ],
         where: {
           categoryId : category.id
             ? category.id
@@ -90,6 +102,7 @@ class CategoriesScreen extends React.Component {
 
 export default connect(
   state => ({
+    me: state.me,
     categories: state.categories,
   }),
   (dispatch, props, models) => ({

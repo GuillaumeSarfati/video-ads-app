@@ -72,10 +72,10 @@ class CommentScreen extends React.Component {
         <UI.Screen.Row style={{flexWrap: 'wrap', justifyContent: 'center'}}>
           {
             packs.map(pack => (
-              <UI.Component.Choice
+              <UI.Component.Pack
               onPress={onPressPack(pack)}
               selected={pack === current}
-              {...pack}
+              model={pack}
               />
             ))
           }

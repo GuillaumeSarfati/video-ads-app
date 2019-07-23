@@ -42,11 +42,11 @@ class ProfileScreen extends React.Component {
     return (
       <UI.Screen scroll>
         <UI.Screen.Header background>
-          <UI.Screen.Row style={{justifyContent: "space-between", alignItems: 'center', padding: 30}}>
+          <UI.Screen.Row style={{justifyContent: "center", alignItems: 'center'}}>
             <UI.Shadow>
             <UI.Avatar source={{uri: me.picture}} size={80}/>
             </UI.Shadow>
-            <UI.Screen.Column style={{justifyContent: 'center'}}>
+            <UI.Screen.Column style={{justifyContent: 'center', padding: 15}}>
               <UI.Component.Text style={{fontWeight: '900', fontSize: 32, color: 'white'}}>{me.firstname} {me.lastname}</UI.Component.Text>
               <UI.Screen.Header.Subtitle>
               {

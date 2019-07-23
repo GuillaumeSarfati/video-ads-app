@@ -7,6 +7,7 @@ export const INITIAL_STATE = {
 
 export default handleActions({
 
+  [models.Favorite.find.PENDING]: (state, action) => ({ isLoading: state.isLoading + 1 }),
   [models.Pack.buy.PENDING]: (state, action) => ({ isLoading: state.isLoading + 1 }),
   [models.CreditCard.create.PENDING]: (state, action) => ({ isLoading: state.isLoading + 1 }),
   [models.Member.patchAttributesById.PENDING]: (state, action) => ({ isLoading: state.isLoading + 1 }),
@@ -16,6 +17,7 @@ export default handleActions({
   [models.Comment.create.PENDING]: (state, action) => ({ isLoading: state.isLoading + 1 }),
   [models.Rating.create.PENDING]: (state, action) => ({ isLoading: state.isLoading + 1 }),
 
+  [models.Favorite.find.FULFILLED]: (state, action) => ({ isLoading: state.isLoading - 1 }),
   [models.Pack.buy.FULFILLED]: (state, action) => ({ isLoading: state.isLoading - 1 }),
   [models.CreditCard.create.FULFILLED]: (state, action) => ({ isLoading: state.isLoading - 1 }),
   [models.Member.patchAttributesById.FULFILLED]: (state, action) => ({ isLoading: state.isLoading - 1 }),
@@ -25,6 +27,7 @@ export default handleActions({
   [models.Comment.create.FULFILLED]: (state, action) => ({ isLoading: state.isLoading - 1 }),
   [models.Rating.create.FULFILLED]: (state, action) => ({ isLoading: state.isLoading - 1 }),
 
+  [models.Favorite.find.REJECTED]: (state, action) => ({ isLoading: state.isLoading - 1 }),
   [models.Pack.buy.REJECTED]: (state, action) => ({ isLoading: state.isLoading - 1 }),
   [models.CreditCard.create.REJECTED]: (state, action) => ({ isLoading: state.isLoading - 1 }),
   [models.Member.patchAttributesById.REJECTED]: (state, action) => ({ isLoading: state.isLoading - 1 }),

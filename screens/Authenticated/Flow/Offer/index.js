@@ -21,7 +21,7 @@ class OfferScreen extends React.Component {
   }
 
   componentWillMount = async () => {
-    const { Offer, Comment } = this.props;
+    const { Offer, Comment, me } = this.props;
     const { offer } = this.props.navigation.state.params;
 
     Offer.setOne(offer)
@@ -32,6 +32,14 @@ class OfferScreen extends React.Component {
         include: [
           'category',
           'subCategory',
+          {
+            relation: 'favorite',
+            scope: {
+              where: {
+                memberId: me.id
+              }
+            }
+          },
           {
             relation: 'member',
             scope: {
