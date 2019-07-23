@@ -47,12 +47,13 @@ import Search from 'screens/Authenticated/Flow/Search';
 
 import TabBar from 'components/TabBar';
 
-export const FlowConsumer = createFluidNavigator({
+//Fluid
+export const FlowConsumer = createStackNavigator({
   Categories,
   Offers,
   Offer,
   Comment,
-}, { headerMode: 'none', navigationOptions: {gesturesEnabled: true, tabBarVisible: false } })
+}, { mode: 'modal', headerMode: 'none', navigationOptions: {gesturesEnabled: true, tabBarVisible: false } })
 
 
 // export const FlowConsumer = createStackNavigator({
@@ -71,10 +72,11 @@ FlowConsumer.navigationOptions = ({ navigation }) => {
   return navigationOptions;
 };
 
-export const FlowSupplier = createFluidNavigator({
+//Fluid
+export const FlowSupplier = createStackNavigator({
   Pro,
   Offer,
-}, { headerMode: 'none', navigationOptions: {gesturesEnabled: true } })
+}, { mode: 'modal', headerMode: 'none', navigationOptions: {gesturesEnabled: true } })
 
 export const ProfileNavigator = createStackNavigator({
   Profile,

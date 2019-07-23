@@ -27,7 +27,11 @@ export default ({ models, onPress }) => (
             }
 
             <UI.Component.Offer.Title>{model.price}€ de l'heure</UI.Component.Offer.Title>
-            <UI.Component.Offer.Subtitle>{model.category.title} - {model.subCategory.title}</UI.Component.Offer.Subtitle>
+            <UI.Component.Offer.Subtitle>{model.category.title} {
+              model.subCategory
+                ? '-' + model.subCategory.title
+                : ''
+            }</UI.Component.Offer.Subtitle>
 
           </UI.Component.Column>
         </UI.Component.TouchableOpacity>

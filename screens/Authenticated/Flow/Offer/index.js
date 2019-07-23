@@ -24,14 +24,26 @@ class OfferScreen extends React.Component {
 
     Offer.setOne(offer)
 
-    if (!this.props.offer || this.props.offer.id !== offer.id) {
-      await Offer.find({
-        filter: {
-          where: { id: offer.id },
-          include: ['category', 'member'],
-        }
-      });
-    }
+    await Offer.findOne({
+      filter: {
+        where: { id: offer.id },
+        include: [
+          'category',
+          'subCategory',
+          {
+            relation: 'member',
+            scope: {
+              include: {
+                relation: 'offers',
+                scope: {
+                  include: ['category', 'subCategory']
+                },
+              }
+            }
+          }
+        ],
+      }
+    });
 
     Comment.find({
       filter:{
@@ -43,34 +55,19 @@ class OfferScreen extends React.Component {
 
   }
 
-  componentDidMount = async () => {
-    const { Offer, Comment } = this.props;
-    const { offer } = this.props.navigation.state.params;
-
-    const offers = (await Offer.find({
-      filter: {
-        where: { memberId: offer.memberId },
-        include: ['member', 'category', 'subCategory'],
-      }
-    })).value.data
-
-    this.setState({ offers })
-
-  }
   render() {
     const { offer, comments } = this.props;
-    const { offers } = this.state
     const { category, member } = offer;
     const { onNavigate } = this
-
+    console.log('offer : ', offer);
+    console.log('category : ', category);
+    console.log('member : ', member);
     return (
       <UI.Screen scroll>
         <UI.Screen.Header>
           <UI.Screen.Header.Bar>
             <UI.Screen.Header.Bar.Back onPress={onNavigate()}>
               {category.title}
-              {/*<UI.Category>{category.title}</UI.Category>*/}
-              {/*<UI.Screen.Header.Title dark>{category.title}</UI.Screen.Header.Title>*/}
             </UI.Screen.Header.Bar.Back>
 
           </UI.Screen.Header.Bar>
@@ -116,13 +113,20 @@ class OfferScreen extends React.Component {
             ))
           }
 
-          <UI.Screen.Column>
+          <UI.Screen.Column style={{paddingLeft: -15, paddingRight: -15}} debug>
             <UI.Screen.Liner dark/>
             <UI.Screen.Label dark>POP ANNONCES</UI.Screen.Label>
-            {/*<UI.Component.Offers
-              model={offers || []}
-              onPress={offer => onNavigate('Offer', { offer })}
-            />*/}
+
+            {
+              member.offers
+                ? (
+                  <UI.Component.Offers
+                    models={member.offers}
+                    onPress={offer => onNavigate('Offer', { offer })}
+                  />
+                )
+                : null
+            }
           </UI.Screen.Column>
 
         </UI.Screen.Content>

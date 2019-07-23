@@ -40,6 +40,7 @@ class OffersScreen extends React.Component {
   }
 
   onPressDetails = offer => e => {
+    console.log('OFFER : ', offer);
     this.props.Offer.setOne(offer)
     this.props.navigation.navigate('Offer', { offer })
   }
@@ -128,12 +129,13 @@ class OffersScreen extends React.Component {
       </UI.Screen.Column>
     )
   }
+  title = this.props.navigation.state.params.title;
 
   renderList() {
     const { current } = this.state;
     const { offers } = this.props;
-    const { title } = this.props.navigation.state.params;
-    const { renderFace, renderEnd, onSwipe, onLoad, onNavigate, onPressNext, onPressOffer, onPressDetails, onPressOrder, onToggleMode } = this;
+
+    const { title, renderFace, renderEnd, onSwipe, onLoad, onNavigate, onPressNext, onPressOffer, onPressDetails, onPressOrder, onToggleMode } = this;
 
     return (
       <UI.Screen style={{flex: 1}} scroll>

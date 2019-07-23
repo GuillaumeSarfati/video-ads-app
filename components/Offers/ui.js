@@ -5,4 +5,5 @@ export Component from 'components/Component';
 export const  Offers = styled.View`
                 flex-wrap: wrap;
                 flex-direction: row;
+                border: 3px solid green;
               `;
