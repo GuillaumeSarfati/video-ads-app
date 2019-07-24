@@ -37,7 +37,7 @@ class SearchScreen extends React.Component {
 
 
   onSearch = async () => {
-    const { Offer, navigation } = this.props;
+    const { Offer, navigation, me } = this.props;
     const { category, subCategory } = this.state;
 
     const offers = await Offer.find({

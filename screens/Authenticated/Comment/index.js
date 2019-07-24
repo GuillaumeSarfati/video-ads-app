@@ -26,6 +26,7 @@ class CommentScreen extends React.Component {
       Modal.open(<UI.Modals.Success
         title="Merci"
         description="Votre contribution est importante."
+        onPress={() => this.props.navigation.pop()}
       />)
 
     } catch (e) {

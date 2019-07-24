@@ -55,12 +55,6 @@ export const FlowConsumer = createStackNavigator({
   Comment,
 }, { mode: 'modal', headerMode: 'none', navigationOptions: {gesturesEnabled: true, tabBarVisible: false } })
 
-
-// export const FlowConsumer = createStackNavigator({
-//   Categories,
-//   OffersNavigator,
-// }, { headerMode: 'none', navigationOptions: {gesturesEnabled: true } })
-
 FlowConsumer.navigationOptions = ({ navigation }) => {
   let { routeName } = navigation.state.routes[navigation.state.index];
   let navigationOptions =  { gesturesEnabled: true }
@@ -103,6 +97,7 @@ export const Authenticated = createBottomTabNavigator({
   FlowSupplier,
   ShopNavigator,
   ProfileNavigator,
+
 }, { mode: 'modal', headerMode: 'none', tabBarComponent: TabBar, lazy: false, navigationOptions: { gesturesEnabled: false }})
 
 export const Unauthenticated = createStackNavigator({
@@ -130,7 +125,6 @@ export const App = createStackNavigator({
   External,
   Developer,
   Feedback,
-
 }, { mode: 'modal', headerMode: 'none' })
 
 export const SplashNavigator = createFluidNavigator({

@@ -94,9 +94,7 @@ class OfferScreen extends React.Component {
     const { offer, comments } = this.props;
     const { category, member } = offer;
     const { onPressOrder, onNavigate } = this
-    console.log('offer : ', offer);
-    console.log('category : ', category);
-    console.log('member : ', member);
+    
     return (
       <UI.Screen scroll>
         <UI.Screen.Header>
@@ -106,14 +104,12 @@ class OfferScreen extends React.Component {
             </UI.Screen.Header.Bar.Back>
 
           </UI.Screen.Header.Bar>
-          <UI.Transition shared={`offer${offer.id}`}>
           <UI.Offer
             model={offer}
             category={category}
             member={member}
             dark
           />
-          </UI.Transition>
         </UI.Screen.Header>
 
         <UI.Screen.Content style={{padding: 30}}>
@@ -154,9 +150,7 @@ class OfferScreen extends React.Component {
           }
 
           <UI.Screen.Footer>
-            <UI.Transition anchor={`offer${offer.id}`}>
-              <UI.Button onPress={onPressOrder(offer)}>Contacter</UI.Button>
-            </UI.Transition>
+            <UI.Button onPress={onPressOrder(offer)}>Contacter</UI.Button>
           </UI.Screen.Footer>
 
           <UI.Screen.Column style={{marginLeft: -15, marginRight: -30}}>
