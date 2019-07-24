@@ -7,7 +7,7 @@ export default ({onPress}) => (
   <UI.Video>
     <UI.ButtonRecord onPress={onPress}/>
     <UI.Description>
-      <UI.Description.Text>Enregistre ta premiere{"\n"}Pop Annonce</UI.Description.Text>
+      <UI.Description.Text>Enregistre une nouvelle{"\n"}Pop Annonce</UI.Description.Text>
     </UI.Description>
   </UI.Video>
 )

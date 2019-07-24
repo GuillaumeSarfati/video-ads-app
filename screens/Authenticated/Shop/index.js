@@ -6,11 +6,12 @@ import connect from 'utils/connect';
 import * as UI from './ui'
 
 const operations = {
-  '+': (x, y) => x + y,
-  '-': (x, y) => x - y,
-  '=': (x, y) => y,
-  '*': (x, y) => x * y,
+  '+': (x, y) => x + parseInt(y),
+  '-': (x, y) => x - parseInt(y),
+  '=': (x, y) => parseInt(y),
+  '*': (x, y) => x * parseInt(y),
 }
+
 class ShopScreen extends React.Component {
   componentWillMount = async () => {
     const { Article } = this.props;

@@ -33,6 +33,7 @@ import rating from './rating';
 import favorites from './favorites';
 import packs from './packs';
 
+import options from './options';
 import articles from './articles';
 import article from './article';
 
@@ -70,6 +71,7 @@ export default combineReducers({
   favorites,
   packs,
 
+  options,
   articles,
   article,
 });

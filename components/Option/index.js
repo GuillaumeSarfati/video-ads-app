@@ -12,9 +12,16 @@ export default ({ model, index, onChange, value }) => (
           <UI.Article.Content.Description>
             { model.description }
           </UI.Article.Content.Description>
+          <UI.Article.Content.Description>
+            { model.coins } { model.currency }
+          </UI.Article.Content.Description>
         </UI.Article.Content>
         <UI.Article.Footer>
-          <UI.Component.Switch onValueChange={onChange(model)} value={value} />
+          <UI.Component.Switch
+            onValueChange={onChange(model)}
+            disabled={model.alreadyPaid}
+            value={model.alreadyPaid || value}
+          />
         </UI.Article.Footer>
       </UI.Article>
 )

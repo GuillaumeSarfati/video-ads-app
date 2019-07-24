@@ -118,7 +118,7 @@ class CreateScreen extends React.Component {
 
         <UI.Screen.Content>
           <UI.Screen.Column style={{paddingHorizontal: 30}}>
-            <UI.Component.Video large/>
+            <UI.Component.Video model={this.state} large/>
           </UI.Screen.Column>
           <UI.ScrollView contentContainerStyle={{paddingHorizontal: 30, paddingTop: 30, paddingBottom: 30}} horizontal showsHorizontalScrollIndicator={false}>
             <For of={categories} as={category => (
@@ -148,6 +148,7 @@ class CreateScreen extends React.Component {
               value={this.state.description}
               onChangeText={onChange('description')}
               placeholder="Description"
+              blurOnSubmit
               multiline
             />
             <UI.Screen.Liner dark/>

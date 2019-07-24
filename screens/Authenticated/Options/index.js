@@ -4,28 +4,33 @@ import connect from 'utils/connect';
 
 import * as UI from './ui'
 
+const operations = {
+  '+': (x, y) => x + parseInt(y),
+  '-': (x, y) => x - parseInt(y),
+  '=': (x, y) => parseInt(y),
+  '*': (x, y) => x * parseInt(y),
+}
+
 class OptionsScreen extends React.Component {
+
   state = {
-    options: [
-      {
-        title: 'Option 1',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco',
-        selected: false,
-      },
-      {
-        title: 'Option 2',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco',
-        selected: false,
-      },
-      {
-        title: 'Option 3',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco',
-        selected: false,
-      }
-    ]
+    options: []
   }
+
   componentWillMount = async () => {
-    const { Model } = this.props;
+    const { Offer, Option, offer } = this.props;
+
+    // TO COMMENT
+    // const offer = (await Offer.findOne({filter: {include: 'options'}})).value.data
+    const options = (await Option.find()).value.data
+    console.log('componentWillMount');
+    console.log('offer : ', offer);
+    console.log('options : ', options);
+    this.setState({ options: options.map(option => offer.options.find(alreadyPaidOption => alreadyPaidOption.id === option.id )
+        ? { ...option, alreadyPaid: true }
+        : option
+      )
+    })
   }
 
   onNavigate = screen => e => {
@@ -34,18 +39,60 @@ class OptionsScreen extends React.Component {
     navigation.navigate(screen)
   }
 
-  onContinue = () => e => {
-    const { navigation } = this.props;
+  onContinue = () => async e => {
+
+    const { offer, me, navigation } = this.props;
+    const { Offer, Option, OfferOption, Member, Modal } = this.props;
     const { options } = this.state;
-    let screen = 'FlowSupplier'
+
+    let coins = 0
 
     options.forEach(option => {
       if (option.selected) {
-        screen = 'Wallet'
+
+        coins += option.coins
       }
     })
 
-    navigation.navigate(screen)
+    if (me.coins >= coins) {
+      console.log('in off coins', me.coins, coins);
+
+      if (coins >= 0) {
+        Member.patchAttributesById(me.id, { coins: me.coins - coins})
+      }
+
+      for (const option of options) {
+        if (option.selected) {
+
+          await OfferOption.create({
+            offerId: offer.id,
+            optionId: option.id,
+            memberId: me.id
+          })
+
+          await Offer.patchAttributesById(offer.id, {
+            [option.property]: operations[option.operation](
+              offer[option.property],
+              option.value,
+            )
+          })
+        }
+      }
+
+      Modal.open(<UI.Modals.Success
+        title="Félicitation"
+        description="Votre annonce est attente de validation"
+        onPress={navigation.navigate('FlowSupplier')}
+      />)
+
+    }
+    else {
+      Modal.open(<UI.Modals.Error
+        title="Désolé..."
+        description="Vous ne disposez pas assez d'Eyes Cubes, pas de panique vous pouvez en trouver ou rechargez !"
+        onPress={() => navigation.navigate('Wallet')}
+      />)
+    }
   }
 
   onChange = model => selected => {
@@ -57,6 +104,7 @@ class OptionsScreen extends React.Component {
     this.setState({ options })
   }
   render() {
+    const { offer } = this.props;
     const { options } = this.state;
     const { onNavigate, onChange, onContinue } = this;
 
@@ -96,6 +144,16 @@ class OptionsScreen extends React.Component {
 }
 
 export default connect(
-  state => ({}),
-  (dispatch, props, models) => ({}),
+  state => ({
+    me: state.me,
+    offer: state.offer,
+    options: state.options,
+  }),
+  (dispatch, props, models) => ({
+    Modal: models.Modal,
+    Member: models.Member,
+    Offer: models.Offer,
+    Option: models.Option,
+    OfferOption: models.OfferOption,
+  }),
 )(OptionsScreen);
