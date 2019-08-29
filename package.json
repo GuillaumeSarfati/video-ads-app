@@ -3,7 +3,7 @@
   "scripts": {
     "emulator:ios": "open -a Simulator",
     "emulator:android": "emulator -avd Pixel_XL_API_28_2 ",
-    "start": "REACT_DEBUGGER=\"unset ELECTRON_RUN_AS_NODE && open -g 'rndebugger://set-debugger-loc?port=19001' ||\" expo start",
+    "start": "REACT_DEBUGGER=\"unset ELECTRON_RUN_AS_NODE && open -g 'rndebugger://set-debugger-loc?port=19001' ||\" expo start -c",
     "web": "expo start --web",
     "eject": "expo eject",
     "postinstall": "node ./node_modules/react-native-text-gradient/patch-rn.js"
@@ -13,7 +13,7 @@
     "@expo/vector-icons": "^10.0.0",
     "@ptomasroos/react-native-multi-slider": "^1.0.0",
     "axios": "^0.19.0",
-    "expo": "^34.0.1",
+    "expo": "^34.0.4",
     "expo-asset": "~6.0.0",
     "expo-av": "~6.0.0",
     "expo-camera": "~6.0.0",
@@ -41,6 +41,7 @@
     "react-native-svg": "~9.5.1",
     "react-native-text-gradient": "0.1.6",
     "react-native-unimodules": "0.5.2",
+    "react-native-vector-icons": "^6.6.0",
     "react-native-web": "^0.11.4",
     "react-navigation": "^3.11.0",
     "react-navigation-fluid-transitions": "^0.3.2",

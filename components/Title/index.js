@@ -35,6 +35,13 @@ const Shadow = styled(TextGradient)`
 export default props => (
   <Container>
     <Text {...props} />
-    <Shadow {...props} numberOfLines={1}/>
+    {
+      /*
+       * If Dan want to put back the Shadow just uncomment ;)
+       *
+      <Shadow {...props} numberOfLines={1}/>
+
+      */
+    }
   </Container>
 )
