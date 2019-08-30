@@ -30,7 +30,7 @@ android {
   }
 
   defaultConfig {
-    applicationId 'eu.popeye'
+    applicationId 'fr.pop_eye'
     minSdkVersion safeExtGet("minSdkVersion", 21)
     targetSdkVersion safeExtGet("targetSdkVersion", 28)
     versionCode 1

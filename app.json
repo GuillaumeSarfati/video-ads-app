@@ -25,7 +25,7 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "eu.popeye",
+      "bundleIdentifier": "fr.pop_eye",
       "publishBundlePath": "ios/pop-eye/Supporting/shell-app.bundle",
       "publishManifestPath": "ios/pop-eye/Supporting/shell-app-manifest.json"
     },
@@ -36,7 +36,7 @@
     },
     "scheme": "exp4282ddb4261f49dfa7973911485f5eab",
     "android": {
-      "package": "eu.popeye",
+      "package": "fr.pop_eye",
       "publishBundlePath": "android/app/src/main/assets/shell-app.bundle",
       "publishManifestPath": "android/app/src/main/assets/shell-app-manifest.json"
     }

@@ -428,7 +428,7 @@
 				DEVELOPMENT_TEAM = UQK5PG5GRP;
 				INFOPLIST_FILE = "$(SRCROOT)/pop-eye/Supporting/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = eu.popeye;
+				PRODUCT_BUNDLE_IDENTIFIER = fr.pop_eye;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -442,7 +442,7 @@
 				DEVELOPMENT_TEAM = UQK5PG5GRP;
 				INFOPLIST_FILE = "$(SRCROOT)/pop-eye/Supporting/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = eu.popeye;
+				PRODUCT_BUNDLE_IDENTIFIER = fr.pop_eye;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

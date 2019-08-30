@@ -26,10 +26,11 @@ public class AppConstants {
     
         
         
+        
         // ADD EMBEDDED RESPONSES HERE
         // START EMBEDDED RESPONSES
         embeddedResponses.add(new Constants.EmbeddedResponse("https://exp.host/@gsarfatipopeye/popeye-development", "assets://shell-app-manifest.json", "application/json"));
-        embeddedResponses.add(new Constants.EmbeddedResponse("https://d1wp6m56sqw74a.cloudfront.net/%40gsarfatipopeye%2Fpopeye-development%2F1.0.0%2Fef1f7baa59d1b19c94c69d94b101de1f-34.0.0-android.js", "assets://shell-app.bundle", "application/javascript"));
+        embeddedResponses.add(new Constants.EmbeddedResponse("https://d1wp6m56sqw74a.cloudfront.net/%40gsarfatipopeye%2Fpopeye-development%2F1.0.0%2F04337f510ea72bdada9fcdaa92125ec9-34.0.0-android.js", "assets://shell-app.bundle", "application/javascript"));
         // END EMBEDDED RESPONSES
     EMBEDDED_RESPONSES = embeddedResponses;
   }

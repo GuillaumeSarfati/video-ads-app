@@ -5,11 +5,11 @@
   xmlns:tools="http://schemas.android.com/tools">
 
   <permission
-    android:name="eu.popeye.permission.C2D_MESSAGE"
+    android:name="fr.pop_eye.permission.C2D_MESSAGE"
     android:protectionLevel="signature"/>
 
   <!-- These are required permissions to make the app run -->
-  <uses-permission android:name="eu.popeye.permission.C2D_MESSAGE" />
+  <uses-permission android:name="fr.pop_eye.permission.C2D_MESSAGE" />
   <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
   <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
   <uses-permission android:name="android.permission.INTERNET" />
@@ -149,7 +149,7 @@
         <action android:name="android.intent.action.VIEW"/>
         <category android:name="android.intent.category.DEFAULT"/>
         <category android:name="android.intent.category.BROWSABLE"/>
-        <data android:scheme="eu.popeye" android:path="oauthredirect"/>
+        <data android:scheme="fr.pop_eye" android:path="oauthredirect"/>
       </intent-filter>
     </activity>
 
@@ -296,7 +296,7 @@
         <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
         <action android:name="com.google.android.c2dm.intent.REGISTRATION"/>
 
-        <category android:name="eu.popeye"/>
+        <category android:name="fr.pop_eye"/>
       </intent-filter>
     </receiver>
 
