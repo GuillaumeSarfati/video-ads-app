@@ -1,5 +1,9 @@
 import { combineReducers } from 'redux';
 
+import app from './app';
+import modal from './modal';
+import loading from './loading';
+
 import me from './me';
 import accessToken from './accessToken';
 
@@ -7,6 +11,9 @@ import schema from './schema';
 
 import member from './member';
 import members from './members';
+
+import creditCard from './creditCard';
+import creditCards from './creditCards';
 
 import administrator from './administrator';
 import administrators from './administrators';
@@ -23,10 +30,18 @@ import comment from './comment';
 import ratings from './ratings';
 import rating from './rating';
 
+import favorites from './favorites';
+import packs from './packs';
+
+import options from './options';
 import articles from './articles';
 import article from './article';
 
 export default combineReducers({
+  modal,
+  app,
+  loading,
+
   me,
   accessToken,
 
@@ -34,6 +49,9 @@ export default combineReducers({
 
   members,
   member,
+
+  creditCard,
+  creditCards,
 
   administrators,
   administrator,
@@ -50,6 +68,10 @@ export default combineReducers({
   ratings,
   rating,
 
+  favorites,
+  packs,
+
+  options,
   articles,
   article,
 });

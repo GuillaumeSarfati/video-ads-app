@@ -1,12 +1,14 @@
 import styled from 'styled-components/native';
 
+export { Camera, Permissions } from 'expo';
+
 export Screen from 'components/Screen';
 export Component from 'components/Component';
 export Text from 'components/Text';
 export Button from 'components/Button';
-
+export ButtonRecord from 'components/ButtonRecord'
 export Gradient from 'components/Gradient';
-export { Camera, Permissions } from 'expo';
+export Modals from 'modals';
 
 export const Record = styled.Image`
                         width: 80px;

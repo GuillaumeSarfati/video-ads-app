@@ -1,13 +1,33 @@
-import { Dimensions } from 'react-native'
-import styled from 'styled-components/native'
-import mixins from '../../constants/Mixins'
+import styled from 'styled-components/native';
 
-export const Component = styled.View`
-  width: ${Dimensions.get('window').width - 60}px;
-  height: ${Dimensions.get('window').width - 60}px;
-  background: black;
-  ${mixins.shadow()}
-  ${mixins.radius()}
-  margin-bottom: 15px;
-  overflow: hidden;
-`
+import { Dimensions } from 'react-native';
+
+export Modals from 'modals';
+export Component from 'components/Component';
+
+export const dimensions = {
+  default: {
+    width: (Dimensions.get('window').width - 45) / 2,
+    height: (Dimensions.get('window').width - 45) / 2 * (Dimensions.get('window').height / Dimensions.get('window').width / 1.6),
+  },
+  large: {
+    width: (Dimensions.get('window').width - 45),
+    height: (Dimensions.get('window').width - 45) * (Dimensions.get('window').height / Dimensions.get('window').width / 1.6),
+  },
+  fullscreen: {
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
+  },
+}
+
+export const  Video = styled.View`
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                box-shadow: 0px 0px 30px #D6E2F5;
+                margin-right: 15px;
+                margin-bottom: 15px;
+                background: black;
+                border-radius: ${props => props.fullscreen ? 0 : 16}px;
+                overflow: hidden;
+              `;

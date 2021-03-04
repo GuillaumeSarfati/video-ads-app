@@ -8,8 +8,12 @@ class SplashScreen extends React.Component {
   componentDidMount() {
     setTimeout(() => {
       const { navigation, me } = this.props
+
+      console.log('me : ', me);
       navigation.navigate(me
-        ? 'Flow'
+        ? me.mode === 'consumer'
+        ? 'FlowConsumer'
+        : 'FlowSupplier'
         : 'Home'
       )
     }, 300)
@@ -26,19 +30,19 @@ class SplashScreen extends React.Component {
           }}
           resizeMode="cover"
         />
-        <View style={{
+        {/*<View style={{
           position: 'absolute',
           width: '100%',
           height: '100%',
           justifyContent: 'center',
           alignItems: 'center',
           // TODO Remove tricks when Ewa send good assets
-          paddingTop: 80,
+          paddingTop: 180,
           paddingRight: 5
         }}>
           <Logo transition={me ? false : true}/>
         </View>
-
+*/}
       </View>
     )
 

@@ -1,41 +1,64 @@
 import React from 'react';
-
+import { Dimensions } from 'react-native';
 import connect from 'utils/connect';
 
 import * as UI from './ui'
 
 class ChooseScreen extends React.Component {
-  componentWillMount = async () => {
-    const { Model } = this.props;
+  state = {
+    mode: 'consumer',
   }
 
   onChoose = mode => async e => {
-    const { Member, navigation, me } = this.props
-
-    await Member.update({ mode })
-
-    navigation.navigate(mode === 'consumer'
-      // TODO Authenticated Consumer
-      ? 'Authenticated'
-      // TODO Authenticated Supplier
-      : 'Authenticated'
-    )
+    this.setState({ mode })
   }
 
+  onContinue = async e => {
+    try {
+      const { Member, navigation, me } = this.props;
+      const { mode } = this.state;
+
+      console.log('MODE : ', mode);
+      await Member.patchAttributesById(me.id, { mode })
+
+      navigation.navigate(mode === 'consumer'
+      ? 'FlowConsumer'
+      : 'FlowSupplier'
+    )
+
+  } catch (e) {
+    console.log('Error : ', e)
+  }
+  }
   render() {
     const { me } = this.props;
-    const { onChoose } = this;
+    const { onChoose, onContinue } = this;
 
     return (
       <UI.Screen>
         <UI.Screen.Content style={{ justifyContent: 'center', alignItems: 'center' }}>
-          <UI.Image source={require('assets/images/illustration.png')}/>
-          <UI.Title dark>Bienvenue {me.firstname} </UI.Title>
-          <UI.Description center>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</UI.Description>
+          <UI.Title dark>Bienvenue {me.firstname}</UI.Title>
+          <UI.Description center>Ne vous inquiétez pas vous pouvez a tout moment switcher de profil pour devenir prestataire ou bien rechercher des services</UI.Description>
+          <UI.Screen.Row style={{justifyContent: 'flex-start', marginTop: 30}}>
+          <UI.Choice
+            onPress={onChoose('consumer')}
+            style={{marginRight: 15}}
+            icon={require('assets/images/consumer.png')}
+            title="Je recherche des services"
+            subtitle="On vous facilite la tâche !"
+            selected={this.state.mode === 'consumer'}
+          />
+          <UI.Choice
+            onPress={onChoose('supplier')}
+            icon={require('assets/images/supplier.png')}
+            title="Je propose des services"
+            subtitle="On fait de vous une star."
+            selected={this.state.mode === 'supplier'}
+          />
+          </UI.Screen.Row>
         </UI.Screen.Content>
         <UI.Screen.Footer>
-          <UI.Button onPress={onChoose('consumer')}>Consumer</UI.Button>
-          <UI.Button onPress={onChoose('supplier')}>Supplier</UI.Button>
+          <UI.Button onPress={onContinue} large>Commencer</UI.Button>
         </UI.Screen.Footer>
       </UI.Screen>
     )

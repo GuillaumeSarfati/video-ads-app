@@ -24,11 +24,14 @@ class LoginScreen extends React.Component {
     const { Member, navigation } = this.props;
     const { email, password } = this.state;
 
-    await Member.login({
+    const me = (await Member.login({
       email,
       password,
-    })
-    navigation.navigate('Authenticated')
+    })).value.data.me
+
+    me.mode === 'supplier'
+    ? navigation.navigate('FlowSupplier')
+    : navigation.navigate('FlowConsumer')
   }
 
   onNavigate = screen => e => {
@@ -49,7 +52,7 @@ class LoginScreen extends React.Component {
         <UI.Screen.Header>
           <UI.Screen.Header.Bar>
             <UI.Screen.Header.Bar.Close onPress={onNavigate()}>
-              Home
+              Accueil
             </UI.Screen.Header.Bar.Close>
           </UI.Screen.Header.Bar>
           <UI.Screen.Header.Title dark>Connectez-vous</UI.Screen.Header.Title>

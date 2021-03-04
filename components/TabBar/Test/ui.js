@@ -1,6 +1,7 @@
 import styled from 'styled-components/native';
 import Gradient from 'components/Gradient';
 
+export Icon from '../Icon'
 export { LayoutAnimation, View } from 'react-native';
 
 export const  Component = styled.View`
@@ -23,12 +24,11 @@ export const  ButtonFocus = styled(Gradient)`
               `;
 
               ButtonFocus.Text = styled.Text`
-                color: #777;
                 margin-left: 8px;
+
               `;
 
 export const  Button = styled.TouchableOpacity`
-
               `;
 
               Button.Image = styled.View`

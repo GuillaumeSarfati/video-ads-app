@@ -2,6 +2,10 @@ import React from 'react';
 import { createAppContainer, createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 import { createFluidNavigator } from 'react-navigation-fluid-transitions';
 
+import Developer from 'screens/Developer';
+import Feedback from 'screens/Feedback';
+import External from 'screens/External';
+import Playground from 'screens/Playground';
 import SplashScreen from 'screens/SplashScreen';
 import Home from 'screens/Home';
 
@@ -20,84 +24,112 @@ import Check from 'screens/Unauthenticated/Login/Password/Check';
 import Change from 'screens/Unauthenticated/Login/Password/Change';
 
 // Authenticated
-import Record from 'screens/Authenticated/Record';
+import RecordVideo from 'screens/Authenticated/Record/Video';
+import RecordPicture from 'screens/Authenticated/Record/Picture';
 import Preview from 'screens/Authenticated/Preview';
+import Create from 'screens/Authenticated/Create';
+import Options from 'screens/Authenticated/Options';
 import Shop from 'screens/Authenticated/Shop';
+import Wallet from 'screens/Authenticated/Wallet';
+import CreditCard from 'screens/Authenticated/Shop/CreditCard';
 
 import Profile from 'screens/Authenticated/Profile';
 import Edit from 'screens/Authenticated/Profile/Edit';
 
 // Authenticated Flow
 import Categories from 'screens/Authenticated/Flow/Categories';
-import Category from 'screens/Authenticated/Flow/Category';
+import Pro from 'screens/Authenticated/Flow/Pro';
+import Favorites from 'screens/Authenticated/Flow/Favorites';
+import Offers from 'screens/Authenticated/Flow/Offers';
 import Offer from 'screens/Authenticated/Flow/Offer';
+import Comment from 'screens/Authenticated/Comment';
 import Search from 'screens/Authenticated/Flow/Search';
 
 import TabBar from 'components/TabBar';
 
-export const CategoryNavigator = createFluidNavigator({
-  Category: { screen : Category },
-  Offer: { screen : Offer },
-}, { headerMode: 'none', navigationOptions: {gesturesEnabled: true, tabBarVisible: false } })
+//Fluid
+export const FlowConsumer = createStackNavigator({
+  Categories,
+  Offers,
+  Offer,
+  Comment,
+}, { mode: 'modal', headerMode: 'none', navigationOptions: {gesturesEnabled: true, tabBarVisible: false } })
 
-
-export const FlowNavigator = createFluidNavigator({
-  Categories: { screen : Categories },
-  Category: { screen : CategoryNavigator },
-}, { headerMode: 'none', navigationOptions: {gesturesEnabled: true } })
-
-FlowNavigator.navigationOptions = ({ navigation }) => {
+FlowConsumer.navigationOptions = ({ navigation }) => {
   let { routeName } = navigation.state.routes[navigation.state.index];
   let navigationOptions =  { gesturesEnabled: true }
 
-  if (routeName === 'Category' || routeName === 'Offer') {
+  if (routeName === 'Comment' || routeName === 'Offers' || routeName === 'Offer') {
     navigationOptions.tabBarVisible = false;
   }
 
   return navigationOptions;
 };
 
+//Fluid
+export const FlowSupplier = createStackNavigator({
+  Pro,
+  Offer,
+}, { mode: 'modal', headerMode: 'none', navigationOptions: {gesturesEnabled: true } })
+
 export const ProfileNavigator = createStackNavigator({
-  Profile: { screen : Profile },
-  Edit: { screen : Edit },
+  Profile,
+  Edit,
 }, { mode: 'modal', headerMode: 'none', navigationOptions: { gesturesEnabled: true }})
 
 
 export const LoginNavigator = createStackNavigator({
-  Login: { screen : Login },
-  Reset: { screen : Reset },
-  Check: { screen : Check },
-  Change: { screen : Change },
+  Login,
+  Reset,
+  Check,
+  Change,
 }, { headerMode: 'none', navigationOptions: { gesturesEnabled: true }})
 
-export const AuthenticatedNavigator = createBottomTabNavigator({
-  Flow: { screen : FlowNavigator },
-  Shop: { screen : Shop },
-  Profile: { screen : ProfileNavigator },
+
+export const ShopNavigator = createStackNavigator({
+  Shop,
+  // Wallet,
+  // CreditCard,
+}, { headerMode: 'none', navigationOptions: { gesturesEnabled: true }})
+
+export const Authenticated = createBottomTabNavigator({
+  FlowConsumer,
+  FlowSupplier,
+  ShopNavigator,
+  ProfileNavigator,
+
 }, { mode: 'modal', headerMode: 'none', tabBarComponent: TabBar, lazy: false, navigationOptions: { gesturesEnabled: false }})
 
-export const UnauthenticatedNavigator = createStackNavigator({
-  Login: { screen : LoginNavigator },
-  Signup: { screen : Signup },
-  PhoneNumber: { screen : PhoneNumber },
-  Verification: { screen : Verification },
-  Welcome: { screen : Welcome },
-  Choose: { screen : Choose },
+export const Unauthenticated = createStackNavigator({
+  LoginNavigator,
+  Signup,
+  PhoneNumber,
+  Verification,
+  Welcome,
+  Choose,
 }, { headerMode: 'none' })
 
 export const App = createStackNavigator({
-  Home: { screen : Home },
-  Authenticated: { screen: AuthenticatedNavigator },
-  Unauthenticated: { screen : UnauthenticatedNavigator },
-  Record: { screen : Record },
-  Preview: { screen : Preview },
-  Search: { screen : Search },
+  Home,
+  Authenticated,
+  Unauthenticated,
+  RecordVideo,
+  RecordPicture,
+  Preview,
+  Create,
+  Favorites,
+  Options,
+  Wallet,
+  CreditCard,
+  Search,
+  External,
+  Developer,
+  Feedback,
 }, { mode: 'modal', headerMode: 'none' })
 
 export const SplashNavigator = createFluidNavigator({
-  // Welcome,
-  SplashScreen: { screen : SplashScreen },
-  App: { screen : App },
+  SplashScreen,
+  App,
 }, { headerMode: 'none', navigationOptions: {gesturesEnabled: false } })
 
 export default createAppContainer(SplashNavigator)

@@ -16,7 +16,14 @@ class HomeScreen extends React.Component {
     let permission;
 
     if (!accessToken) {
-      permission = await LoginManager.logInWithReadPermissions(["public_profile", "email", "user_gender", "user_birthday"])
+
+      permission = await LoginManager.logInWithReadPermissions([
+        "public_profile",
+        "user_birthday",
+        "user_gender",
+        "email",
+      ])
+
       accessToken = await AccessToken.getCurrentAccessToken()
     }
 

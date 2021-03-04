@@ -14,8 +14,8 @@ export default ({ model, index, onPress }) => (
           </UI.Article.Content.Description>
         </UI.Article.Content>
         <UI.Article.Footer>
-          <UI.Button type="default" onPress={onPress}>
-            Obtenir pour {model.price / 100} {model.currency}
+          <UI.Button onPress={onPress}>
+            {model.coins} {model.currency}
           </UI.Button>
         </UI.Article.Footer>
       </UI.Article>

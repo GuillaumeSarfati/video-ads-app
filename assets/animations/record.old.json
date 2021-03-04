@@ -1,0 +1,422 @@
+{
+  "v": "5.5.2",
+  "fr": 60,
+  "ip": 0,
+  "op": 1800,
+  "w": 300,
+  "h": 300,
+  "nm": "Composition 1",
+  "ddd": 0,
+  "assets": [],
+  "layers": [
+    {
+      "ddd": 0,
+      "ind": 1,
+      "ty": 3,
+      "nm": "Nul 1",
+      "sr": 1,
+      "ks": {
+        "o": {
+          "a": 0,
+          "k": 0,
+          "ix": 11
+        },
+        "r": {
+          "a": 0,
+          "k": 0,
+          "ix": 10
+        },
+        "p": {
+          "a": 0,
+          "k": [
+            150,
+            150,
+            0
+          ],
+          "ix": 2
+        },
+        "a": {
+          "a": 0,
+          "k": [
+            0,
+            0,
+            0
+          ],
+          "ix": 1
+        },
+        "s": {
+          "a": 0,
+          "k": [
+            100,
+            100,
+            100
+          ],
+          "ix": 6
+        }
+      },
+      "ao": 0,
+      "ef": [
+        {
+          "ty": 5,
+          "nm": "Paramètre glissière",
+          "np": 3,
+          "mn": "ADBE Slider Control",
+          "ix": 1,
+          "en": 1,
+          "ef": [
+            {
+              "ty": 0,
+              "nm": "Curseur",
+              "mn": "ADBE Slider Control-0001",
+              "ix": 1,
+              "v": {
+                "a": 1,
+                "k": [
+                  {
+                    "i": {
+                      "x": [
+                        0.833
+                      ],
+                      "y": [
+                        0.833
+                      ]
+                    },
+                    "o": {
+                      "x": [
+                        0.167
+                      ],
+                      "y": [
+                        0.167
+                      ]
+                    },
+                    "t": 0,
+                    "s": [
+                      0
+                    ]
+                  },
+                  {
+                    "t": 1799,
+                    "s": [
+                      100
+                    ]
+                  }
+                ],
+                "ix": 1
+              }
+            }
+          ]
+        }
+      ],
+      "ip": 0,
+      "op": 1800,
+      "st": 0,
+      "cp": false,
+      "bm": 0
+    },
+    {
+      "ddd": 0,
+      "ind": 2,
+      "ty": 4,
+      "nm": "Calque de forme 1",
+      "sr": 1,
+      "ks": {
+        "o": {
+          "a": 0,
+          "k": 100,
+          "ix": 11
+        },
+        "r": {
+          "a": 0,
+          "k": 0,
+          "ix": 10
+        },
+        "p": {
+          "a": 0,
+          "k": [
+            150,
+            150,
+            0
+          ],
+          "ix": 2
+        },
+        "a": {
+          "a": 0,
+          "k": [
+            0,
+            0,
+            0
+          ],
+          "ix": 1
+        },
+        "s": {
+          "a": 0,
+          "k": [
+            100,
+            100,
+            100
+          ],
+          "ix": 6
+        }
+      },
+      "ao": 0,
+      "ef": [
+        {
+          "ty": 5,
+          "nm": "Gamme des dégradés",
+          "np": 10,
+          "mn": "ADBE Ramp",
+          "ix": 1,
+          "en": 1,
+          "ef": [
+            {
+              "ty": 3,
+              "nm": "Point de départ",
+              "mn": "ADBE Ramp-0001",
+              "ix": 1,
+              "v": {
+                "a": 0,
+                "k": [
+                  150,
+                  0
+                ],
+                "ix": 1
+              }
+            },
+            {
+              "ty": 2,
+              "nm": "Couleur de départ",
+              "mn": "ADBE Ramp-0002",
+              "ix": 2,
+              "v": {
+                "a": 0,
+                "k": [
+                  0.18431372549,
+                  0.537254901961,
+                  0.972549019608,
+                  1
+                ],
+                "ix": 2
+              }
+            },
+            {
+              "ty": 3,
+              "nm": "Point d'arrivée",
+              "mn": "ADBE Ramp-0003",
+              "ix": 3,
+              "v": {
+                "a": 0,
+                "k": [
+                  150,
+                  300
+                ],
+                "ix": 3
+              }
+            },
+            {
+              "ty": 2,
+              "nm": "Couleur d'arrivée",
+              "mn": "ADBE Ramp-0004",
+              "ix": 4,
+              "v": {
+                "a": 0,
+                "k": [
+                  0.662745098039,
+                  0.486274509804,
+                  0.8,
+                  1
+                ],
+                "ix": 4
+              }
+            },
+            {
+              "ty": 7,
+              "nm": "Type",
+              "mn": "ADBE Ramp-0005",
+              "ix": 5,
+              "v": {
+                "a": 0,
+                "k": 1,
+                "ix": 5
+              }
+            },
+            {
+              "ty": 0,
+              "nm": "Dispersion",
+              "mn": "ADBE Ramp-0006",
+              "ix": 6,
+              "v": {
+                "a": 0,
+                "k": 0,
+                "ix": 6
+              }
+            },
+            {
+              "ty": 0,
+              "nm": "Part de l'original",
+              "mn": "ADBE Ramp-0007",
+              "ix": 7,
+              "v": {
+                "a": 0,
+                "k": 0,
+                "ix": 7
+              }
+            },
+            {
+              "ty": 6,
+              "nm": "",
+              "mn": "ADBE Ramp-0008",
+              "ix": 8,
+              "v": 0
+            }
+          ]
+        }
+      ],
+      "shapes": [
+        {
+          "ty": "gr",
+          "it": [
+            {
+              "d": 2,
+              "ty": "el",
+              "s": {
+                "a": 0,
+                "k": [
+                  221.844,
+                  221.844
+                ],
+                "ix": 2
+              },
+              "p": {
+                "a": 0,
+                "k": [
+                  0,
+                  0
+                ],
+                "ix": 3
+              },
+              "nm": "Tracé d'ellipse 1",
+              "mn": "ADBE Vector Shape - Ellipse",
+              "hd": false
+            },
+            {
+              "ty": "st",
+              "c": {
+                "a": 0,
+                "k": [
+                  0.25,
+                  0,
+                  0,
+                  1
+                ],
+                "ix": 3
+              },
+              "o": {
+                "a": 0,
+                "k": 100,
+                "ix": 4
+              },
+              "w": {
+                "a": 0,
+                "k": 20,
+                "ix": 5
+              },
+              "lc": 1,
+              "lj": 1,
+              "ml": 4,
+              "bm": 0,
+              "nm": "Contour 1",
+              "mn": "ADBE Vector Graphic - Stroke",
+              "hd": false
+            },
+            {
+              "ty": "tr",
+              "p": {
+                "a": 0,
+                "k": [
+                  -1,
+                  0
+                ],
+                "ix": 2
+              },
+              "a": {
+                "a": 0,
+                "k": [
+                  0,
+                  0
+                ],
+                "ix": 1
+              },
+              "s": {
+                "a": 0,
+                "k": [
+                  100,
+                  100
+                ],
+                "ix": 3
+              },
+              "r": {
+                "a": 0,
+                "k": 0,
+                "ix": 6
+              },
+              "o": {
+                "a": 0,
+                "k": 100,
+                "ix": 7
+              },
+              "sk": {
+                "a": 0,
+                "k": 0,
+                "ix": 4
+              },
+              "sa": {
+                "a": 0,
+                "k": 0,
+                "ix": 5
+              },
+              "nm": "Transformer "
+            }
+          ],
+          "nm": "Ellipse 1",
+          "np": 2,
+          "cix": 2,
+          "bm": 0,
+          "ix": 1,
+          "mn": "ADBE Vector Group",
+          "hd": false
+        },
+        {
+          "ty": "tm",
+          "s": {
+            "a": 0,
+            "k": 0,
+            "ix": 1,
+            "x": "var $bm_rt;\n$bm_rt = content('Raccorder les trac\\xe9s 1').start;"
+          },
+          "e": {
+            "a": 0,
+            "k": 100,
+            "ix": 2,
+            "x": "var $bm_rt;\n$bm_rt = thisComp.layer('Nul 1').effect('Param\\xe8tre glissi\\xe8re')('Curseur');"
+          },
+          "o": {
+            "a": 0,
+            "k": 0,
+            "ix": 3
+          },
+          "m": 1,
+          "ix": 2,
+          "nm": "Raccorder les tracés 1",
+          "mn": "ADBE Vector Filter - Trim",
+          "hd": false
+        }
+      ],
+      "ip": 0,
+      "op": 1800,
+      "st": 0,
+      "cp": true,
+      "bm": 0
+    }
+  ],
+  "markers": []
+}

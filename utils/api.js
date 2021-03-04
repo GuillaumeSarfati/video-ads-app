@@ -21,14 +21,16 @@ export const createApiAction = ({ DEFINE }) => {
 
 export const Api = config => {
   return axios.create({
-    baseURL: process.env.API_URL || `https://pop-eye-api-core.herokuapp.com/api`,
+    // baseURL: `https://pop-eye-api-core.herokuapp.com/api`,
+    baseURL: 'http://development.popeye.com:3000/api',
     withCredentials: true,
     ...config
   });
 }
 
 export const Models = axios.create({
-  baseURL: (process.env.API_URL || `https://pop-eye-api-core.herokuapp.com/api`).replace('/api', '/models'),
+  // baseURL: 'http://development.popeye.com:3000/models',
+  baseURL: `http://dev.popeye.com:3000/models`,
   withCredentials: true,
 });
 

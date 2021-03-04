@@ -6,10 +6,21 @@ import connect from 'utils/connect';
 import * as UI from './ui'
 
 class SearchScreen extends React.Component {
+  state = {
+    category: undefined,
+    subCategory: undefined,
+    price: [20, 140],
+    distance: [0, 10],
+    geoloc: this.props.me.geoloc,
+  }
 
   componentWillMount() {
     const { Category } = this.props;
-    Category.find()
+    Category.find({
+      filter: {
+        include: 'subCategories'
+      }
+    })
   }
 
   onNavigate = screen => e => {
@@ -20,9 +31,64 @@ class SearchScreen extends React.Component {
     : navigation.pop()
   }
 
+  onChange = (...properties) => (...values) => {
+    properties.forEach((property, i) => this.setState({[property]: values[i]}))
+  }
+
+
+  onSearch = async () => {
+    const { Offer, navigation, me } = this.props;
+    const { category, subCategory } = this.state;
+
+    const offers = await Offer.find({
+      filter: {
+        where: {
+          and: [
+            {
+              categoryId: category
+                ? category.id
+                : undefined
+            },
+            {
+              subCategoryId: subCategory
+                ? subCategory.id
+                : undefined
+            },
+            {price: { between: this.state.price }},
+          ],
+
+          geoloc: {
+            near: this.state.geoloc,
+            maxDistance: this.state.distance,
+            unit: 'kilometers'
+          },
+        },
+        include: [
+          'member',
+          'category',
+          'subCategory',
+          {
+            relation: 'favorite',
+            scope: {
+              where: {
+                memberId: me.id
+              }
+            }
+          },
+        ],
+      },
+    });
+
+    navigation.navigate('Offers', {
+      title: 'Résultats de votre recherche'
+    });
+
+  }
+
   render() {
+    const { price, distance } = this.state
     const { categories } = this.props
-    const { onNavigate } = this
+    const { onNavigate, onChange, onSearch } = this
     return (
       <UI.Screen scroll>
 
@@ -38,64 +104,48 @@ class SearchScreen extends React.Component {
 
         <UI.Screen.Content>
 
-        <UI.Screen.Row style={{paddingHorizontal: 30}}>
-          <UI.Screen.Label dark>Categories</UI.Screen.Label>
-          <UI.Screen.Liner dark/>
-        </UI.Screen.Row>
-        <UI.Screen.Row style={{justifyContent: 'center', marginBottom: 30}}>
-          <UI.ScrollView contentContainerStyle={{padding: 50}} horizontal>
+        <UI.Screen.Column style={{paddingHorizontal: 30}}>
+          <UI.Screen.Label dark>CATEGORIES</UI.Screen.Label>
+        </UI.Screen.Column>
+        <UI.Screen.Column style={{justifyContent: 'center', }}>
+          <UI.ScrollView contentContainerStyle={{padding: 30}} horizontal>
           <For of={categories} as={category => (
-            <UI.Category model={category}/>
+            <UI.Component.Choice
+              selected={this.state.category === category}
+              icon={require('assets/images/categories/default.png')}
+              onPress={() => onChange('category')(category)}
+              title={category.title}
+              subtitle={'lorem ipsum dolor sit amet...'}
+              style={{marginRight: 15}}
+            />
           )}/>
           </UI.ScrollView>
-        </UI.Screen.Row>
-
-        <UI.Screen.Column style={{paddingHorizontal: 30}}>
-        <UI.Screen.Label dark>Prix</UI.Screen.Label>
-        <UI.Screen.Liner dark/>
-        <UI.Screen.Row style={{justifyContent: 'center', marginBottom: 30}}>
-          <UI.Slider
-            min={0}
-            max={100}
-            sliderLength={414 - 60}
-            values={[18, 55]}
-          />
-        </UI.Screen.Row>
+          {
+            this.state.category && this.state.category.subCategories && (
+              <UI.ScrollView contentContainerStyle={{paddingHorizontal: 30, paddingBottom: 30}} horizontal showsHorizontalScrollIndicator={false}>
+                <For of={this.state.category.subCategories} as={subCategory => (
+                  <UI.Component.SubChoice
+                    selected={this.state.subCategory === subCategory}
+                    onPress={() => onChange('subCategory')(subCategory)}
+                    title={subCategory.title}
+                    style={{marginRight: 7.5}}
+                  />
+                )}/>
+              </UI.ScrollView>
+            )
+          }
+        </UI.Screen.Column>
+        <UI.Screen.Column style={{paddingHorizontal: 30, marginBottom: 30}}>
+          <UI.Screen.Liner dark/>
         </UI.Screen.Column>
 
-        <UI.Screen.Column style={{paddingHorizontal: 30}}>
-        <UI.Screen.Label dark>Distance</UI.Screen.Label>
-        <UI.Screen.Liner dark/>
-        <UI.Screen.Row style={{justifyContent: 'center', marginBottom: 30}}>
-          <UI.Slider
-            min={0}
-            max={100}
-            sliderLength={414 - 60}
-            values={[18, 55]}
-          />
-        </UI.Screen.Row>
-        </UI.Screen.Column>
-
-        <UI.Screen.Column style={{paddingHorizontal: 30}}>
-        <UI.Screen.Label dark>Recherche en fonction d'un lieu</UI.Screen.Label>
-        <UI.Screen.Liner dark/>
-        <UI.Screen.Row style={{justifyContent: 'center', marginBottom: 30}}>
-        <UI.MapView
-          style={{ width: 414 - 60, height: 414 - 60, borderRadius: 8 }}
-          initialRegion={{
-            latitude: 37.78825,
-            longitude: -122.4324,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
-          }}
-        />
-        </UI.Screen.Row>
-        </UI.Screen.Column>
+        <UI.Price values={price} onChange={onChange('price')}/>
+        <UI.Distance geoloc={this.state.geoloc} values={distance} onChangeGeoloc={onChange('geoloc')} onChangeDistance={onChange('distance')}/>
 
         </UI.Screen.Content>
 
         <UI.Screen.Footer>
-          <UI.Button large>Lancer la recherche</UI.Button>
+          <UI.Button onPress={onSearch} large>Lancer la recherche</UI.Button>
         </UI.Screen.Footer>
 
       </UI.Screen>
@@ -106,9 +156,11 @@ class SearchScreen extends React.Component {
 
 export default connect(
   state => ({
+    me: state.me,
     categories: state.categories,
   }),
   (dispatch, props, models) => ({
     Category: models.Category,
+    Offer: models.Offer,
   }),
 )(SearchScreen);

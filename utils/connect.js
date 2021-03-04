@@ -32,10 +32,23 @@ export const models = modelsMethods.reduce((models, model) => {
     return methods
   }, {})
 
+  // TODO Refacto
+
+  models['App'] = {};
+  models['App'].set = createAction('App_SET');
+  models['App'].update = createAction('App_UPDATE');
+  models['App'].clear = createAction('App_CLEAR');
+
+  models['Modal'] = {};
+  models['Modal'].open = createAction('Modal_OPEN');
+  models['Modal'].close = createAction('Modal_CLOSE');
 
   models[model.name].set = createAction(model.name + '_SET');
+  models[model.name].setOne = createAction(model.name + '_SET_ONE');
   models[model.name].update = createAction(model.name + '_UPDATE');
+  models[model.name].updateOne = createAction(model.name + '_UPDATE_ONE');
   models[model.name].clear = createAction(model.name + '_CLEAR');
+  models[model.name].clearOne = createAction(model.name + '_CLEAR_ONE');
 
   models[model.plural] = models[model.name]
   models[model.plural.toLowerCase()] = models[model.name]

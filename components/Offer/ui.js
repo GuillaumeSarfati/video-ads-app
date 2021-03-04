@@ -2,10 +2,14 @@ import styled from 'styled-components/native';
 import { Dimensions } from 'react-native';
 
 export Avatar from 'components/Avatar';
+export Component from 'components/Component';
 export Rating from 'components/Rating';
 export Transition from 'components/Transition';
 
-export const  Component = styled.TouchableOpacity`
+export Title from './Title';
+export Subtitle from './Subtitle';
+
+export const  Offer = styled.TouchableOpacity`
                 align-self: stretch;
                 flex-direction:row;
                 width: ${Dimensions.get("window").width - 60}px;

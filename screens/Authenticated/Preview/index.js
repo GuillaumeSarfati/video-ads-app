@@ -47,38 +47,38 @@ class ProfileScreen extends React.Component {
 
   }
   onSend = (uri, codec) => async () => {
-    const { me, categories } = this.props
+    const { navigation, me, categories } = this.props
     const { Offer } = this.props;
 
-    const category = categories[0]
+    navigation.navigate('Create')
+    // UNCOMMENT outside dev
+    // const category = categories[0]
+    // this.setState({status: 'progress'})
 
-    this.setState({status: 'progress'})
-
-    const video = await this.uploadVideo(uri, codec)
-
-    this.setState({status: 'end'})
-
-    await Offer.create({
-      title: 'test',
-      description: 'description',
-      geoloc: { lat: 0, lng: 0 },
-      geolocDistance: 5000,
-      price: 30,
-      memberId: me.id,
-      categoryId: category.id,
-      video,
-    })
+    // const video = await this.uploadVideo(uri, codec)
+    //
+    // this.setState({status: 'end'})
+    //
+    // await Offer.create({
+    //   title: 'test',
+    //   description: 'description',
+    //   geoloc: { lat: 0, lng: 0 },
+    //   geolocDistance: 5000,
+    //   price: 30,
+    //   memberId: me.id,
+    //   categoryId: category.id,
+    //   video,
+    // })
   }
 
   render() {
-    console.log('PROFILE render : ', this.props.navigation);
     const { onSend, onNavigate } = this;
     const { status } = this.state;
     const { categories } = this.props;
     const { uri, codec } = this.props.navigation.state.params
 
     return (
-      <UI.Screen.Content style={{justifyContent: 'flex-start'}}>
+      <UI.Screen.Content style={{justifyContent: 'flex-start', backgroundColor: 'black'}}>
         <Video
           style={{width: 414, height: 734}}
           source={{uri}}
@@ -106,7 +106,9 @@ class ProfileScreen extends React.Component {
             >
             </UI.Gradient>
           </UI.Screen.Content>
+
           <UI.Screen.Footer style={{ backgroundColor: '#2E3B55' }}>
+            <UI.Button type="default" onPress={onNavigate()} large>Recommencer</UI.Button>
             <UI.Button type="primary" onPress={onSend(uri, codec)} large>Envoyer</UI.Button>
             {
               status === 'none' && <UI.Informations>Après votre envoi il faudra quelques heures avant que votre Pop Ads soit visible</UI.Informations>
@@ -117,7 +119,6 @@ class ProfileScreen extends React.Component {
             {
               status === 'end' && <UI.Informations>Upload DONE</UI.Informations>
             }
-
           </UI.Screen.Footer>
         </UI.Screen>
       </UI.Screen.Content>
